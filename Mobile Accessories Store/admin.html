@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Executive Control | STACKLY Mobile Accessories Store</title>
+  <meta name="description" content="STACKLY Command and Hardware Telemetry Dashboard.">
+
+  <!-- TAILWIND CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- LUCIDE ICONS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0f17;
+      color: #f3f4f6;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .nav-item.active {
+      background: rgba(234, 179, 8, 0.12);
+      border-color: rgba(234, 179, 8, 0.4);
+      color: #facc15 !important;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-[#0b0f17] text-neutral-100 h-screen flex overflow-hidden antialiased selection:bg-amber-400 selection:text-neutral-950">
+  <!-- STACKLY PRELOADER ANIMATION -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain relative z-10">
+      </div>
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY ADMIN COMMAND
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          EXECUTIVE OVERVIEW · GLOBAL ACCESSORIES TELEMETRY
+        </p>
+      </div>
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">0%</span>
+    </div>
+  </div>
+
+  <aside class="w-64 lg:w-72 bg-[#0d121d] border-r border-neutral-800/80 shrink-0 h-screen overflow-y-auto p-5 flex flex-col z-30 select-none">
+    <!-- STACKLY Logo -->
+    <div class="flex items-center gap-2.5 pb-6 pt-1 border-b border-neutral-800/60">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 w-auto object-contain">
+      </a>
+    </div>
+
+    <!-- Sidebar Navigation Menu (Marked Profile Box Removed) -->
+    <nav class="mt-6 space-y-1.5 text-xs font-bold">
+
+        <a href="admin.html" class="nav-item active flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-300 hover:text-white transition-all">
+          <i data-lucide="line-chart" class="w-4 h-4 text-amber-400"></i>
+          <span>Executive Overview</span>
+        </a>
+        <a href="admin-inventory.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="box" class="w-4 h-4 "></i>
+          <span>Inventory & Global SKUs</span>
+        </a>
+        <a href="admin-claims.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="shield-check" class="w-4 h-4 "></i>
+          <span>Warranty & RMA Claims</span>
+        </a>
+        <a href="admin-telemetry.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="cpu" class="w-4 h-4 "></i>
+          <span>Acoustic & Lab Telemetry</span>
+        </a>
+        <a href="admin-supply.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="truck" class="w-4 h-4 "></i>
+          <span>Supply Chain & POs</span>
+        </a>
+        <a href="admin-security.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="lock" class="w-4 h-4 "></i>
+          <span>Enterprise Security & RBAC</span>
+        </a>
+    </nav>
+
+    <!-- Direct under Navigation Menu (Marked Admin Status Pill Removed) -->
+    <div class="mt-6 pt-5 border-t border-neutral-800/60 space-y-3">
+      <!-- Logout Button -->
+      <a href="login.html" class="w-full py-2.5 px-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-bold transition-all flex items-center justify-center gap-2">
+        <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="flex-1 min-w-0 h-screen overflow-y-auto p-6 lg:p-10 space-y-8">
+<!-- Top Bar: Header & User Chip -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-neutral-800/80 gap-4">
+      <div>
+        <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">
+          Admin Executive Control: <span class="admin-welcome-name">Manu</span>
+        </h1>
+        <p class="text-xs text-neutral-400 mt-1">
+          Welcome back, <span class="font-mono text-amber-400 font-bold admin-welcome-email">manu@stackly.com</span> · Global mobile accessories inventory telemetry, 2-year warranty RMA reserves, and supply chain fulfillment command.
+        </p>
+      </div>
+      <div class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#141b29] border border-neutral-800">
+        <div class="w-6 h-6 rounded-full bg-amber-400 text-neutral-950 font-black flex items-center justify-center text-[11px] admin-avatar-char">M</div>
+        <span class="text-xs font-bold text-white admin-welcome-name">Manu</span>
+      </div>
+    </div>
+
+    <!-- SECTION 1: 4 METRIC BENTO CARDS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-amber-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>GLOBAL HARDWARE REVENUE (GTV)</span>
+          <span class="text-amber-400 font-mono font-bold text-xs">$</span>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">$44,500,000</div>
+        <div class="text-xs text-emerald-400 font-bold mt-2">↗ +28.4% YoY Fleet Growth</div>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-emerald-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>WARRANTY DEFECT RATIO (RMA)</span>
+          <span class="text-emerald-400 font-mono font-bold text-xs">%</span>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">0.41 %</div>
+        <div class="text-xs text-emerald-400 font-bold mt-2">✔ Superior vs 2.8% Industry Benchmark</div>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-cyan-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>ACTIVE B2B CORPORATE FLEETS</span>
+          <span class="text-cyan-400 font-mono font-bold text-xs">🏛</span>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">1,520</div>
+        <div class="text-xs text-cyan-400 font-bold mt-2">✔ 97.4% Client Policy Retention</div>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-purple-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>BUFFER INVENTORY VALUATION</span>
+          <span class="text-purple-400 font-mono font-bold text-xs">📦</span>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">$12,300,000</div>
+        <div class="text-xs text-purple-400 font-bold mt-2">✔ ISO 9001 & Qi2 Tier-1 Stock Adequacy</div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: HARDWARE GROSS MARGIN TRAJECTORY -->
+    <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl space-y-4 admin-metric-card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-base font-bold text-white tracking-tight">
+            Hardware Gross Margin & Supply Chain Yield Trajectory
+          </h2>
+          <p class="text-xs text-neutral-400 mt-0.5">
+            Quarterly manufacturing cost vs automated fulfillment profitability trajectory
+          </p>
+        </div>
+        <div class="flex items-center gap-1.5 p-1 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-bold font-mono">
+          <span class="px-2.5 py-1 text-neutral-400">Q1</span>
+          <span class="px-2.5 py-1 text-neutral-400">Q2</span>
+          <span class="px-2.5 py-1 bg-neutral-800 text-white rounded-lg shadow-sm">YTD</span>
+          <span class="px-2.5 py-1 text-neutral-400">5YR</span>
+        </div>
+      </div>
+
+      <div class="relative w-full h-48 sm:h-56 pt-4">
+        <svg viewBox="0 0 900 200" class="w-full h-full overflow-visible">
+          <line x1="0" y1="40" x2="900" y2="40" stroke="#1e293b" stroke-dasharray="4"/>
+          <line x1="0" y1="90" x2="900" y2="90" stroke="#1e293b" stroke-dasharray="4"/>
+          <line x1="0" y1="140" x2="900" y2="140" stroke="#1e293b" stroke-dasharray="4"/>
+          <path d="M 50 170 C 200 165, 300 150, 400 142 C 550 135, 650 95, 750 85 C 800 78, 850 72, 880 70" fill="none" stroke="#facc15" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="50" cy="170" r="5" fill="#facc15" stroke="#0b0f17" stroke-width="2"/>
+          <circle cx="400" cy="142" r="5" fill="#facc15" stroke="#0b0f17" stroke-width="2"/>
+          <circle cx="550" cy="135" r="5" fill="#facc15" stroke="#0b0f17" stroke-width="2"/>
+          <circle cx="700" cy="100" r="5" fill="#facc15" stroke="#0b0f17" stroke-width="2"/>
+          <circle cx="850" cy="73" r="5" fill="#facc15" stroke="#0b0f17" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- SECTION 3: CRITICAL HARDWARE STOCK & FULFILLMENT MATRIX -->
+    <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl space-y-4 admin-metric-card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base font-bold text-white tracking-tight">Critical Hardware Stock & Fulfillment Telemetry</h3>
+          <p class="text-xs text-neutral-400 mt-0.5">Automated warehouse stock levels across continental distribution hubs</p>
+        </div>
+        <a href="admin-inventory.html" class="px-3.5 py-1.5 rounded-xl bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold hover:bg-amber-400/30 transition-all">
+          Open Global SKU Matrix →
+        </a>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-neutral-300">
+          <thead class="bg-[#0e1420] text-neutral-400 uppercase text-[10px] font-mono border-b border-neutral-800">
+            <tr>
+              <th class="p-3">SKU Batch</th>
+              <th class="p-3">Product Name</th>
+              <th class="p-3">Category</th>
+              <th class="p-3">Seattle Hub (NA)</th>
+              <th class="p-3">Frankfurt (EU)</th>
+              <th class="p-3 text-right">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-800 font-mono">
+            <tr class="hover:bg-neutral-800/40">
+              <td class="p-3 text-amber-400 font-bold">#SKU-TX16P</td>
+              <td class="p-3 text-white font-sans font-bold">Tactix Armor Case Pro (iPhone 16 Pro)</td>
+              <td class="p-3 text-neutral-400 font-sans">Smartphone Armor</td>
+              <td class="p-3 text-emerald-400 font-bold">42,100 units</td>
+              <td class="p-3 text-emerald-400 font-bold">28,500 units</td>
+              <td class="p-3 text-right"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px]">Optimal</span></td>
+            </tr>
+            <tr class="hover:bg-neutral-800/40">
+              <td class="p-3 text-amber-400 font-bold">#SKU-ORB15W</td>
+              <td class="p-3 text-white font-sans font-bold">Orbit Qi2 15W Charging Dock</td>
+              <td class="p-3 text-neutral-400 font-sans">Fast Chargers</td>
+              <td class="p-3 text-emerald-400 font-bold">18,200 units</td>
+              <td class="p-3 text-amber-400 font-bold">4,100 units (Low)</td>
+              <td class="p-3 text-right"><span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px]">Air PO En Route</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 4: 2-YEAR WARRANTY RESERVES & REINSURANCE SOLVENCY -->
+    <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl space-y-4 admin-metric-card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base font-bold text-white tracking-tight">2-Year Warranty Reserves & Reinsurance Solvency</h3>
+          <p class="text-xs text-neutral-400 mt-0.5">Munich Re & Swiss Re Quota Share Treaty Cessions for 100% Replacement Backing</p>
+        </div>
+        <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-mono font-bold">
+          SOLVENCY: 100% SECURE
+        </span>
+      </div>
+
+      <div class="space-y-3 pt-2 text-xs font-mono">
+        <div>
+          <div class="flex justify-between text-neutral-300 mb-1">
+            <span>Primary Retained Hardware Risk Layer (STACKLY Direct)</span>
+            <span class="text-amber-400 font-bold">$25,000,000 (100% Solvency)</span>
+          </div>
+          <div class="w-full bg-neutral-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-amber-400 h-full rounded-full" style="width: 100%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-neutral-300 mb-1">
+            <span>Excess of Loss Layer (Munich Re Hardware Treaty)</span>
+            <span class="text-cyan-400 font-bold">$100,000,000 (Attached)</span>
+          </div>
+          <div class="w-full bg-neutral-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-cyan-400 h-full rounded-full" style="width: 75%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: EXECUTIVE HARDWARE ACTIONS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between admin-metric-card">
+        <div class="space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center font-bold">
+            <i data-lucide="play" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-white text-sm">Batch Underwriting Rating</h4>
+          <p class="text-xs text-neutral-400">Batch re-price 240+ renewals against updated state loss indices.</p>
+        </div>
+        <button onclick="alert('Batch component replenishment PO #2026-9814 executed!')" class="mt-5 w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i data-lucide="play" class="w-4 h-4"></i>
+          <span>Execute Batch</span>
+        </button>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between admin-metric-card">
+        <div class="space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center font-bold">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-white text-sm">Treaty Cession Settlement</h4>
+          <p class="text-xs text-neutral-400">Disburse monthly reinsurance premiums to treaty syndicates.</p>
+        </div>
+        <button onclick="alert('Treaty cession statements reviewed and signed.')" class="mt-5 w-full py-2.5 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i data-lucide="file-check" class="w-4 h-4"></i>
+          <span>Review Cession</span>
+        </button>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between admin-metric-card">
+        <div class="space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center font-bold">
+            <i data-lucide="landmark" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-white text-sm">DOI Regulatory Filing</h4>
+          <p class="text-xs text-neutral-400">Quarterly statutory financial statements and actuarial exhibits.</p>
+        </div>
+        <button onclick="alert('Downloading statutory filing documentation (PDF)...')" class="mt-5 w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Download Filing</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="preloader.js"></script>
+</body>
+</html>
