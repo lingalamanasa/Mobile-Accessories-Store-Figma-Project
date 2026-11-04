@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Device Lab & Diagnostics | STACKLY Mobile Accessories Store</title>
+  <meta name="description" content="STACKLY Command and Hardware Telemetry Dashboard.">
+
+  <!-- TAILWIND CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- LUCIDE ICONS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0f17;
+      color: #f3f4f6;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .nav-item.active {
+      background: rgba(234, 179, 8, 0.12);
+      border-color: rgba(234, 179, 8, 0.4);
+      color: #facc15 !important;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-[#0b0f17] text-neutral-100 h-screen flex overflow-hidden antialiased selection:bg-amber-400 selection:text-neutral-950">
+  <!-- STACKLY PRELOADER ANIMATION -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain relative z-10">
+      </div>
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY REMOTE LAB
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          ORBIT QI2 COILS · CRYO THERMAL · ACOUSTIC DSP
+        </p>
+      </div>
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">0%</span>
+    </div>
+  </div>
+
+  <aside class="w-64 lg:w-72 bg-[#0d121d] border-r border-neutral-800/80 shrink-0 h-screen overflow-y-auto p-5 flex flex-col z-30 select-none">
+    <!-- STACKLY Logo -->
+    <div class="flex items-center gap-2.5 pb-6 pt-1 border-b border-neutral-800/60">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 w-auto object-contain">
+      </a>
+    </div>
+
+    <!-- Sidebar Navigation Menu (Marked Profile Box Removed) -->
+    <nav class="mt-6 space-y-1.5 text-xs font-bold">
+
+        <a href="dashboard.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 "></i>
+          <span>Hardware Hub & Overview</span>
+        </a>
+        <a href="dashboard-orders.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="package" class="w-4 h-4 "></i>
+          <span>Orders & Carrier Tracking</span>
+        </a>
+        <a href="dashboard-warranty.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="shield-check" class="w-4 h-4 "></i>
+          <span>2-Year Warranty & RMA</span>
+        </a>
+        <a href="dashboard-diagnostics.html" class="nav-item active flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-300 hover:text-white transition-all">
+          <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+          <span>Remote Lab & Diagnostics</span>
+        </a>
+        <a href="dashboard-tradein.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="refresh-cw" class="w-4 h-4 "></i>
+          <span>Circular Trade-In Vault</span>
+        </a>
+        <a href="dashboard-settings.html" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-neutral-400 hover:text-white hover:bg-neutral-800/40 transition-all">
+          <i data-lucide="settings" class="w-4 h-4 "></i>
+          <span>Account & Security</span>
+        </a>
+    </nav>
+
+    <!-- Direct under Navigation Menu (Marked Member Tier Pill Removed) -->
+    <div class="mt-6 pt-5 border-t border-neutral-800/60 space-y-3">
+      <!-- Continue Shopping Link -->
+      <a href="shop.html" class="w-full py-2.5 px-3 rounded-xl bg-neutral-800/60 hover:bg-neutral-800 text-neutral-300 border border-neutral-700/50 text-xs font-bold transition-all flex items-center justify-center gap-2">
+        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span>Continue Shopping</span>
+      </a>
+
+      <!-- Logout Button -->
+      <a href="login.html" class="w-full py-2 px-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-bold transition-all flex items-center justify-center gap-2">
+        <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="flex-1 min-w-0 h-screen overflow-y-auto p-6 lg:p-10 space-y-8">
+<!-- Top Bar: Header & User Chip -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-neutral-800/80 gap-4">
+      <div>
+        <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">
+          Remote Device Lab & Diagnostics
+        </h1>
+        <p class="text-xs text-neutral-400 mt-1">
+          Direct sensor telemetry for Orbit Qi2 wireless coils, cryo-thermal heat pipes, and drop sensors.
+        </p>
+      </div>
+      <div class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#141b29] border border-neutral-800">
+        <div class="w-6 h-6 rounded-full bg-amber-400 text-neutral-950 font-black flex items-center justify-center text-[11px]">S</div>
+        <span class="text-xs font-bold text-white">Sarah Jenkins</span>
+      </div>
+    </div>
+
+    <!-- SECTION 1: 4 METRIC BENTO CARDS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-cyan-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>CONNECTED DOCKS</span>
+          <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">1 Online</div>
+        <div class="text-xs text-cyan-400 font-bold mt-2">✔ Orbit Qi2 15W Station (#ORB-5520)</div>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-emerald-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>COIL POWER EFFICIENCY</span>
+          <i data-lucide="zap" class="w-4 h-4 text-emerald-400"></i>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">98.2%</div>
+        <div class="text-xs text-emerald-400 font-bold mt-2">⚡ 15.0W Peak MagSafe Induction</div>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-amber-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>CRYO THERMAL TEMP</span>
+          <i data-lucide="thermometer" class="w-4 h-4 text-amber-400"></i>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">28.4°C</div>
+        <div class="text-xs text-emerald-400 font-bold mt-2">❄ Sub-30°C IceFlow Cooling Active</div>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-5 border border-neutral-800 border-t-2 border-t-purple-400 shadow-lg admin-metric-card">
+        <div class="flex items-center justify-between text-neutral-400 text-[11px] font-mono font-bold uppercase">
+          <span>DROP SENSOR SHOCKS</span>
+          <i data-lucide="activity" class="w-4 h-4 text-purple-400"></i>
+        </div>
+        <div class="text-2xl sm:text-3xl font-black text-white mt-3 font-mono">0 Logged</div>
+        <div class="text-xs text-purple-400 font-bold mt-2">★ Zero Delamination or Impact Fatigue</div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: REAL-TIME CHARGING CURVE TELEMETRY -->
+    <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl space-y-4 admin-metric-card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base font-bold text-white">Live Orbit Qi2 Wireless Charging Curve & Wattage</h3>
+          <p class="text-xs text-neutral-400 mt-0.5">Real-time induction curve streaming via Bluetooth Low Energy (BLE)</p>
+        </div>
+        <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-mono font-bold flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          STREAMING 15.0W ACTIVE
+        </span>
+      </div>
+
+      <div class="h-44 w-full pt-4">
+        <svg viewBox="0 0 700 160" class="w-full h-full overflow-visible">
+          <defs>
+            <linearGradient id="diagGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="40" x2="700" y2="40" stroke="#1e293b" stroke-dasharray="4"/>
+          <line x1="0" y1="80" x2="700" y2="80" stroke="#1e293b" stroke-dasharray="4"/>
+          <line x1="0" y1="120" x2="700" y2="120" stroke="#1e293b" stroke-dasharray="4"/>
+          
+          <path d="M 0 130 C 120 125, 220 50, 350 48 C 480 46, 580 50, 700 52 L 700 150 L 0 150 Z" fill="url(#diagGrad)" />
+          <path d="M 0 130 C 120 125, 220 50, 350 48 C 480 46, 580 50, 700 52" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" />
+          
+          <circle cx="350" cy="48" r="5" fill="#facc15" stroke="#0b0f17" stroke-width="2"/>
+          <text x="350" y="32" fill="#facc15" font-size="11" font-family="monospace" text-anchor="middle" font-weight="bold">15.0W (Peak Constant)</text>
+        </svg>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs font-mono">
+        <div class="p-2.5 bg-[#0d121d] rounded-xl border border-neutral-800">
+          <span class="text-neutral-500 block text-[10px]">INDUCTION VOLTAGE</span>
+          <span class="text-white font-bold text-sm">9.04 V</span>
+        </div>
+        <div class="p-2.5 bg-[#0d121d] rounded-xl border border-neutral-800">
+          <span class="text-neutral-500 block text-[10px]">CURRENT FLOW</span>
+          <span class="text-cyan-400 font-bold text-sm">1.66 A</span>
+        </div>
+        <div class="p-2.5 bg-[#0d121d] rounded-xl border border-neutral-800">
+          <span class="text-neutral-500 block text-[10px]">THERMAL DISSIPATION</span>
+          <span class="text-emerald-400 font-bold text-sm">Pass (28.4°C)</span>
+        </div>
+        <div class="p-2.5 bg-[#0d121d] rounded-xl border border-neutral-800">
+          <span class="text-neutral-500 block text-[10px]">FOD OBJECT CHECK</span>
+          <span class="text-emerald-400 font-bold text-sm">Clear (Safe)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: ACOUSTIC FREQUENCY RESPONSE LAB CURVE -->
+    <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl space-y-4 admin-metric-card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base font-bold text-white">Studio Hi-Fi Beryllium Transducer Frequency Curve</h3>
+          <p class="text-xs text-neutral-400 mt-0.5">Harman Target compliance and Active Noise Cancellation isolation telemetry</p>
+        </div>
+        <span class="text-xs font-mono text-purple-400 font-bold">CALIBRATION: 99.4% MATCH</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-[#0d121d] border border-neutral-800/80">
+          <span class="text-xs font-bold text-white">Sub-Bass Extension (20-100Hz)</span>
+          <div class="text-lg font-black text-purple-400 font-mono mt-1">+2.4 dB Harman</div>
+          <p class="text-[11px] text-neutral-400 mt-2">Precision bass impact with zero harmonic bleed into mids.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-[#0d121d] border border-neutral-800/80">
+          <span class="text-xs font-bold text-white">Vocal Clarity Mids (1kHz-4kHz)</span>
+          <div class="text-lg font-black text-cyan-400 font-mono mt-1">Flat ± 0.3 dB</div>
+          <p class="text-[11px] text-neutral-400 mt-2">Crystal studio-grade presentation for podcasts and vocals.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-[#0d121d] border border-neutral-800/80">
+          <span class="text-xs font-bold text-white">Hybrid ANC Attenuation</span>
+          <div class="text-lg font-black text-emerald-400 font-mono mt-1">-42 dB Deep Quiet</div>
+          <p class="text-[11px] text-neutral-400 mt-2">Real-time anti-phase DSP neutralizing jet engine rumble.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: TACTIX ARMOR DROP IMPACT LOG -->
+    <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl space-y-4 admin-metric-card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base font-bold text-white">Tactix Armor NFC Shock & Air-Cushion Telemetry</h3>
+          <p class="text-xs text-neutral-400 mt-0.5">Built-in passive shock telemetry scanned via your phone's NFC reader</p>
+        </div>
+        <button onclick="alert('NFC Sensor Scanned: Internal chassis integrity 100%. No shock micro-fractures detected.')" class="px-3 py-1.5 rounded-xl bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold hover:bg-amber-400/30 transition-all flex items-center gap-1.5">
+          <i data-lucide="scan" class="w-3.5 h-3.5"></i>
+          <span>Scan NFC Shock Sensor</span>
+        </button>
+      </div>
+
+      <div class="p-4 rounded-xl bg-[#0d121d] border border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="text-sm font-bold text-white">Chassis Structural Integrity: 100% Intact</div>
+          <p class="text-xs text-neutral-400 font-sans">
+            Tactix Armor Case Pro (Serial: #TX-16P-9841-A) has experienced zero drops exceeding the 3-meter MIL-STD 810H threshold.
+          </p>
+        </div>
+        <span class="px-3 py-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-mono font-bold shrink-0">
+          ✔ STRUCTURALLY PERFECT
+        </span>
+      </div>
+    </div>
+
+    <!-- SECTION 5: DIAGNOSTIC CALIBRATION & REPORT ACTIONS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between admin-metric-card">
+        <div class="space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-cyan-400/10 text-cyan-400 flex items-center justify-center font-bold">
+            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-white text-sm">Run Full Diagnostic Sweep</h4>
+          <p class="text-xs text-neutral-400">Perform complete 60-second hardware bench test across all connected STACKLY gear.</p>
+        </div>
+        <button onclick="alert('Diagnostic sweep completed: All coils, thermal sensors, and firmware registers passed 100%.')" class="mt-5 w-full py-2.5 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i data-lucide="play" class="w-4 h-4"></i>
+          <span>Execute Diagnostic</span>
+        </button>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between admin-metric-card">
+        <div class="space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center font-bold">
+            <i data-lucide="sliders" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-white text-sm">Recalibrate Cryo-Fan</h4>
+          <p class="text-xs text-neutral-400">Adjust the IceFlow thermal fan curve between Silent (14dB) and Turbo Chill (15W sustained).</p>
+        </div>
+        <button onclick="alert('Cryo-Fan set to Silent Whisper Profile (14dB).')" class="mt-5 w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>Adjust Fan Curve</span>
+        </button>
+      </div>
+
+      <div class="bg-[#121824] rounded-2xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between admin-metric-card">
+        <div class="space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center font-bold">
+            <i data-lucide="download" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-white text-sm">Export Health Certificate</h4>
+          <p class="text-xs text-neutral-400">Download audited PDF telemetry dossier to verify hardware condition for trade-in.</p>
+        </div>
+        <button onclick="alert('Exporting Hardware Health Certificate (PDF)...')" class="mt-5 w-full py-2.5 bg-emerald-400 hover:bg-emerald-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <i data-lucide="file-check" class="w-4 h-4"></i>
+          <span>Download Cert (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="preloader.js"></script>
+</body>
+</html>

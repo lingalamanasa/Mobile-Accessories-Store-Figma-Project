@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About STACKLY | Engineering, Materials Science & Hyderabad Prototyping Lab</title>
+  <meta name="description" content="Discover STACKLY's obsession with hardware resilience. From our Hyderabad engineering bunker to 140,000+ daily drivers worldwide.">
+
+  <!-- TAILWIND CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- LUCIDE ICONS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & SCROLLTRIGGER -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CUSTOM STYLES -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
+  <!-- ======================================================== -->
+  <!-- STACKLY PRELOADER ANIMATION                              -->
+  <!-- ======================================================== -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <!-- Glow & Logo -->
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain  relative z-10">
+      </div>
+      
+      <!-- Brand & Page Name -->
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY ABOUT
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          Acoustic & Armor Engineering
+        </p>
+      </div>
+
+      <!-- High-tech Progress Line -->
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+
+      <!-- Percentage Counter -->
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">
+        0%
+      </span>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- NAVIGATION BAR (Flagship Global Header)                  -->
+  <!-- ======================================================== -->
+  <header class="bg-[#f5f5f7] border-b border-neutral-200/80 sticky top-0 header-nav z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+      
+      <!-- Logo: Exact STACKLY logo untouched -->
+      <a href="index.html" class="flex items-center gap-2 cursor-pointer" title="STACKLY Home">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
+        <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Home</a>
+        <a href="shop.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Shop</a>
+        <a href="services.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Services</a>
+        <a href="about.html" class="text-neutral-900 font-extrabold relative py-1.5 cursor-pointer">
+          About
+          <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-teal-600 rounded-full"></span>
+        </a>
+        <a href="blog.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Blog</a>
+        <a href="contact.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Contact</a>
+      </nav>
+
+      <!-- Utility Actions -->
+      <div class="flex items-center space-x-4">
+
+        <!-- Log In Link -->
+        <a href="login.html" class="hidden sm:inline-block text-[15px] font-bold text-neutral-700 hover:text-neutral-950 px-2 py-1 transition-colors">
+          Login
+        </a>
+
+        <!-- Sign Up Primary Button -->
+        <a href="signup.html" class="bg-[#111827] hover:bg-neutral-800 text-white text-[15px] font-bold px-6 py-2.5 rounded-full transition-all duration-200 shadow-sm cursor-pointer hover:shadow-md">
+          Sign up
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-800 hover:text-black focus:outline-none" aria-label="Toggle Navigation">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Nav -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-neutral-200 bg-[#f5f5f7] px-6 py-4 space-y-3 font-semibold text-neutral-700">
+      <a href="index.html" class="block py-1 hover:text-black">Home</a>
+      <a href="shop.html" class="block py-1 hover:text-black">Shop</a>
+      <a href="services.html" class="block py-1 hover:text-black">Services</a>
+      <a href="about.html" class="block py-1 text-teal-700 font-bold">About</a>
+      <a href="blog.html" class="block py-1 hover:text-black">Blog</a>
+      <a href="contact.html" class="block py-1 hover:text-black">Contact</a>
+      <div class="pt-2 border-t border-neutral-200 flex gap-4">
+        <a href="login.html" class="text-sm font-bold text-neutral-700">Login</a>
+        <a href="signup.html" class="text-sm font-bold text-teal-700">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 1: HERO HEADER (Full Width 1280px Flagship)     -->
+  <!-- ======================================================== -->
+  <section id="hero" class="bg-[#e4e5e9] pt-8 sm:pt-12 pb-14 border-b border-neutral-300/80 overflow-hidden">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left 7 Columns: Story Header & Telemetry -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 text-neutral-900 text-xs font-bold shadow-sm border border-neutral-200">
+              <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+              Est. Hyderabad 2019
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold border border-teal-200/80">
+              <i data-lucide="microscope" class="w-3.5 h-3.5 text-teal-600"></i>
+              Materials Science Lab
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs font-semibold border border-neutral-200">
+              <i data-lucide="recycle" class="w-3.5 h-3.5 text-teal-600"></i>
+              0% Single-Use Plastics
+            </span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-neutral-950 tracking-tight leading-[1.08]">
+              Born from frustration. <br>
+              <span class="text-teal-700">Forged in science.</span> Built to outlast.
+            </h1>
+            <p class="text-neutral-600 text-sm sm:text-base max-w-xl leading-relaxed">
+              We founded STACKLY after watching our fifth 'military-grade' case shatter on an ordinary curb. We replaced cosmetic plastic gimmicks with ballistic Aramid fiber, aircraft 6063 aluminum, and cryo-cooled wireless thermodynamics.
+            </p>
+          </div>
+
+          <!-- Lab Spec Metric Badges -->
+          <div class="grid grid-cols-3 gap-3 pt-2 max-w-lg">
+            <div class="p-3 rounded-2xl bg-white/80 border border-neutral-200/80 shadow-sm">
+              <span class="text-[10px] font-mono text-neutral-500 uppercase font-bold">Drop Rig</span>
+              <p class="text-base font-black text-neutral-900 mt-0.5">15.0 ft</p>
+              <span class="text-[10px] text-teal-700 font-semibold">Concrete Certified</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/80 border border-neutral-200/80 shadow-sm">
+              <span class="text-[10px] font-mono text-neutral-500 uppercase font-bold">Thermal Range</span>
+              <p class="text-base font-black text-neutral-900 mt-0.5">-40° to +85°C</p>
+              <span class="text-[10px] text-teal-700 font-semibold">Environmental Rig</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/80 border border-neutral-200/80 shadow-sm">
+              <span class="text-[10px] font-mono text-neutral-500 uppercase font-bold">CNC Tolerance</span>
+              <p class="text-base font-black text-neutral-900 mt-0.5">±0.05 mm</p>
+              <span class="text-[10px] text-teal-700 font-semibold">Laser Precision</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="#our-story" class="px-6 py-3 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow-md flex items-center gap-2">
+              <span>Read Our Story</span>
+              <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+            </a>
+            <a href="#materials-section" class="px-6 py-3 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 text-xs font-bold border border-neutral-300 transition-all shadow-sm flex items-center gap-2">
+              <span>Explore Materials Lab</span>
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-600"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right 5 Columns: Studio Hero Visual -->
+        <div class="lg:col-span-5">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-300 bg-white group">
+            <img src="assets/about_hero_studio.webp" alt="STACKLY Hyderabad Hardware Studio" class="w-full h-auto aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+            
+            <div class="absolute bottom-4 left-4 right-4 bg-neutral-900/80 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-teal-400 font-bold">Prototyping Facility</span>
+                <p class="text-sm font-extrabold text-white">Unit 4B, HITEC City, Hyderabad</p>
+              </div>
+              <div class="w-8 h-8 rounded-full bg-teal-500/20 text-teal-300 flex items-center justify-center border border-teal-500/40">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 2: OUR STORY BENTO (Origin & Bench Roots)        -->
+  <!-- ======================================================== -->
+  <section id="our-story" class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      
+      <!-- 7 Columns: Story Narrative & Visual -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider mb-4">
+            <i data-lucide="compass" class="w-3.5 h-3.5 text-teal-600"></i>
+            Our Genesis
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight leading-tight">
+            Honest hardware for daily drivers.
+          </h2>
+
+          <div class="space-y-4 text-xs sm:text-sm text-neutral-600 mt-4 leading-relaxed">
+            <p>
+              In 2019, our founder Ravi V. was working on thermal mitigation systems for aerospace sensors in Hyderabad. During a field test, his phone fell from hip height onto asphalt — inside an expensive branded case that claimed 'military drop-testing.' The phone shattered completely.
+            </p>
+            <p>
+              Taking the broken case into the testing lab revealed what the industry hid: 0.8mm brittle polystyrene backed with cheap polyurethane foam that degraded under ambient heat. The marketing was brilliant; the engineering was fraudulent.
+            </p>
+            <p>
+              STACKLY began on that bench with a single rule: <strong>Never use decorative materials where structural physics are required.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden aspect-[16/9] bg-neutral-100 mt-6 border border-neutral-200">
+          <img src="assets/about_story.webp" alt="STACKLY Workbench Roots" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+      <!-- 5 Columns: 3 Companion Bento Metric Cards -->
+      <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+        
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex items-start gap-4 hover:border-neutral-900 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 border border-teal-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="flame" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900">4,200+ Rejected Prototypes</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              If a mold deflects by 0.1mm under 50°C thermal load or loses 5% magnetic holding torque, the entire batch is destroyed and retooled.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex items-start gap-4 hover:border-neutral-900 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 border border-indigo-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900">Zero Cheap Plastics Policy</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              No PVC, no toxic phthalates, no cheap foam inserts. We machine billet 6063-T6 aluminum and thermoform authentic 1500D Aramid fibers.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex items-start gap-4 hover:border-neutral-900 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="waves" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900">48hr Salt-Spray Soak</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              Every CNC anodized ring and charging pin undergoes 48 hours in a 5% sodium chloride vapor chamber with zero pitting or discoloration.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 3: 4 HIGH-IMPACT SCALE METRICS BENTO             -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="text-center max-w-xl mx-auto mb-8">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+        <i data-lucide="bar-chart-3" class="w-3.5 h-3.5 text-teal-600"></i>
+        Scale & Track Record
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+        Tested on the bench. Proven across the globe.
+      </h2>
+    </div>
+
+    <!-- 4 High-Density Bento Cards with Background Accents -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Metric Card 1 -->
+      <div class="relative bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm overflow-hidden group hover:border-neutral-900 transition-all">
+        <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+          <img src="assets/about_cad_blueprint.webp" alt="CAD Blueprint" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 space-y-2">
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase tracking-wider">Worldwide Reach</span>
+          <div class="text-4xl font-black text-neutral-900 tracking-tight">140k+</div>
+          <p class="text-xs font-bold text-neutral-800">Units Shipped Globally</p>
+          <p class="text-[11px] text-neutral-500 leading-relaxed">
+            Protecting daily drivers across 42 countries with zero structural recalls.
+          </p>
+        </div>
+      </div>
+
+      <!-- Metric Card 2 -->
+      <div class="relative bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm overflow-hidden group hover:border-neutral-900 transition-all">
+        <div class="relative z-10 space-y-2">
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase tracking-wider">CNC Laser Tolerance</span>
+          <div class="text-4xl font-black text-neutral-900 tracking-tight">99.4%</div>
+          <p class="text-xs font-bold text-neutral-800">First-Time Fit Accuracy</p>
+          <p class="text-[11px] text-neutral-500 leading-relaxed">
+            Laser-scanned device geometries accurate down to 0.05mm around buttons and ports.
+          </p>
+        </div>
+      </div>
+
+      <!-- Metric Card 3 -->
+      <div class="relative bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm overflow-hidden group hover:border-neutral-900 transition-all">
+        <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+          <img src="assets/about_prototype_bench.webp" alt="Prototype Bench" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 space-y-2">
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase tracking-wider">Drop Resistance</span>
+          <div class="text-4xl font-black text-neutral-900 tracking-tight">15.0 ft</div>
+          <p class="text-xs font-bold text-neutral-800">Mil-Grade Concrete Drop</p>
+          <p class="text-[11px] text-neutral-500 leading-relaxed">
+            Certified across 26 drops at varying strike angles onto cured industrial concrete.
+          </p>
+        </div>
+      </div>
+
+      <!-- Metric Card 4 -->
+      <div class="relative bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm overflow-hidden group hover:border-neutral-900 transition-all">
+        <div class="relative z-10 space-y-2">
+          <span class="text-[10px] font-mono font-bold text-emerald-700 uppercase tracking-wider">Circular Ecology</span>
+          <div class="text-4xl font-black text-neutral-900 tracking-tight">0%</div>
+          <p class="text-xs font-bold text-neutral-800">Single-Use Plastics in 2026</p>
+          <p class="text-[11px] text-neutral-500 leading-relaxed">
+            100% biodegradable bamboo-fiber trays and soy ink packaging worldwide.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 4: 3 FOUNDATIONAL ENGINEERING PILLARS            -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 pb-4 border-b border-neutral-200 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="shield" class="w-3.5 h-3.5 text-teal-600"></i>
+          Design Philosophy
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+          Three Uncompromising Engineering Principles
+        </h2>
+      </div>
+      <span class="text-xs text-neutral-500">Every STACKLY product must satisfy all three criteria</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Pillar 1 -->
+      <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 hover:shadow-xl transition-all duration-300">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/about_pillar_durability.webp" alt="Durability First" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">Principle 01</span>
+          <h3 class="text-lg font-bold text-neutral-900 mt-1">Durability Over Aesthetics</h3>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Form must follow survival. We never shave structural wall thickness to look 0.2mm slimmer in a catalog. Every chamfer serves to redirect kinetic impact energy away from fragile display corners.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-mono text-neutral-400">
+          Metric: Kinetic Dissipation Rate > 85%
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 hover:shadow-xl transition-all duration-300">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/about_pillar_honesty.webp" alt="Material Honesty" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <span class="text-[10px] font-mono font-bold text-indigo-700 uppercase">Principle 02</span>
+          <h3 class="text-lg font-bold text-neutral-900 mt-1">Material Honesty</h3>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            If it looks like metal, it is CNC billet aluminum. If it looks like carbon, it is 1500D ballistic Aramid. We never apply cosmetic vinyl stickers or metallic spray paint over brittle plastic skeletons.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-mono text-neutral-400">
+          Metric: 100% Solid Billet & Genuine Weave
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 hover:shadow-xl transition-all duration-300">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/about_pillar_waste.webp" alt="Zero Waste Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <span class="text-[10px] font-mono font-bold text-emerald-700 uppercase">Principle 03</span>
+          <h3 class="text-lg font-bold text-neutral-900 mt-1">Zero Waste Responsibility</h3>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Hardware should outlast multiple phone upgrades. Every old STACKLY case sent back to our Hyderabad recycling hub is melted down to produce polymer spacers for future production runs.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-mono text-neutral-400">
+          Metric: Circular Trade-In Credit Active
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 5: ADVANCED MATERIALS & SCIENCE (Interactive)   -->
+  <!-- ======================================================== -->
+  <section id="materials-section" class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm">
+      
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-4 border-b border-neutral-200 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-teal-600"></i>
+            Interactive Materials Lab
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+            Four Uncompromising Elements
+          </h2>
+        </div>
+
+        <!-- Material Switcher Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchMaterialTab('aramid', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-neutral-900 text-white shadow-md transition-all">
+            Aramid Fiber 1500D
+          </button>
+          <button onclick="switchMaterialTab('aluminum', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">
+            6063 Aluminum
+          </button>
+          <button onclick="switchMaterialTab('bayer', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">
+            Bayer TPU Shield
+          </button>
+          <button onclick="switchMaterialTab('sapphire', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">
+            9H Sapphire Ceramic
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Bento Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-6 space-y-5">
+          <div>
+            <span id="mat-weight" class="text-xs font-mono font-bold text-teal-700 uppercase">12g Ultra-Light</span>
+            <h3 id="mat-title" class="text-2xl font-black text-neutral-900 tracking-tight mt-1">Aramid Fiber 1500D</h3>
+            <p id="mat-desc" class="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
+              5x stronger than structural steel per weight ratio. Ballistic grade polymer weave precision-molded under 400 tons of heat pressure.
+            </p>
+          </div>
+
+          <!-- Dynamic Progress Bars -->
+          <div class="space-y-3 pt-2">
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-neutral-800 mb-1">
+                <span>Tensile Strength</span>
+                <span id="mat-val-tensile" class="font-mono text-teal-700">98%</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-neutral-100 overflow-hidden">
+                <div id="mat-bar-tensile" class="h-full bg-teal-600 rounded-full transition-all duration-500" style="width: 98%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-neutral-800 mb-1">
+                <span>Thermal Conductivity</span>
+                <span id="mat-val-thermal" class="font-mono text-teal-700">72%</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-neutral-100 overflow-hidden">
+                <div id="mat-bar-thermal" class="h-full bg-indigo-600 rounded-full transition-all duration-500" style="width: 72%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-neutral-800 mb-1">
+                <span>Scratch Resistance (Mohs Hardness)</span>
+                <span id="mat-val-scratch" class="font-mono text-teal-700">95%</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-neutral-100 overflow-hidden">
+                <div id="mat-bar-scratch" class="h-full bg-amber-500 rounded-full transition-all duration-500" style="width: 95%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200">
+            <img src="assets/about_materials.webp" alt="Materials Macro Shot" class="w-full h-full object-cover">
+          </div>
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200">
+            <img src="assets/about_circuit_macro.webp" alt="Circuit & Thermal Detail" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 6: INTERACTIVE MILESTONE TIMELINE (2019-2026)    -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="text-center max-w-xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+        <i data-lucide="milestone" class="w-3.5 h-3.5 text-teal-600"></i>
+        Hardware Evolution
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+        Milestones in Hardware Engineering
+      </h2>
+    </div>
+
+    <!-- 4 Dense Milestone Era Bento Cards with Visuals -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Era 1: 2019 -->
+      <div class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 transition-all">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/about_prototype_bench.webp" alt="2019 Garage Bench" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono font-bold text-teal-700 uppercase">Year 01</span>
+            <span class="text-xs font-black text-neutral-900">2019</span>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-900">The Garage Bench Inception</h3>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            First pneumatic drop rig constructed in Hyderabad. 482 custom molded TPU phone bumpers tested to complete destruction.
+          </p>
+        </div>
+        <div class="mt-4 pt-2 border-t border-neutral-100 text-[10px] font-mono text-neutral-400">
+          Status: First 1,000 units funded
+        </div>
+      </div>
+
+      <!-- Era 2: 2021 -->
+      <div class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 transition-all">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/about_circuit_macro.webp" alt="2021 Multi-Coil Patent" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono font-bold text-indigo-700 uppercase">Year 03</span>
+            <span class="text-xs font-black text-neutral-900">2021</span>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-900">Multi-Coil Wireless Patent</h3>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Engineered dual interleaved copper induction coils that solved dead-zone placement issues permanently without heating phone batteries.
+          </p>
+        </div>
+        <div class="mt-4 pt-2 border-t border-neutral-100 text-[10px] font-mono text-neutral-400">
+          Status: Granted Patent ID US-2021
+        </div>
+      </div>
+
+      <!-- Era 3: 2023 -->
+      <div class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 transition-all">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/about_cad_blueprint.webp" alt="2023 Aramid Fiber Launch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono font-bold text-amber-700 uppercase">Year 05</span>
+            <span class="text-xs font-black text-neutral-900">2023</span>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-900">Aramid Armor Launch</h3>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Transitioned entire flagship case line to authentic 1500D ballistic Aramid. Reached 50,000 active daily drivers worldwide.
+          </p>
+        </div>
+        <div class="mt-4 pt-2 border-t border-neutral-100 text-[10px] font-mono text-neutral-400">
+          Status: 50,000 Milestone Reached
+        </div>
+      </div>
+
+      <!-- Era 4: 2026 -->
+      <div class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 transition-all">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/about_lab_robotics.webp" alt="2026 Qi2 Ecosystem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono font-bold text-teal-700 uppercase">Current Era</span>
+            <span class="text-xs font-black text-neutral-900">2026</span>
+          </div>
+          <h3 class="text-sm font-bold text-neutral-900">Qi2 Flagship Ecosystem</h3>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Full certified Qi2 ecosystem launch with Orbit wireless stations, semiconductor cryo car mounts, and 100% zero-plastic packaging.
+          </p>
+        </div>
+        <div class="mt-4 pt-2 border-t border-neutral-100 text-[10px] font-mono text-neutral-400">
+          Status: 140,000+ Units Shipped
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 7: ENGINEERING & DESIGN LEADERSHIP               -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 pb-4 border-b border-neutral-200 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-teal-600"></i>
+          Leadership & Architects
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+          The Minds Behind STACKLY
+        </h2>
+      </div>
+      <span class="text-xs text-neutral-500">Every design reviewed personally by our engineering leads</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Leader 1: Ravi -->
+      <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 hover:shadow-xl transition-all duration-300">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/about_founder_ravi.webp" alt="Ravi V." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-neutral-900">Ravi V.</h3>
+            <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">Founder & Chief Architect</span>
+          </div>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Ex-Aerospace thermal sensor engineer. Holds 4 patents in wireless induction heat dissipation and composite polymer bonding.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 italic">
+          "If our cases fail in your hands, our engineering is guilty."
+        </div>
+      </div>
+
+      <!-- Leader 2: Ananya -->
+      <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 hover:shadow-xl transition-all duration-300">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/about_head_ananya.webp" alt="Ananya S." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-neutral-900">Ananya S.</h3>
+            <span class="text-[10px] font-mono font-bold text-indigo-700 uppercase">Head of Materials Science</span>
+          </div>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            PhD in Polymer Chemistry from IIT Madras. Formulated our proprietary non-yellowing Bayer UV stabilizer compound.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 italic">
+          "Nature perfected polymers over millions of years. We just respect the math."
+        </div>
+      </div>
+
+      <!-- Leader 3: Tom -->
+      <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex flex-col justify-between group hover:border-neutral-900 hover:shadow-xl transition-all duration-300">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/about_support_tom.webp" alt="Tom H." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-neutral-900">Tom H.</h3>
+            <span class="text-[10px] font-mono font-bold text-amber-700 uppercase">Director of Reliability</span>
+          </div>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Over 14 years overseeing destructive reliability testing for consumer robotics. Manages our 10,000x cycle bend rigs.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 italic">
+          "We break 500 cases a month so a customer never breaks one."
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 8: HYDERABAD STRESS RIG COMMAND MODULE           -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="bg-[#111827] text-white rounded-3xl p-8 sm:p-12 border border-neutral-800 shadow-2xl relative overflow-hidden">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left 6 Columns: Interactive Test Simulator -->
+        <div class="lg:col-span-6 space-y-5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40 text-xs font-bold font-mono uppercase">
+            <i data-lucide="cpu" class="w-3.5 h-3.5 text-teal-400"></i>
+            Live Stress Telemetry Simulator
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
+            Inside the Hyderabad Testing Bunker
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            Click below to execute a simulated live bench test from our HITEC City lab equipment. Watch live kinetic sensor readings and pass/fail telemetry.
+          </p>
+
+          <!-- Simulator Action Buttons -->
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button onclick="runStressSimulation('drop')" class="px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-bold text-white transition-all flex items-center gap-1.5">
+              <i data-lucide="shield" class="w-3.5 h-3.5 text-teal-400"></i>
+              <span>15ft Drop Test</span>
+            </button>
+            <button onclick="runStressSimulation('thermal')" class="px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-bold text-white transition-all flex items-center gap-1.5">
+              <i data-lucide="thermometer" class="w-3.5 h-3.5 text-indigo-400"></i>
+              <span>55°C Thermal Load</span>
+            </button>
+            <button onclick="runStressSimulation('bend')" class="px-3.5 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-bold text-white transition-all flex items-center gap-1.5">
+              <i data-lucide="activity" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>10k Bend Cycle</span>
+            </button>
+          </div>
+
+          <!-- Live Telemetry Monitor Panel -->
+          <div class="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-2">
+            <div class="flex items-center justify-between pb-2 border-b border-neutral-800">
+              <span class="text-[10px] font-mono text-neutral-500 uppercase font-bold">Rig Status</span>
+              <span id="sim-status-badge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40 text-[10px] font-bold font-mono uppercase">
+                <span id="sim-status-text">PASSED · 100% INTEGRITY</span>
+              </span>
+            </div>
+            <p id="sim-telemetry-text" class="text-xs font-mono text-teal-300 leading-relaxed">
+              Zero glass fracture · Zero chassis deformation · Magnets retained 15.2N holding force. CERTIFIED.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right 6 Columns: Testing Lab Visual -->
+        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-900 border border-neutral-800 relative group">
+          <img src="assets/about_lab_engineer.webp" alt="Testing Bunker Engineer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute bottom-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20 text-white text-[11px] font-mono font-bold">
+            Hydraulic Ram Station #04 · HITEC City
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 9: WORLDWIDE COMMUNITY SETUPS (Rich Gallery)     -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 pb-4 border-b border-neutral-200 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="camera" class="w-3.5 h-3.5 text-teal-600"></i>
+          Community EDC Desks
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+          Worldwide Creator Workspaces
+        </h2>
+      </div>
+      <span class="text-xs font-mono font-bold text-teal-700">Photographed by verified STACKLY owners</span>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <div class="rounded-3xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200 relative group shadow-sm">
+        <img src="assets/about_comm_1.webp" alt="Creator Workspace 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div class="absolute bottom-3 left-3 right-3 bg-neutral-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 text-white text-[10px]">
+          <div class="font-bold">Studio Setup · Seattle, USA</div>
+          <div class="text-neutral-400">Orbit Qi2 + Tactix Aramid</div>
+        </div>
+      </div>
+
+      <div class="rounded-3xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200 relative group shadow-sm">
+        <img src="assets/about_comm_2.webp" alt="Creator Workspace 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div class="absolute bottom-3 left-3 right-3 bg-neutral-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 text-white text-[10px]">
+          <div class="font-bold">Industrial Desk · Berlin, DE</div>
+          <div class="text-neutral-400">Tactix Case + TitanFlex 240W</div>
+        </div>
+      </div>
+
+      <div class="rounded-3xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200 relative group shadow-sm">
+        <img src="assets/about_comm_3.webp" alt="Creator Workspace 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div class="absolute bottom-3 left-3 right-3 bg-neutral-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 text-white text-[10px]">
+          <div class="font-bold">Creative Suite · Kyoto, JP</div>
+          <div class="text-neutral-400">Orbit Multi-Coil Station</div>
+        </div>
+      </div>
+
+      <div class="rounded-3xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200 relative group shadow-sm">
+        <img src="assets/about_comm_4.webp" alt="Creator Workspace 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div class="absolute bottom-3 left-3 right-3 bg-neutral-900/80 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20 text-white text-[10px]">
+          <div class="font-bold">Mobile Nomad · Austin, USA</div>
+          <div class="text-neutral-400">Nomad 10K Bank + Cockpit Cryo</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 10: VISIT OUR HYDERABAD STUDIO & LAB             -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-12 mb-16">
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200 group">
+          <img src="assets/about_showroom.webp" alt="STACKLY Hyderabad Showroom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+
+        <div class="lg:col-span-5 space-y-5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-600"></i>
+            Walk-In Prototyping Studio
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight leading-tight">
+            Come visit our Hyderabad Studio.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+            Experience our ballistic materials in person, watch live drop tests in our bunker, or trade in your old phone case for store credit. Walk-ins welcome every weekday.
+          </p>
+
+          <div class="space-y-2 pt-2 text-xs text-neutral-700">
+            <div class="flex items-center gap-2">
+              <i data-lucide="clock" class="w-4 h-4 text-teal-600"></i>
+              <span>Monday – Friday: 10:00 AM – 6:30 PM IST</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="compass" class="w-4 h-4 text-teal-600"></i>
+              <span>Unit 4B, Mindspace Techno Campus, HITEC City, Hyderabad</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm">
+              <span>Book a Studio Walk-Through</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SLIDE-OVER SHOPPING CART DRAWER                          -->
+  <!-- ======================================================== -->
+  <div id="cart-drawer" class="hidden fixed inset-0 pointer-events-none transition-opacity duration-300 opacity-0 z-[200]">
+    <div id="cart-backdrop" class="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm pointer-events-none"></div>
+    <div id="cart-panel" class="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform duration-300 ease-out">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-100">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-base text-neutral-900">Your Cart</h3>
+            <span id="cart-drawer-count" class="text-xs bg-neutral-100 text-neutral-700 font-bold px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <button id="close-cart-btn" class="p-1 text-neutral-400 hover:text-neutral-900 rounded-full hover:bg-neutral-100">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="cart-items-container" class="space-y-3 mt-4 max-h-[60vh] overflow-y-auto">
+          <div id="empty-cart-msg" class="py-12 text-center text-neutral-400 space-y-1">
+            <p class="text-xs font-semibold text-neutral-700">Your cart is currently empty</p>
+            <p class="text-[11px]">Click "+" on any item to add it to your order.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-neutral-100 space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-neutral-500 font-medium">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-bold text-neutral-900 text-base">$0.00</span>
+        </div>
+        <button onclick="handleCheckout()" class="w-full bg-[#111827] hover:bg-neutral-800 text-white py-3 rounded-full font-bold text-xs transition-all shadow-sm">
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- TOAST NOTIFICATION                                       -->
+  <!-- ======================================================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#111827] text-white px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 text-xs font-medium transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check" class="w-3.5 h-3.5 text-teal-400"></i>
+    <span id="toast-message">Action successful</span>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- CLEAN FOOTER (Without marked elements)                   -->
+  <!-- ======================================================== -->
+  <footer class="bg-[#f5f5f7] border-t border-neutral-200/80 pt-16 pb-12 mt-20">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      
+      <!-- Main Navigation Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4 pb-2">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 sm:h-10 w-auto object-contain">
+          </a>
+          <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
+            Precision smartphone armor, magnetic Qi2 fast-charging ecosystems, and studio acoustic essentials built to outlast everyday chaos.
+          </p>
+
+          <!-- Socials -->
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="X / Twitter">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="Instagram">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="YouTube">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Products</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Tactix Armor Phone Cases</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Orbit Qi2 Wireless Docks</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Studio Hi-Fi Earbuds Pro</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Nomad 10K MagBattery</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">TitanFlex Braided Cables</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Cockpit Car Mounts</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Customer Care</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Warranty Claim Center</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Trade-In & Recycle Portal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Track Your Order</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Shipping & Delivery Rates</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Help & FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">About Us</a></li>
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">Engineering Lab</a></li>
+            <li><a href="blog.html" class="hover:text-neutral-950 transition-colors">Tech Journal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="preloader.js"></script>
+</body>
+</html>

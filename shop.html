@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STACKLY Shop | Flagship Everyday Carry, Armor Cases & Qi2 Ecosystem</title>
+  <meta name="description" content="Explore precision smartphone armor, magnetic Qi2 fast-charging docks, 240W braided cables, and studio acoustics built for everyday resilience.">
+
+  <!-- TAILWIND CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- LUCIDE ICONS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & SCROLLTRIGGER -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CUSTOM STYLES -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
+  <!-- ======================================================== -->
+  <!-- STACKLY PRELOADER ANIMATION                              -->
+  <!-- ======================================================== -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <!-- Glow & Logo -->
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain  relative z-10">
+      </div>
+      
+      <!-- Brand & Page Name -->
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY SHOP
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          2026 Hardware Catalog
+        </p>
+      </div>
+
+      <!-- High-tech Progress Line -->
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+
+      <!-- Percentage Counter -->
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">
+        0%
+      </span>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- NAVIGATION BAR (Flagship Global Header)                  -->
+  <!-- ======================================================== -->
+  <header class="bg-[#f5f5f7] border-b border-neutral-200/80 sticky top-0 header-nav z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+      
+      <!-- Logo: Exact STACKLY logo untouched -->
+      <a href="index.html" class="flex items-center gap-2 cursor-pointer" title="STACKLY Home">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
+        <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Home</a>
+        <a href="shop.html" class="text-neutral-900 font-extrabold relative py-1.5 cursor-pointer">
+          Shop
+          <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-teal-600 rounded-full"></span>
+        </a>
+        <a href="services.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Services</a>
+        <a href="about.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">About</a>
+        <a href="blog.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Blog</a>
+        <a href="contact.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Contact</a>
+      </nav>
+
+      <!-- Utility Actions -->
+      <div class="flex items-center space-x-4">
+
+        <!-- Log In Link -->
+        <a href="login.html" class="hidden sm:inline-block text-[15px] font-bold text-neutral-700 hover:text-neutral-950 px-2 py-1 transition-colors">
+          Login
+        </a>
+
+        <!-- Sign Up Primary Button -->
+        <a href="signup.html" class="bg-[#111827] hover:bg-neutral-800 text-white text-[15px] font-bold px-6 py-2.5 rounded-full transition-all duration-200 shadow-sm cursor-pointer hover:shadow-md">
+          Sign up
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-800 hover:text-black focus:outline-none" aria-label="Toggle Navigation">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Nav -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-neutral-200 bg-[#f5f5f7] px-6 py-4 space-y-3 font-semibold text-neutral-700">
+      <a href="index.html" class="block py-1 hover:text-black">Home</a>
+      <a href="shop.html" class="block py-1 text-teal-700 font-bold">Shop</a>
+      <a href="services.html" class="block py-1 hover:text-black">Services</a>
+      <a href="about.html" class="block py-1 hover:text-black">About</a>
+      <a href="blog.html" class="block py-1 hover:text-black">Blog</a>
+      <a href="contact.html" class="block py-1 hover:text-black">Contact</a>
+      <div class="pt-2 border-t border-neutral-200 flex gap-4">
+        <a href="login.html" class="text-sm font-bold text-neutral-700">Login</a>
+        <a href="signup.html" class="text-sm font-bold text-teal-700">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 1: HERO HEADER (Full Width 1280px Flagship)     -->
+  <!-- ======================================================== -->
+  <section id="hero" class="bg-[#e4e5e9] pt-8 sm:pt-12 pb-14 border-b border-neutral-300/80 overflow-hidden">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left 7 Columns: Product Discovery & Micro-Telemetries -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Micro Pill Telemetry Header -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 text-neutral-900 text-xs font-bold shadow-sm border border-neutral-200">
+              <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+              Catalog 2026 Live
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold border border-teal-200/80">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-teal-600"></i>
+              Qi2 Certified 15W
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs font-semibold border border-neutral-200">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-teal-600"></i>
+              15ft Drop Armor
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <div class="space-y-3">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-neutral-950 tracking-tight leading-[1.08]">
+              Engineered for fit. <br>
+              <span class="text-teal-700">Every device.</span> Tested for chaos.
+            </h1>
+            <p class="text-neutral-600 text-sm sm:text-base max-w-xl leading-relaxed">
+              Precision ballistic Aramid cases, active-cooling Qi2 wireless docks, and 240W braided cables laser-measured to 0.05mm tolerances.
+            </p>
+          </div>
+
+          <!-- Real-Time Device Filter Pills -->
+          <div class="space-y-2 pt-1">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-neutral-500 flex items-center gap-2">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-teal-600"></i>
+              <span>Select Device Filter:</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="hero-device-filters">
+              <button onclick="filterByDevice('all', this)" class="device-chip active px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-neutral-900 bg-neutral-900 text-white shadow-sm">
+                All Gear (12)
+              </button>
+              <button onclick="filterByDevice('iphone-16', this)" class="device-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-neutral-300 bg-white text-neutral-700 hover:border-neutral-900">
+                iPhone 16 Pro Max
+              </button>
+              <button onclick="filterByDevice('galaxy-s24', this)" class="device-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-neutral-300 bg-white text-neutral-700 hover:border-neutral-900">
+                Galaxy S24 Ultra
+              </button>
+              <button onclick="filterByDevice('pixel-9', this)" class="device-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-neutral-300 bg-white text-neutral-700 hover:border-neutral-900">
+                Pixel 9 Pro XL
+              </button>
+              <button onclick="filterByDevice('oneplus-12', this)" class="device-chip px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-neutral-300 bg-white text-neutral-700 hover:border-neutral-900">
+                OnePlus 12
+              </button>
+            </div>
+          </div>
+
+          <!-- Search & Action CTA Bar -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <div class="relative flex-1">
+              <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+              <input id="catalog-search-input" oninput="handleCatalogSearch(this.value)" type="text" placeholder="Search cases, cables, docks, earbuds..." class="w-full pl-10 pr-4 py-3 rounded-full bg-white text-xs font-medium text-neutral-900 border border-neutral-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent transition-all">
+            </div>
+            <a href="#catalog" class="px-6 py-3 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+              <span>View Catalog</span>
+              <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right 5 Columns: Flagship Hero Visual & Bento Spec Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-300 bg-white group">
+            <img src="assets/shop_hero_flagship.webp" alt="STACKLY Flagship Hardware" class="w-full h-auto aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+            
+            <!-- Bottom Frosted Floating Spec Chip Bar -->
+            <div class="absolute bottom-4 left-4 right-4 bg-neutral-900/80 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-teal-400 font-bold">EDC Ecosystem Flagship</span>
+                <p class="text-sm font-extrabold text-white">Orbit Qi2 + Tactix Pro</p>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] text-neutral-300">Bundle Price</span>
+                <p class="text-sm font-black text-white">$119.00 <span class="text-teal-400 text-xs font-bold">-20%</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 2: CATEGORY VISUAL STORIES BENTO HUB            -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80 text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="layers" class="w-3.5 h-3.5 text-teal-600"></i>
+          Curated Product Lines
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+          Explore by Architecture
+        </h2>
+      </div>
+      <span class="text-xs text-neutral-500 font-medium">Click any category to filter the catalog below</span>
+    </div>
+
+    <!-- 6-Column Category Bento Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      
+      <!-- Bento Cat 1 -->
+      <button onclick="filterCatalogCategory('cases')" class="group text-left p-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="rounded-xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+          <img src="assets/shop_cat_cases.webp" alt="Armor Cases" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300">
+        </div>
+        <div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">24 Models</span>
+          <h3 class="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-teal-700 transition-colors">Armor Cases</h3>
+          <p class="text-[11px] text-neutral-500 mt-0.5">Aramid & Bayer</p>
+        </div>
+      </button>
+
+      <!-- Bento Cat 2 -->
+      <button onclick="filterCatalogCategory('chargers')" class="group text-left p-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="rounded-xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+          <img src="assets/shop_cat_chargers.webp" alt="Qi2 Chargers" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300">
+        </div>
+        <div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">16 Docks</span>
+          <h3 class="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-teal-700 transition-colors">Qi2 Docks</h3>
+          <p class="text-[11px] text-neutral-500 mt-0.5">Cryo-Cooling 15W</p>
+        </div>
+      </button>
+
+      <!-- Bento Cat 3 -->
+      <button onclick="filterCatalogCategory('cables')" class="group text-left p-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="rounded-xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+          <img src="assets/shop_cat_cables.webp" alt="Braided Cables" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300">
+        </div>
+        <div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">12 Variants</span>
+          <h3 class="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-teal-700 transition-colors">Titan Cables</h3>
+          <p class="text-[11px] text-neutral-500 mt-0.5">240W 48-Spindle</p>
+        </div>
+      </button>
+
+      <!-- Bento Cat 4 -->
+      <button onclick="filterCatalogCategory('audio')" class="group text-left p-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="rounded-xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+          <img src="assets/shop_cat_audio.webp" alt="Studio Audio" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300">
+        </div>
+        <div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">6 Models</span>
+          <h3 class="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-teal-700 transition-colors">Studio Audio</h3>
+          <p class="text-[11px] text-neutral-500 mt-0.5">48dB Hybrid ANC</p>
+        </div>
+      </button>
+
+      <!-- Bento Cat 5 -->
+      <button onclick="filterCatalogCategory('mounts')" class="group text-left p-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="rounded-xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+          <img src="assets/shop_cat_mounts.webp" alt="Cockpit Mounts" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300">
+        </div>
+        <div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">8 Mounts</span>
+          <h3 class="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-teal-700 transition-colors">Car Mounts</h3>
+          <p class="text-[11px] text-neutral-500 mt-0.5">Active Cryo 15N</p>
+        </div>
+      </button>
+
+      <!-- Bento Cat 6 -->
+      <button onclick="filterCatalogCategory('power')" class="group text-left p-3.5 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="rounded-xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+          <img src="assets/shop_cat_power.webp" alt="MagPowerbanks" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300">
+        </div>
+        <div>
+          <span class="text-[10px] font-mono font-bold text-teal-700 uppercase">10 Models</span>
+          <h3 class="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-teal-700 transition-colors">MagBattery</h3>
+          <p class="text-[11px] text-neutral-500 mt-0.5">10K Bi-Directional</p>
+        </div>
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 3: CATALOG & INTERACTIVE FILTER CONTROLS         -->
+  <!-- ======================================================== -->
+  <section id="catalog" class="max-w-[1280px] mx-auto px-6 lg:px-12 py-8">
+    
+    <!-- FIGMA SPOTLIGHT TELEMETRY BAR (Ensures Zero Empty Space) -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-sm mb-8">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-neutral-100">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+            Hardware Catalog 2026 Live
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-950 tracking-tight mt-2">
+            Everyday Resilience Hardware Catalog
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-1">
+            Showing all 12 precision-machined smartphone cases, magnetic Qi2 docks, 240W cables, and studio acoustic units.
+          </p>
+        </div>
+
+        <!-- 4 Quick Telemetry Pills -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full lg:w-auto">
+          <div class="px-3.5 py-2 rounded-2xl bg-neutral-50 border border-neutral-200/80 text-center">
+            <div class="text-[10px] font-mono text-neutral-400 uppercase font-bold">Drop Cert</div>
+            <div class="text-xs font-black text-neutral-900 mt-0.5">15.0 ft Concrete</div>
+          </div>
+          <div class="px-3.5 py-2 rounded-2xl bg-neutral-50 border border-neutral-200/80 text-center">
+            <div class="text-[10px] font-mono text-neutral-400 uppercase font-bold">Qi2 Standard</div>
+            <div class="text-xs font-black text-neutral-900 mt-0.5">15W Certified</div>
+          </div>
+          <div class="px-3.5 py-2 rounded-2xl bg-neutral-50 border border-neutral-200/80 text-center">
+            <div class="text-[10px] font-mono text-neutral-400 uppercase font-bold">Ballistic Weave</div>
+            <div class="text-xs font-black text-neutral-900 mt-0.5">1500D Aramid</div>
+          </div>
+          <div class="px-3.5 py-2 rounded-2xl bg-neutral-50 border border-neutral-200/80 text-center">
+            <div class="text-[10px] font-mono text-neutral-400 uppercase font-bold">Dispatch</div>
+            <div class="text-xs font-black text-teal-700 mt-0.5">Priority Global</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar inside Catalog Header -->
+      <div class="pt-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div class="relative flex-1">
+          <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <input oninput="handleCatalogSearch(this.value)" type="text" placeholder="Search catalog items (e.g. S24 Ultra, TitanFlex, Qi2 Dock)..." class="w-full pl-10 pr-4 py-2.5 rounded-full bg-neutral-50 text-xs font-medium text-neutral-900 border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:bg-white transition-all">
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="resetCatalogFilters()" class="px-4 py-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>Reset View</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Tabs & Sort Controls Bar -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-6 mb-8 border-b border-neutral-200 gap-4">
+      
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2" id="catalog-category-tabs">
+        <button onclick="filterCatalogCategory('all', this)" class="cat-pill active px-4 py-2 rounded-full text-xs font-bold transition-all bg-neutral-900 text-white shadow-sm">
+          All Gear (12)
+        </button>
+        <button onclick="filterCatalogCategory('cases', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900">
+          Armor Cases (4)
+        </button>
+        <button onclick="filterCatalogCategory('chargers', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900">
+          Qi2 Chargers (2)
+        </button>
+        <button onclick="filterCatalogCategory('cables', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900">
+          Cables (2)
+        </button>
+        <button onclick="filterCatalogCategory('audio', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900">
+          Audio (1)
+        </button>
+        <button onclick="filterCatalogCategory('mounts', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900">
+          Car Mounts (1)
+        </button>
+        <button onclick="filterCatalogCategory('power', this)" class="cat-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900">
+          Powerbanks (2)
+        </button>
+      </div>
+
+      <!-- Live Filter Status Indicator -->
+      <div class="flex items-center gap-3 text-xs text-neutral-500 font-medium">
+        <span id="catalog-results-count" class="font-bold text-neutral-900">Showing 12 of 12 items</span>
+        <button onclick="resetCatalogFilters()" class="text-teal-700 hover:underline font-bold text-xs">Reset Filters</button>
+      </div>
+
+    </div>
+
+    <!-- PRODUCT GRID: 12 High-Density Figma Bento Cards -->
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <!-- PRODUCT 1: iPhone 16 Pro Max Case -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="cases" data-device="iphone-16">
+        <div>
+          <!-- Top Badges Bar -->
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock · Ships Today
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Cases</span>
+          </div>
+
+          <!-- Product Image Container -->
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_ip16_case.webp" alt="Tactix Armor Case Pro iPhone 16" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Tactix Armor Case Pro', 48, '1500D Aramid Fiber weave with 15ft drop rating and 15N N52 MagSafe ring.', 'assets/shop_prod_ip16_case.webp', 'iPhone 16 Pro Max')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Rating & Spec Badges -->
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">1,240 reviews</span>
+          </div>
+
+          <!-- Title & Micro Specs -->
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Tactix Armor Case Pro
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            1500D ballistic Aramid weave with 1.8mm CNC anodized sapphire camera lip.
+          </p>
+
+          <!-- Spec Pills -->
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15ft Drop Cert</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15N MagSafe</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">iPhone 16 Pro</span>
+          </div>
+        </div>
+
+        <!-- Price & Action Button -->
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$48.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$58</span>
+          </div>
+          <button onclick="addToCartDirect('Tactix Armor Case Pro', 48, 'assets/shop_prod_ip16_case.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 2: Orbit Qi2 Dock -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="chargers" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+              Flagship Qi2
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Chargers</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_clean_charger.webp" alt="Orbit Qi2 Wireless Dock" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Orbit Qi2 Multi-Coil Station', 89, 'Dual 15W Qi2 fast charging stand with semiconductor cryo-cooling and aluminum chassis.', 'assets/shop_clean_charger.webp', 'Universal Qi2 / MagSafe')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">5.0</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">890 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Orbit Qi2 Multi-Coil Station
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Dual Qi2 15W coils with active semiconductor cryo-cooling fan & Watch puck.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15W Certified</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">Cryo-Cooling</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">3-in-1 Base</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$89.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$109</span>
+          </div>
+          <button onclick="addToCartDirect('Orbit Qi2 Multi-Coil Station', 89, 'assets/shop_clean_charger.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 3: TitanFlex Braided Cable -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="cables" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Cables</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_5.webp" alt="TitanFlex Braided Cable" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('TitanFlex 240W Braided Cable', 28, '48-spindle braided ballistic Kevlar sleeve with E-Marker smart chip and reinforced alloy strain reliefs.', 'assets/shop_prod_5.webp', 'Universal USB-C')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">3,410 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            TitanFlex 240W Braided Cable
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            48-spindle ballistic Kevlar sleeve tested to 30,000 extreme bends.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">240W PD 3.1</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">30k Bend Cert</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">2.0m Length</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$28.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$35</span>
+          </div>
+          <button onclick="addToCartDirect('TitanFlex 240W Braided Cable', 28, 'assets/shop_prod_5.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 4: Galaxy S24 Ultra Case -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="cases" data-device="galaxy-s24">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Cases</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_s24_case.webp" alt="Tactix Armor Case Pro Galaxy S24 Ultra" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Tactix Armor Case S24 Ultra', 48, 'Custom S-Pen clearance slot with isolated magnetic ring that eliminates stylus jitter.', 'assets/shop_prod_s24_case.webp', 'Galaxy S24 Ultra')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">920 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Tactix Armor Case S24 Ultra
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Isolated magnetic shielding ensures zero S-Pen interference or stylus drift.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">Zero S-Pen Jitter</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15ft Drop Cert</span>
+            <span class="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-800 text-[10px] font-semibold">Galaxy S24</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$48.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$58</span>
+          </div>
+          <button onclick="addToCartDirect('Tactix Armor Case S24 Ultra', 48, 'assets/shop_prod_s24_case.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 5: Cockpit Cryo Car Mount -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="mounts" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+              Active Cryo
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Mounts</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_lifestyle_car.webp" alt="Cockpit Active Cryo Car Mount" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Cockpit Active Cryo Car Mount', 59, 'Semiconductor cooling plate with 15N magnetic hold and dual vent/dash locking arm.', 'assets/shop_lifestyle_car.webp', 'Universal Qi2 / MagSafe')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.8</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">640 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Cockpit Active Cryo Mount
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Prevents phone overheating during GPS navigation and 15W wireless charging.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15N Magnetic Pull</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">Semiconductor Chill</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">Dual Lock Base</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$59.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$69</span>
+          </div>
+          <button onclick="addToCartDirect('Cockpit Active Cryo Mount', 59, 'assets/shop_lifestyle_car.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 6: Studio Hi-Fi Earbuds Pro -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="audio" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-800 border border-purple-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              Hi-Res Audio
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Audio</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_lifestyle_audio.webp" alt="Studio Hi-Fi Earbuds Pro" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Studio Hi-Fi Earbuds Pro', 129, '10mm Beryllium acoustic drivers with 48dB hybrid active noise cancellation and Qi wireless case.', 'assets/shop_lifestyle_audio.webp', 'Bluetooth 5.4 / LDAC')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">1,180 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Studio Hi-Fi Earbuds Pro
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            10mm Beryllium drivers, 48dB Hybrid ANC, and 36hr battery with Qi wireless case.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">48dB Hybrid ANC</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">LDAC 990kbps</span>
+            <span class="px-2 py-0.5 rounded-md bg-purple-50 text-purple-800 text-[10px] font-semibold">36hr Playtime</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$129.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$149</span>
+          </div>
+          <button onclick="addToCartDirect('Studio Hi-Fi Earbuds Pro', 129, 'assets/shop_lifestyle_audio.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 7: Pixel 9 Pro XL Case -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="cases" data-device="pixel-9">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Cases</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_px9_case.webp" alt="Tactix Armor Case Pixel 9 Pro XL" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Tactix Armor Case Pixel 9 Pro', 48, 'Custom camera visor wrap with 1.8mm CNC rim and magnetic coil array centered for Tensor G4.', 'assets/shop_prod_px9_case.webp', 'Pixel 9 Pro XL')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">780 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Tactix Armor Case Pixel 9 Pro
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Full camera visor protection bar with integrated MagSafe magnetic ring array.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">Visor Wrap Shield</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15ft Drop Cert</span>
+            <span class="px-2 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[10px] font-semibold">Pixel 9 Pro</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$48.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$58</span>
+          </div>
+          <button onclick="addToCartDirect('Tactix Armor Case Pixel 9 Pro', 48, 'assets/shop_prod_px9_case.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 8: Nomad 10K MagBattery -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="power" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Power</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_9.webp" alt="Nomad 10K MagBattery" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Nomad 10K MagBattery', 69, '10,000mAh bi-directional fast power bank with 15W Qi2 wireless pad and 30W USB-C PD output.', 'assets/shop_prod_9.webp', 'Universal Qi2 / MagSafe')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">1,450 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Nomad 10K MagBattery
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            10,000mAh ultra-slim aerospace aluminum power bank with 15W magnetic wireless charging.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">10,000mAh</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">30W USB-C PD</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">15W MagSafe</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$69.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$79</span>
+          </div>
+          <button onclick="addToCartDirect('Nomad 10K MagBattery', 69, 'assets/shop_prod_9.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 9: OnePlus 12 Case -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="cases" data-device="oneplus-12">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Cases</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_op12_case.webp" alt="Tactix Armor Case OnePlus 12" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Tactix Armor Case OnePlus 12', 48, 'Circular anodized dial rim protector with dual heat vent micro perforations.', 'assets/shop_prod_op12_case.webp', 'OnePlus 12')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.8</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">510 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Tactix Armor Case OnePlus 12
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Precision circular dial housing guard with micro airflow heat dissipation channels.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">Dial Rim Shield</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15ft Drop Cert</span>
+            <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-semibold">OnePlus 12</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$48.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$58</span>
+          </div>
+          <button onclick="addToCartDirect('Tactix Armor Case OnePlus 12', 48, 'assets/shop_prod_op12_case.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 10: TitanFlex 90-Degree Right Angle Cable -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="cables" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Cables</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_4.webp" alt="TitanFlex 90-Degree Gaming Cable" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('TitanFlex 90° Gaming Cable', 24, 'Ergonomic 90-degree low profile connector designed for comfortable landscape gaming and vehicle cockpits.', 'assets/shop_prod_4.webp', 'Universal USB-C')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.9</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">890 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            TitanFlex 90° Gaming Cable
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Ergonomic right-angle aluminum plug eliminates wrist strain during handheld gaming.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">100W PD</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">90° Low Profile</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">1.5m Length</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$24.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$30</span>
+          </div>
+          <button onclick="addToCartDirect('TitanFlex 90° Gaming Cable', 24, 'assets/shop_prod_4.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 11: Halo Qi2 Fast Puck -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="chargers" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+              Qi2 15W
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Chargers</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_ip16_dock.webp" alt="Halo Qi2 Fast Puck" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Halo Qi2 Fast Puck', 39, 'CNC milled aluminum portable magnetic wireless charging puck with braided 1.5m cable.', 'assets/shop_prod_ip16_dock.webp', 'Universal Qi2 / MagSafe')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">4.8</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">1,020 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Halo Qi2 Fast Puck
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            Ultra-thin CNC aluminum disc with braided 1.5m cable and snap-on N52 magnetic lock.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15W Fast Charge</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">15N MagForce</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">CNC Aluminum</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$39.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$45</span>
+          </div>
+          <button onclick="addToCartDirect('Halo Qi2 Fast Puck', 39, 'assets/shop_prod_ip16_dock.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 12: Apex 20K Multi-Port Powerbank -->
+      <div class="product-card group bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" style="display: flex; opacity: 1; visibility: visible;" data-category="power" data-device="all">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              In Stock
+            </span>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold uppercase">Power</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-square bg-[#f8f8f9] mb-4 border border-neutral-100 flex items-center justify-center p-4">
+            <img src="assets/shop_prod_10.webp" alt="Apex 20K Multi-Port Powerbank" class="w-full h-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out">
+            <button onclick="openProductQuickView('Apex 20K Heavy Duty Powerbank', 89, '20,000mAh capacity with 100W laptop PD output, TFT battery telemetry screen, and dual USB-C ports.', 'assets/shop_prod_10.webp', 'Laptops & Smartphones')" class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-md text-neutral-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-950 hover:text-white" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center text-amber-500 text-xs">
+              <span>★★★★★</span>
+              <span class="ml-1 text-[11px] font-bold text-neutral-800">5.0</span>
+            </div>
+            <span class="text-neutral-300">·</span>
+            <span class="text-[11px] text-neutral-500 font-medium">960 reviews</span>
+          </div>
+
+          <h3 class="text-base font-bold text-neutral-900 group-hover:text-teal-700 transition-colors leading-snug">
+            Apex 20K Heavy Duty Powerbank
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-2">
+            100W dual USB-C laptop power bank with full-color real-time watts telemetry display.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">100W Laptop PD</span>
+            <span class="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-semibold">20,000mAh Flight OK</span>
+            <span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 text-[10px] font-semibold">TFT Screen</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div>
+            <span class="text-lg font-black text-neutral-900">$89.00</span>
+            <span class="text-xs text-neutral-400 line-through ml-1">$109</span>
+          </div>
+          <button onclick="addToCartDirect('Apex 20K Heavy Duty Powerbank', 89, 'assets/shop_prod_10.webp')" class="px-4 py-2 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 4: INTERACTIVE ECOSYSTEM TRIO BUNDLE BUILDER     -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="bg-neutral-950 text-white rounded-3xl p-8 sm:p-12 border border-neutral-800 shadow-2xl relative overflow-hidden">
+      
+      <!-- Subtle Ambient Glow -->
+      <div class="absolute -right-24 -top-24 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left 7 Columns: Interactive 3-Step Configurator -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider border border-teal-500/40">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-400"></i>
+            Interactive Bundle Builder · Instant 20% Off
+          </div>
+
+          <div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+              Build your EDC Trio.<br>
+              <span class="text-teal-400">Save 20% on the entire loadout.</span>
+            </h2>
+            <p class="text-neutral-400 text-xs sm:text-sm mt-2 leading-relaxed max-w-xl">
+              Combine an Armor Case + Qi2 Wireless Station + Braided Cable. Laser-matched colorways, zero-lag magnetic alignment, and packaged together in one zero-plastic box.
+            </p>
+          </div>
+
+          <!-- Step 1: Choose Case -->
+          <div class="space-y-2 pt-2">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold">Step 1: Choose Armor Case</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button onclick="selectBundleItem('case', 48, 'Tactix Aramid Case Pro', 'assets/shop_prod_ip16_case.webp', this)" class="p-3 rounded-xl border border-teal-500 bg-teal-500/10 text-white text-left transition-all hover:border-teal-400">
+                <div class="font-bold text-xs">Tactix Aramid</div>
+                <div class="text-[11px] text-teal-300">$48.00</div>
+              </button>
+              <button onclick="selectBundleItem('case', 38, 'Slim Bayer Clear Case', 'assets/shop_prod_px9_case.webp', this)" class="p-3 rounded-xl border border-neutral-700 bg-neutral-800/80 text-neutral-300 text-left transition-all hover:border-neutral-500">
+                <div class="font-bold text-xs">Slim Clear TPU</div>
+                <div class="text-[11px] text-neutral-400">$38.00</div>
+              </button>
+              <button onclick="selectBundleItem('case', 42, 'Stealth Matte Case', 'assets/shop_prod_s24_case.webp', this)" class="p-3 rounded-xl border border-neutral-700 bg-neutral-800/80 text-neutral-300 text-left transition-all hover:border-neutral-500">
+                <div class="font-bold text-xs">Stealth Matte</div>
+                <div class="text-[11px] text-neutral-400">$42.00</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Choose Charger -->
+          <div class="space-y-2">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold">Step 2: Choose Qi2 Station</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button onclick="selectBundleItem('charger', 89, 'Orbit Qi2 Multi-Coil Station', 'assets/shop_clean_charger.webp', this)" class="p-3 rounded-xl border border-teal-500 bg-teal-500/10 text-white text-left transition-all hover:border-teal-400">
+                <div class="font-bold text-xs">Orbit Qi2 Dock</div>
+                <div class="text-[11px] text-teal-300">$89.00</div>
+              </button>
+              <button onclick="selectBundleItem('charger', 69, 'Nomad 10K MagBattery', 'assets/shop_prod_9.webp', this)" class="p-3 rounded-xl border border-neutral-700 bg-neutral-800/80 text-neutral-300 text-left transition-all hover:border-neutral-500">
+                <div class="font-bold text-xs">Nomad 10K Bank</div>
+                <div class="text-[11px] text-neutral-400">$69.00</div>
+              </button>
+              <button onclick="selectBundleItem('charger', 39, 'Halo Qi2 Fast Puck', 'assets/shop_prod_ip16_dock.webp', this)" class="p-3 rounded-xl border border-neutral-700 bg-neutral-800/80 text-neutral-300 text-left transition-all hover:border-neutral-500">
+                <div class="font-bold text-xs">Halo Fast Puck</div>
+                <div class="text-[11px] text-neutral-400">$39.00</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Choose Cable -->
+          <div class="space-y-2">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider font-bold">Step 3: Choose TitanFlex Cable</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button onclick="selectBundleItem('cable', 28, 'TitanFlex 240W Braided Cable', 'assets/shop_prod_5.webp', this)" class="p-3 rounded-xl border border-teal-500 bg-teal-500/10 text-white text-left transition-all hover:border-teal-400">
+                <div class="font-bold text-xs">TitanFlex 240W (2m)</div>
+                <div class="text-[11px] text-teal-300">$28.00</div>
+              </button>
+              <button onclick="selectBundleItem('cable', 24, 'TitanFlex 90° Gaming Cable', 'assets/shop_prod_4.webp', this)" class="p-3 rounded-xl border border-neutral-700 bg-neutral-800/80 text-neutral-300 text-left transition-all hover:border-neutral-500">
+                <div class="font-bold text-xs">TitanFlex 90° (1.5m)</div>
+                <div class="text-[11px] text-neutral-400">$24.00</div>
+              </button>
+              <button onclick="selectBundleItem('cable', 22, 'Stealth Ultra Braided', 'assets/shop_bundle_kit.webp', this)" class="p-3 rounded-xl border border-neutral-700 bg-neutral-800/80 text-neutral-300 text-left transition-all hover:border-neutral-500">
+                <div class="font-bold text-xs">Stealth Ultra (1m)</div>
+                <div class="text-[11px] text-neutral-400">$22.00</div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right 5 Columns: Dynamic Bundle Preview Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-neutral-900 rounded-3xl p-6 sm:p-8 border border-neutral-800 shadow-2xl space-y-6">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+              <h3 class="font-black text-sm text-white tracking-wide uppercase">Your Selected Trio</h3>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40">
+                20% Discount Active
+              </span>
+            </div>
+
+            <!-- Visual Trio Items Stack -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-neutral-800/60 border border-neutral-700/60">
+                <img id="bundle-preview-case" src="assets/shop_prod_ip16_case.webp" alt="Case" class="w-12 h-12 rounded-xl object-contain bg-neutral-900 p-1">
+                <div class="flex-1 min-w-0">
+                  <div class="text-[10px] text-neutral-400 uppercase font-mono font-bold">Case</div>
+                  <div id="bundle-title-case" class="text-xs font-bold text-white truncate">Tactix Aramid Case Pro</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-neutral-800/60 border border-neutral-700/60">
+                <img id="bundle-preview-charger" src="assets/shop_clean_charger.webp" alt="Charger" class="w-12 h-12 rounded-xl object-contain bg-neutral-900 p-1">
+                <div class="flex-1 min-w-0">
+                  <div class="text-[10px] text-neutral-400 uppercase font-mono font-bold">Charger</div>
+                  <div id="bundle-title-charger" class="text-xs font-bold text-white truncate">Orbit Qi2 Multi-Coil Station</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-neutral-800/60 border border-neutral-700/60">
+                <img id="bundle-preview-cable" src="assets/shop_prod_5.webp" alt="Cable" class="w-12 h-12 rounded-xl object-contain bg-neutral-900 p-1">
+                <div class="flex-1 min-w-0">
+                  <div class="text-[10px] text-neutral-400 uppercase font-mono font-bold">Cable</div>
+                  <div id="bundle-title-cable" class="text-xs font-bold text-white truncate">TitanFlex 240W Braided Cable</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Breakdown Calculation -->
+            <div class="space-y-2 pt-3 border-t border-neutral-800 text-xs">
+              <div class="flex items-center justify-between text-neutral-400">
+                <span>Items Subtotal</span>
+                <span id="bundle-subtotal" class="font-mono">$165.00</span>
+              </div>
+              <div class="flex items-center justify-between text-teal-400 font-bold">
+                <span>Ecosystem Bundle Savings (20%)</span>
+                <span id="bundle-savings" class="font-mono">-$33.00</span>
+              </div>
+              <div class="flex items-center justify-between text-white font-extrabold text-base pt-2 border-t border-neutral-800">
+                <span>Total Trio Price</span>
+                <span id="bundle-total" class="text-2xl font-black text-teal-400 font-mono">$132.00</span>
+              </div>
+            </div>
+
+            <button onclick="addCurrentBundleToCart()" class="w-full py-3.5 rounded-full bg-teal-500 hover:bg-teal-400 text-neutral-950 font-black text-xs transition-all shadow-lg hover:shadow-teal-500/20 flex items-center justify-center gap-2">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Add Complete Trio to Cart</span>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 5: ORBIT QI2 MULTI-COIL CHARGING HUB             -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      
+      <!-- 7 Columns: Flagship Dark Obsidian Bento Card -->
+      <div class="lg:col-span-7 bg-[#111827] text-white rounded-3xl p-8 sm:p-10 border border-neutral-800 flex flex-col justify-between relative overflow-hidden group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40 text-xs font-bold font-mono uppercase">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-teal-400"></i>
+              Hardware Spotlight
+            </span>
+            <span class="text-xs text-neutral-400 font-mono">Patent ID: US-2024-QI2-COIL</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            Orbit Qi2 Multi-Coil Station
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-400 mt-2 max-w-lg leading-relaxed">
+            Eliminates wireless thermal throttling completely. An internal semiconductor Peltier cooling plate silently chills the contact surface to 19°C, allowing constant peak 15W charging without battery degradation.
+          </p>
+        </div>
+
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-900 border border-neutral-800 my-6 flex items-center justify-center p-6">
+          <img src="assets/shop_clean_charger.webp" alt="Orbit Qi2 Multi-Coil Exploded View" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+          
+          <!-- Hotspot Overlay Chips -->
+          <div class="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-teal-300 border border-teal-500/40">
+            • Dual Qi2 15W Coils
+          </div>
+          <div class="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-indigo-300 border border-indigo-500/40">
+            • Cryo Peltier Fan (-18°C)
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-neutral-800">
+          <div class="flex items-center gap-3">
+            <span class="text-xl font-black text-white">$89.00</span>
+            <span class="text-xs text-teal-400 font-bold">Includes 65W GaN Wall Adapter</span>
+          </div>
+          <button onclick="addToCartDirect('Orbit Qi2 Multi-Coil Station', 89, 'assets/shop_clean_charger.webp')" class="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-neutral-950 text-xs font-bold transition-all shadow-sm">
+            Order Orbit Qi2
+          </button>
+        </div>
+      </div>
+
+      <!-- 5 Columns: Micro-Telemetry Companion Stack -->
+      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+        
+        <!-- Companion Card 1 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 border border-teal-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="thermometer-snowflake" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900">Cryo-Passive Heat Sinks</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              Aircraft aluminum chassis acts as a thermal radiator, drawing heat away from your device's lithium-ion battery.
+            </p>
+          </div>
+        </div>
+
+        <!-- Companion Card 2 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 border border-indigo-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="magnet" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900">15N N52 Neodymium Ring</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              Industrial grade magnetic array snaps into dead-center alignment every time. Portrait or landscape floating mode.
+            </p>
+          </div>
+        </div>
+
+        <!-- Companion Card 3 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 border border-amber-200/60 flex items-center justify-center shrink-0">
+            <i data-lucide="watch" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900">Apple Watch Fast Puck</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              Dedicated 5W magnetic puck fast-charges Apple Watch Series 7/8/9/10 and Ultra 2 from 0% to 80% in 45 minutes.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 6: COCKPIT CAR MOUNT SERIES                      -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-100 border border-neutral-200 relative group">
+          <img src="assets/shop_lifestyle_car.webp" alt="Cockpit Car Mount in Action" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute bottom-4 left-4 bg-neutral-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20 text-white text-[11px] font-bold">
+            Live Telemetry: 50°C Dashboard → 19°C Phone Surface
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200 text-xs font-bold font-mono uppercase">
+            <i data-lucide="navigation" class="w-3.5 h-3.5 text-indigo-600"></i>
+            Automotive Engineering
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight leading-tight">
+            Navigation without thermal throttling.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+            Direct sunlight turns vehicle dashboards into 50°C heat traps. Our Cockpit Active Cryo Car Mount features an embedded semiconductor cooler that drops phone surface temperatures by 18°C while fast charging.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/80">
+              <div class="font-bold text-xs text-neutral-900">Zero Bump Slippage</div>
+              <p class="text-[11px] text-neutral-500 mt-1">15N Neodymium core holds phone securely over potholes and speed bumps.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/80">
+              <div class="font-bold text-xs text-neutral-900">Dual Mechanical Lock</div>
+              <p class="text-[11px] text-neutral-500 mt-1">CNC steel vent hook plus high-vacuum dashboard adhesive suction base.</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-center gap-4">
+            <span class="text-xl font-black text-neutral-900">$59.00</span>
+            <button onclick="addToCartDirect('Cockpit Active Cryo Mount', 59, 'assets/shop_lifestyle_car.webp')" class="px-6 py-2.5 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 7: STUDIO ACOUSTICS HI-FI SPOTLIGHT              -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="bg-[#111827] text-white rounded-3xl p-8 sm:p-12 border border-neutral-800 shadow-xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 text-xs font-bold font-mono uppercase">
+            <i data-lucide="headphones" class="w-3.5 h-3.5 text-purple-400"></i>
+            Studio Acoustic Lab
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
+            Hi-Res Audio with 48dB Hybrid ANC
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            Ultra-thin 10mm Beryllium acoustic diaphragms deliver crystalline high frequencies and sub-bass impact without muddiness. Six beamforming microphones cancel aircraft and street chaos instantly.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <div class="p-3 rounded-2xl bg-neutral-900 border border-neutral-800">
+              <span class="text-lg font-black text-purple-400 font-mono">48dB</span>
+              <p class="text-[11px] text-neutral-400 mt-0.5">Hybrid Active Noise Cancellation</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-neutral-900 border border-neutral-800">
+              <span class="text-lg font-black text-teal-400 font-mono">24ms</span>
+              <p class="text-[11px] text-neutral-400 mt-0.5">Ultra-Low Latency Gaming Mode</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-neutral-900 border border-neutral-800">
+              <span class="text-lg font-black text-white font-mono">36hr</span>
+              <p class="text-[11px] text-neutral-400 mt-0.5">Total Playback with Qi Wireless Case</p>
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-center gap-4">
+            <span class="text-xl font-black text-white">$129.00</span>
+            <button onclick="addToCartDirect('Studio Hi-Fi Earbuds Pro', 129, 'assets/shop_lifestyle_audio.webp')" class="px-6 py-2.5 rounded-full bg-purple-500 hover:bg-purple-400 text-neutral-950 text-xs font-bold transition-all shadow-md">
+              Order Studio Pro
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 border border-neutral-800 relative group">
+          <img src="assets/shop_lifestyle_audio.webp" alt="Studio Earbuds Pro Architecture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 8: ZERO-PLASTIC UNBOXING & ECO-PACKAGING BENTO   -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200">
+            <img src="assets/shop_unboxing.webp" alt="STACKLY Unboxing Experience" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200">
+            <img src="assets/shop_unboxing_detail.webp" alt="Recycled Fiber Packaging Details" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold font-mono uppercase">
+            <i data-lucide="leaf" class="w-3.5 h-3.5 text-emerald-600"></i>
+            Circular Packaging Design
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight leading-tight">
+            100% Zero-Plastic Unboxing.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+            Every STACKLY order ships in custom molded bamboo-fiber trays printed with organic non-toxic soy inks. Zero single-use plastic films, zero blister wraps, and zero synthetic foam.
+          </p>
+
+          <div class="space-y-3 pt-2 text-xs text-neutral-700">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-neutral-50 border border-neutral-200/80">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span>Molded bamboo-pulp interior cradles that biodegrade in 180 days.</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-neutral-50 border border-neutral-200/80">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span>FSC-certified kraft exterior box with easy-pull organic tear strip.</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-neutral-50 border border-neutral-200/80">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span>Vegetable oil inks completely safe for home soil composting.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 9: REAL CUSTOMER DESK & EDC GALLERY              -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="users" class="w-3.5 h-3.5 text-teal-600"></i>
+          Community EDC Wall
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+          Real Setups. Real Daily Chaos.
+        </h2>
+      </div>
+      <span class="text-xs font-mono font-bold text-teal-700">#StacklyEveryday · 14,000+ Tagged Posts</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Community Card 1 -->
+      <div class="bg-white rounded-3xl p-4 border border-neutral-200/90 shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/shop_spotlight_desk.webp" alt="David M Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-neutral-900">David M.</span>
+            <span class="text-[10px] text-teal-700 font-bold">San Francisco</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 italic">
+            "The Orbit Qi2 dock replaced three messy charging cords on my minimalist desk. Cleanest setup I have ever owned."
+          </p>
+        </div>
+        <div class="mt-3 pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-400 font-mono">
+          <span>Gear: Orbit Qi2 + Tactix Pro</span>
+          <span class="text-amber-500">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- Community Card 2 -->
+      <div class="bg-white rounded-3xl p-4 border border-neutral-200/90 shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/shop_community_setup_2.webp" alt="Aisha K Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-neutral-900">Aisha K.</span>
+            <span class="text-[10px] text-teal-700 font-bold">London</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 italic">
+            "A drop from the 2nd floor staircase onto marble tile: phone walked away with ZERO cracks. Insane engineering."
+          </p>
+        </div>
+        <div class="mt-3 pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-400 font-mono">
+          <span>Gear: Tactix S24 Ultra</span>
+          <span class="text-amber-500">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- Community Card 3 -->
+      <div class="bg-white rounded-3xl p-4 border border-neutral-200/90 shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/shop_community_setup_3.webp" alt="Kenji T Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-neutral-900">Kenji T.</span>
+            <span class="text-[10px] text-teal-700 font-bold">Tokyo</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 italic">
+            "The Studio Earbuds with 48dB ANC make Tokyo subway commutes completely peaceful. Battery lasts all week."
+          </p>
+        </div>
+        <div class="mt-3 pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-400 font-mono">
+          <span>Gear: Studio Hi-Fi Pro</span>
+          <span class="text-amber-500">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- Community Card 4 -->
+      <div class="bg-white rounded-3xl p-4 border border-neutral-200/90 shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3 border border-neutral-100">
+            <img src="assets/shop_prod_1.webp" alt="Elena R Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-neutral-900">Elena R.</span>
+            <span class="text-[10px] text-teal-700 font-bold">Berlin</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 italic">
+            "TitanFlex cables are the only cables my cat cannot chew through. Worth every single cent."
+          </p>
+        </div>
+        <div class="mt-3 pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-400 font-mono">
+          <span>Gear: TitanFlex 240W</span>
+          <span class="text-amber-500">★★★★★</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- SECTION 10: INTERACTIVE SPECIFICATIONS COMPARISON MATRIX -->
+  <!-- ======================================================== -->
+  <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-10 mb-16">
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm">
+      
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 pb-6 border-b border-neutral-200 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="scale" class="w-3.5 h-3.5 text-teal-600"></i>
+            Hardware Comparison Matrix
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-2">
+            STACKLY Engineering vs Alternatives
+          </h2>
+        </div>
+
+        <!-- Device Switcher Pills -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchSpecDevice('ip16', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-teal-600 text-white shadow-md transition-all">
+            iPhone 16 Pro Max
+          </button>
+          <button onclick="switchSpecDevice('s24', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900 transition-all">
+            Galaxy S24 Ultra
+          </button>
+          <button onclick="switchSpecDevice('px9', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900 transition-all">
+            Pixel 9 Pro XL
+          </button>
+          <button onclick="switchSpecDevice('op12', this)" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-neutral-900 transition-all">
+            OnePlus 12
+          </button>
+        </div>
+      </div>
+
+      <!-- Side-by-Side Comparison Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="border-b border-neutral-200 text-neutral-400 font-mono uppercase text-[11px]">
+              <th class="py-3 px-4 w-1/4">Specification</th>
+              <th class="py-3 px-4 w-1/3 text-teal-700 font-bold bg-teal-50/50 rounded-t-xl">STACKLY Precision</th>
+              <th class="py-3 px-4 w-1/5 text-neutral-600">Generic Brands</th>
+              <th class="py-3 px-4 w-1/5 text-neutral-600">OEM Official</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100">
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-neutral-900">Drop Certification</td>
+              <td id="spec-drop-val" class="py-3.5 px-4 font-bold text-teal-800 bg-teal-50/50">15ft Mil-Grade Lab Tested (100% Screen Intact)</td>
+              <td class="py-3.5 px-4 text-neutral-500">4ft (Cracks easily)</td>
+              <td class="py-3.5 px-4 text-neutral-500">6ft Standard</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-neutral-900">Magnetic Pull Force</td>
+              <td id="spec-mag-val" class="py-3.5 px-4 font-bold text-teal-800 bg-teal-50/50">15N N52 Neodymium Ring (2.1x OEM strength)</td>
+              <td class="py-3.5 px-4 text-neutral-500">6N (Falls off car mounts)</td>
+              <td class="py-3.5 px-4 text-neutral-500">10N Standard</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-neutral-900">Thermal Dissipation</td>
+              <td id="spec-therm-val" class="py-3.5 px-4 font-bold text-teal-800 bg-teal-50/50">Cryo-Passive Heat Sinks (-8°C Gaming Delta)</td>
+              <td class="py-3.5 px-4 text-neutral-500">Trap heat (Causes lag)</td>
+              <td class="py-3.5 px-4 text-neutral-500">No thermal vents</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-neutral-900">Camera Bezel Lip</td>
+              <td id="spec-bezel-val" class="py-3.5 px-4 font-bold text-teal-800 bg-teal-50/50">1.8mm CNC Anodized Sapphire Camera Lip</td>
+              <td class="py-3.5 px-4 text-neutral-500">0.5mm Flush with glass</td>
+              <td class="py-3.5 px-4 text-neutral-500">1.2mm Raised</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-neutral-900">Packaging Impact</td>
+              <td class="py-3.5 px-4 font-bold text-teal-800 bg-teal-50/50 rounded-b-xl">100% Bamboo Pulp Zero-Plastic</td>
+              <td class="py-3.5 px-4 text-neutral-500">PVC Blister Shells</td>
+              <td class="py-3.5 px-4 text-neutral-500">Coated Paperboard</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
+  <!-- QUICK-VIEW LIGHTBOX MODAL                                -->
+  <!-- ======================================================== -->
+  <div id="quickview-modal" class="hidden fixed inset-0 pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center p-4 z-[200]">
+    <div id="quickview-backdrop" class="absolute inset-0 bg-neutral-950/60 backdrop-blur-sm pointer-events-none" onclick="closeQuickView()"></div>
+    <div class="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl z-10 pointer-events-auto transform scale-95 transition-transform duration-300 border border-neutral-200" id="quickview-panel">
+      <button onclick="closeQuickView()" class="absolute top-5 right-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-500 hover:text-neutral-900 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+        <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 border border-neutral-200">
+          <img id="qv-img" src="" alt="Product" class="w-full h-full object-cover">
+        </div>
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-[11px] font-bold">
+            <i data-lucide="check" class="w-3 h-3"></i>
+            <span id="qv-compat">Compatible Device</span>
+          </div>
+          <h3 id="qv-title" class="text-xl sm:text-2xl font-black text-neutral-900 leading-tight"></h3>
+          <p id="qv-desc" class="text-xs sm:text-sm text-neutral-500 leading-relaxed"></p>
+          <div class="text-2xl font-black text-neutral-900" id="qv-price"></div>
+          
+          <div class="space-y-2 pt-2 border-t border-neutral-100 text-xs text-neutral-600 font-medium">
+            <div class="flex items-center gap-2">
+              <i data-lucide="shield" class="w-3.5 h-3.5 text-teal-600"></i>
+              <span>Comprehensive Hardware Warranty</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="truck" class="w-3.5 h-3.5 text-teal-600"></i>
+              <span>Priority dispatch from local warehouse</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button id="qv-add-btn" class="w-full py-3 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- SLIDE-OVER SHOPPING CART DRAWER                          -->
+  <!-- ======================================================== -->
+  <div id="cart-drawer" class="hidden fixed inset-0 pointer-events-none transition-opacity duration-300 opacity-0 z-[200]">
+    <div id="cart-backdrop" class="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm pointer-events-none"></div>
+    <div id="cart-panel" class="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform duration-300 ease-out">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-100">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-base text-neutral-900">Your Cart</h3>
+            <span id="cart-drawer-count" class="text-xs bg-neutral-100 text-neutral-700 font-bold px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <button id="close-cart-btn" class="p-1 text-neutral-400 hover:text-neutral-900 rounded-full hover:bg-neutral-100">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="cart-items-container" class="space-y-3 mt-4 max-h-[60vh] overflow-y-auto">
+          <div id="empty-cart-msg" class="py-12 text-center text-neutral-400 space-y-1">
+            <p class="text-xs font-semibold text-neutral-700">Your cart is currently empty</p>
+            <p class="text-[11px]">Click "+" on any item to add it to your order.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-neutral-100 space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-neutral-500 font-medium">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-bold text-neutral-900 text-base">$0.00</span>
+        </div>
+        <button onclick="handleCheckout()" class="w-full bg-[#111827] hover:bg-neutral-800 text-white py-3 rounded-full font-bold text-xs transition-all shadow-sm">
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- TOAST NOTIFICATION                                       -->
+  <!-- ======================================================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#111827] text-white px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 text-xs font-medium transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check" class="w-3.5 h-3.5 text-teal-400"></i>
+    <span id="toast-message">Added to cart</span>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- CLEAN FOOTER (Without marked elements)                   -->
+  <!-- ======================================================== -->
+  <footer class="bg-[#f5f5f7] border-t border-neutral-200/80 pt-16 pb-12 mt-20">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      
+      <!-- Main Navigation Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4 pb-2">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 sm:h-10 w-auto object-contain">
+          </a>
+          <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
+            Precision smartphone armor, magnetic Qi2 fast-charging ecosystems, and studio acoustic essentials built to outlast everyday chaos.
+          </p>
+
+          <!-- Socials -->
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Products</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Tactix Armor Phone Cases</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Orbit Qi2 Wireless Docks</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Studio Hi-Fi Earbuds Pro</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Nomad 10K MagBattery</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">TitanFlex Braided Cables</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Cockpit Car Mounts</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Customer Care</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Warranty Claim Center</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Trade-In & Recycle Portal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Track Your Order</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Shipping & Delivery Rates</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Help & FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">About Us</a></li>
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">Engineering Lab</a></li>
+            <li><a href="blog.html" class="hover:text-neutral-950 transition-colors">Tech Journal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="preloader.js"></script>
+</body>
+</html>

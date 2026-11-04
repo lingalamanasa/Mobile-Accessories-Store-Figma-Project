@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Studio Lab — STACKLY</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          },
+          colors: {
+            exactBg: '#fbfbfb',
+            exactCard: '#ffffff',
+            exactDark: '#111827',
+            exactTeal: '#0d9488'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
+  <!-- ======================================================== -->
+  <!-- STACKLY PRELOADER ANIMATION                              -->
+  <!-- ======================================================== -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <!-- Glow & Logo -->
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain  relative z-10">
+      </div>
+      
+      <!-- Brand & Page Name -->
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY CONTACT
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          Hardware Concierge & Support
+        </p>
+      </div>
+
+      <!-- High-tech Progress Line -->
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+
+      <!-- Percentage Counter -->
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">
+        0%
+      </span>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- EXACT NAVIGATION BAR (Matches Main Site Perfectly)       -->
+  <!-- ======================================================== -->
+  <header class="bg-[#f5f5f7] border-b border-neutral-200/80 sticky top-0 header-nav z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+      
+      <!-- Logo: Exact STACKLY logo untouched -->
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
+        <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5">Home</a>
+        <a href="shop.html" class="hover:text-neutral-950 transition-colors py-1.5">Shop</a>
+        <a href="services.html" class="hover:text-neutral-950 transition-colors py-1.5">Services</a>
+        <a href="about.html" class="hover:text-neutral-950 transition-colors py-1.5">About</a>
+        <a href="blog.html" class="hover:text-neutral-950 transition-colors py-1.5">Blog</a>
+        <a href="contact.html" class="text-neutral-900 font-extrabold relative py-1.5">
+          Contact
+          <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-teal-600 rounded-full"></span>
+        </a>
+      </nav>
+
+      <!-- Right Actions: Increased letter height & width -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+
+        <a href="login.html" id="nav-login-btn" class="text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden sm:inline">
+          Login
+        </a>
+
+        <a href="signup.html" id="nav-signup-btn" class="bg-[#111827] text-white px-7 py-3 rounded-full text-sm sm:text-base font-bold tracking-wide hover:bg-neutral-800 transition-all shadow-md active:scale-95 magnetic-btn cursor-pointer">
+          Sign up
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-neutral-700 hover:text-neutral-950 hover:bg-neutral-200/60 transition-colors cursor-pointer" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-nav-menu" class="hidden md:hidden bg-[#f5f5f7] border-b border-neutral-200 px-6 py-4 space-y-3 font-bold text-neutral-700 text-base">
+      <a href="index.html" class="block py-1 hover:text-neutral-950">Home</a>
+      <a href="shop.html" class="block py-1 hover:text-neutral-950">Shop</a>
+      <a href="services.html" class="block py-1 hover:text-neutral-950">Services</a>
+      <a href="about.html" class="block py-1 hover:text-neutral-950">About</a>
+      <a href="blog.html" class="block py-1 hover:text-neutral-950">Blog</a>
+      <a href="contact.html" class="block py-1 text-neutral-950 font-black">Contact</a>
+      <div class="pt-3 border-t border-neutral-200 flex items-center gap-3">
+        <a href="login.html" class="flex-1 text-center py-2.5 rounded-full border border-neutral-300 text-neutral-800 text-xs font-bold">Login</a>
+        <a href="signup.html" class="flex-1 text-center py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- MAIN CONTACT CONTENT (10 SECTIONS)                       -->
+  <!-- ======================================================== -->
+  <main class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-12 sm:pt-16 pb-20">
+
+    <!-- SECTION 1: HERO HEADER (Flagship Figma UI/UX 12-Col Concierge Desk) -->
+    <section id="hero" class="bg-[#e4e5e9] -mx-6 lg:-mx-12 -mt-12 sm:-mt-16 mb-16 pt-12 pb-14 border-b border-neutral-300/60 px-6 lg:px-12">
+      <div class="max-w-[1280px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left: Copy & Instant Contact Actions -->
+          <div class="lg:col-span-6 space-y-6 hero-text-col">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-neutral-300/80 text-neutral-800 text-xs font-bold uppercase tracking-wider backdrop-blur-sm shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Support Desk & Engineering Lab Online
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-[66px] font-bold tracking-tight leading-[1.04] text-[#111827] hero-heading">
+              Let’s talk hardware.<br>
+              Real engineers.<br>
+              <span class="text-[#9ca3af] font-normal">Instant solutions.</span>
+            </h1>
+
+            <p class="text-neutral-600 text-sm sm:text-base leading-relaxed max-w-lg hero-subtitle font-normal">
+              Whether you have a specific phone fitment question, need a 2-Year Warranty replacement, or want to book an in-person acoustic and drop tour at our Hyderabad Studio.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <button onclick="startLiveChatSim()" class="bg-[#111827] text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-neutral-800 transition-all shadow-md active:scale-95 magnetic-btn flex items-center gap-2 cursor-pointer">
+                <i data-lucide="zap" class="w-4 h-4 text-teal-400"></i>
+                <span>Launch Live Support</span>
+              </button>
+              <a href="#contact-form-section" class="bg-white text-[#111827] px-6 py-3 rounded-full text-xs font-semibold shadow-sm hover:shadow-md hover:bg-neutral-50 transition-all border border-neutral-300/80">
+                Send Direct Message
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Concierge Team Showcase Card -->
+          <div class="lg:col-span-6 hero-image-col">
+            <div class="rounded-3xl overflow-hidden shadow-xl border border-neutral-300/70 bg-[#18232c] aspect-[16/10] relative group tilt-card hero-image-card flex items-center justify-center">
+              <img 
+                src="assets/contact_hero_desk.webp" 
+                alt="STACKLY Concierge Support Team" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              >
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[11px] font-black uppercase tracking-wider">Live & Active</span>
+                  <span class="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[11px] font-semibold">Avg Response: 3.5 Mins</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Hyderabad Concierge HQ</h3>
+                <p class="text-neutral-300 text-xs mt-1">Direct human engineering support — zero AI telephone loops.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4-Feature Metric Bar -->
+        <div class="mt-14 pt-8 border-t border-neutral-300/70 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-medium text-neutral-600 hero-stats-bar">
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="message-square" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">&lt; 4 Min SLA</div>
+              <div class="text-[11px] text-neutral-500">Live chat response guarantee</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="package-check" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">24hr Replacements</div>
+              <div class="text-[11px] text-neutral-500">Express warranty dispatches</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">Studio Walk-Ins</div>
+              <div class="text-[11px] text-neutral-500">HITEC City, Hyderabad</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">Free Fitment Check</div>
+              <div class="text-[11px] text-neutral-500">Zero cost advisory service</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: 3 SUPPORT CHANNELS BENTO -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      
+      <!-- Card 1: 24/7 Chat -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-sm bento-hover-lift tilt-card hover:border-neutral-900 transition-all duration-300 flex flex-col justify-between group">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/contact_concierge_maya.webp" alt="Live Concierge" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-600 mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Avg response: 4 mins
+          </div>
+          <h3 class="text-lg font-bold text-neutral-900 tracking-tight mb-1.5">Live Support Concierge</h3>
+          <p class="text-xs text-neutral-500 leading-relaxed">
+            Direct chat with real hardware support specialists for order status, tracking, and instant troubleshooting.
+          </p>
+        </div>
+        <button onclick="startLiveChatSim()" class="w-full mt-6 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+          <span>Launch Live Chat</span>
+        </button>
+      </div>
+
+      <!-- Card 2: Studio Lab Visit -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-sm bento-hover-lift tilt-card hover:border-neutral-900 transition-all duration-300 flex flex-col justify-between group">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/contact_lab_building.webp" alt="Hyderabad Studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="text-[11px] font-bold text-indigo-700 mb-2">
+            Hyderabad Studio & Lab
+          </div>
+          <h3 class="text-lg font-bold text-neutral-900 tracking-tight mb-1.5">Book a Lab Visit</h3>
+          <p class="text-xs text-neutral-500 leading-relaxed">
+            See our 15ft drop turret, test titanium composites, and sample acoustic tuning in person at our design showroom.
+          </p>
+        </div>
+        <a href="#lab-tour" class="w-full mt-6 py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-900 hover:text-white text-neutral-700 font-bold text-xs transition-all text-center block">
+          Schedule Studio Tour
+        </a>
+      </div>
+
+      <!-- Card 3: B2B Wholesale -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-sm bento-hover-lift tilt-card hover:border-neutral-900 transition-all duration-300 flex flex-col justify-between group">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4 border border-neutral-100">
+            <img src="assets/contact_tour_walk.webp" alt="B2B Wholesale" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          </div>
+          <div class="text-[11px] font-bold text-amber-700 mb-2">
+            Enterprise & Studios
+          </div>
+          <h3 class="text-lg font-bold text-neutral-900 tracking-tight mb-1.5">B2B Volume & Custom</h3>
+          <p class="text-xs text-neutral-500 leading-relaxed">
+            Custom laser marking, corporate iPad/iPhone fleet armor, and studio acoustic installations with dedicated account managers.
+          </p>
+        </div>
+        <button onclick="fillB2BSubject()" class="w-full mt-6 py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-900 hover:text-white text-neutral-700 font-bold text-xs transition-all flex items-center justify-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          <span>Contact Enterprise Lead</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- INTERACTIVE CONTACT FORM & STUDIO LOCATION               -->
+    <!-- ======================================================== -->
+    <section id="contact-form-section" class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 items-stretch">
+      
+      <!-- Left: Interactive Form -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-sm">
+        <div class="max-w-md mb-6">
+          <h2 class="text-2xl font-black text-neutral-900 tracking-tight">Direct Message to Hardware Support</h2>
+          <p class="text-xs text-neutral-500 mt-1">We respond to every message within 1 business day.</p>
+        </div>
+
+        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-neutral-700 mb-1">Your Full Name</label>
+              <input type="text" id="contact-name" required placeholder="Marcus Vance" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-xs text-neutral-900 focus:outline-none focus:border-neutral-900 focus:bg-white">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-neutral-700 mb-1">Email Address</label>
+              <input type="email" id="contact-email" required placeholder="marcus@example.com" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-xs text-neutral-900 focus:outline-none focus:border-neutral-900 focus:bg-white">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-neutral-700 mb-1">Device Model</label>
+              <select id="contact-device" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-xs text-neutral-900 focus:outline-none focus:border-neutral-900">
+                <option value="iphone16">Apple iPhone 16 Pro / Max</option>
+                <option value="iphone15">Apple iPhone 15 / 15 Pro</option>
+                <option value="s24">Samsung Galaxy S24 Ultra</option>
+                <option value="pixel9">Google Pixel 9 Pro</option>
+                <option value="oneplus12">OnePlus 12</option>
+                <option value="airpods">AirPods Pro / Studio Audio</option>
+                <option value="other">Other Device / General</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-neutral-700 mb-1">Inquiry Topic</label>
+              <select id="contact-topic" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-xs text-neutral-900 focus:outline-none focus:border-neutral-900">
+                <option value="fitment">Device Fitment & Sizing</option>
+                <option value="warranty">2-Year Warranty Claim</option>
+                <option value="shipping">Shipping & Tracking</option>
+                <option value="b2b">Corporate / Enterprise Fleet</option>
+                <option value="general">General Question</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-neutral-700 mb-1">Your Message or Fitment Details</label>
+            <textarea id="contact-msg" rows="4" required placeholder="Please provide your order number or phone model details..." class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 text-xs text-neutral-900 focus:outline-none focus:border-neutral-900 focus:bg-white"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Transmit Message to Hardware Team</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Showroom & Studio Information -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-sm flex flex-col justify-between">
+        <div class="space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold uppercase mb-2">
+              <i data-lucide="building" class="w-3.5 h-3.5"></i>
+              Global Headquarters & Lab
+            </div>
+            <h3 class="text-xl font-black text-neutral-900">STACKLY Studio & Testing Lab</h3>
+            <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+              Plot 42, Hitech City Phase II, Madhapur, Hyderabad, Telangana 500081, India
+            </p>
+          </div>
+
+          <!-- Studio Image Preview -->
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200">
+            <img src="assets/contact_lab_interior.webp" alt="STACKLY Studio Hyderabad" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Operating Hours & Fast Contacts -->
+          <div class="space-y-2.5 text-xs">
+            <div class="flex items-center justify-between py-1.5 border-b border-neutral-100">
+              <span class="text-neutral-500 font-medium">Showroom Hours</span>
+              <span class="font-bold text-neutral-900">Mon – Fri: 9:30 AM – 7:00 PM IST</span>
+            </div>
+            <div class="flex items-center justify-between py-1.5 border-b border-neutral-100">
+              <span class="text-neutral-500 font-medium">Support Hotline</span>
+              <span class="font-bold text-teal-700">+91 (040) 4920-8800</span>
+            </div>
+            <div class="flex items-center justify-between py-1.5">
+              <span class="text-neutral-500 font-medium">Direct Engineering Desk</span>
+              <span class="font-bold text-neutral-900 font-mono">support@stacklygear.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-neutral-100">
+          <div class="flex items-center gap-2 text-xs font-semibold text-emerald-600">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <span>Verified Authorized Hardware Facility</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- INTERACTIVE LAB TOUR BOOKING WIDGET                      -->
+    <!-- ======================================================== -->
+    <section id="lab-tour" class="bg-neutral-900 text-white rounded-3xl p-8 sm:p-12 mb-20 relative overflow-hidden">
+      <div class="max-w-2xl mb-8 relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-[11px] font-bold uppercase tracking-wider mb-3 border border-teal-500/30">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          Studio Appointment Booking
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          Reserve an in-person Hyderabad Studio visit
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-400 mt-2 leading-relaxed">
+          Watch our robotic drop turrets in action, touch pre-production prototypes, and get your phone measured for laser-perfect fitment by our lead engineers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl relative z-10">
+        <div>
+          <label class="block text-xs font-bold text-neutral-300 mb-1">Select Date</label>
+          <input type="date" id="tour-date" value="2026-11-15" class="w-full p-2.5 rounded-xl bg-neutral-800 border border-neutral-700 text-xs text-white focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-neutral-300 mb-1">Time Slot</label>
+          <select id="tour-slot" class="w-full p-2.5 rounded-xl bg-neutral-800 border border-neutral-700 text-xs text-white focus:outline-none">
+            <option>10:30 AM (Drop Turret Session)</option>
+            <option>2:00 PM (Acoustic Chamber Session)</option>
+            <option>4:30 PM (Thermal & Qi2 Lab Session)</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <button onclick="bookTour()" class="w-full py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-neutral-950 font-bold text-xs transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>Confirm Visit</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 6: LIVE ORDER TRACKING SIMULATION TOOL           -->
+    <!-- ======================================================== -->
+    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm bento-hover-lift mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold uppercase">
+            <i data-lucide="package" class="w-3.5 h-3.5"></i>
+            Real-Time Tracking Engine
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+            Track your accessory shipment
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+            Enter your 6-digit STACKLY order confirmation number to view live customs clearance, flight coordinates, and courier milestone scans.
+          </p>
+
+          <div class="pt-2">
+            <label class="block text-xs font-bold text-neutral-700 mb-1.5">STACKLY Order ID</label>
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                id="track-order-input" 
+                placeholder="e.g. STK-84291" 
+                value="STK-84291"
+                class="flex-1 px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-sm font-mono text-neutral-900 focus:outline-none focus:border-neutral-900 focus:bg-white"
+              >
+              <button 
+                onclick="trackOrder()"
+                class="px-6 py-3 rounded-2xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm active:scale-95 flex items-center gap-2"
+              >
+                <i data-lucide="search" class="w-4 h-4"></i>
+                <span>Locate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div id="tracking-result-box" class="bg-neutral-50 rounded-2xl p-6 border border-neutral-200/90 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-emerald-700 uppercase" id="track-status">Out for Express Delivery</span>
+              </div>
+              <span class="text-xs font-mono text-neutral-400" id="track-id">STK-84291</span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between text-neutral-500">
+                <span>Estimated Arrival</span>
+                <span class="font-bold text-neutral-900" id="track-eta">Today by 4:30 PM IST</span>
+              </div>
+              <div class="flex justify-between text-neutral-500">
+                <span>Courier Service</span>
+                <span class="font-bold text-neutral-900">DHL Express Priority (Air Tracked)</span>
+              </div>
+              <div class="w-full bg-neutral-200 h-2 rounded-full overflow-hidden mt-3">
+                <div class="bg-teal-600 h-full rounded-full" style="width: 85%;"></div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-neutral-200 text-xs text-neutral-600">
+              <strong>Latest Milestone:</strong> Cleared regional sorting hub. Courier dispatch van en route to delivery address.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 7: GLOBAL SHIPPING SPEEDS & TRANSIT MAP          -->
+    <!-- ======================================================== -->
+    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm bento-hover-lift mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200">
+          <img src="assets/contact_shipping_map.webp" alt="Global shipping map" class="w-full h-full object-cover">
+        </div>
+
+        <div class="lg:col-span-6 space-y-4">
+          <span class="text-xs font-mono font-bold text-teal-700 uppercase">Express Logistics</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+            Worldwide Air Freight Dispatch
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+            All orders are packed in biodegradable reinforced cardboard without plastic bubble wrap. Guaranteed duty-paid (DDP) transit with zero surprise customs fees.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 pt-2 text-xs">
+            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
+              <div class="font-bold text-neutral-900">India (Domestic)</div>
+              <div class="text-neutral-500 text-[11px] mt-0.5">24 - 48 Hours Express</div>
+            </div>
+            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
+              <div class="font-bold text-neutral-900">United States & Canada</div>
+              <div class="text-neutral-500 text-[11px] mt-0.5">3 - 4 Business Days Air</div>
+            </div>
+            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
+              <div class="font-bold text-neutral-900">UK & European Union</div>
+              <div class="text-neutral-500 text-[11px] mt-0.5">3 - 5 Business Days DDP</div>
+            </div>
+            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
+              <div class="font-bold text-neutral-900">Australia & East Asia</div>
+              <div class="text-neutral-500 text-[11px] mt-0.5">4 - 6 Business Days Air</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 8: INTERACTIVE FAQ ACCORDION                     -->
+    <!-- ======================================================== -->
+    <section id="faq" class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+          Frequently Answered Hardware Questions
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-1">Everything you need to know about our warranties, dispatch speeds and return policies.</p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Q1 -->
+        <div class="faq-item bg-white rounded-2xl border border-neutral-200/90 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-neutral-900 flex items-center justify-between hover:bg-neutral-50 transition-colors">
+            <span>How fast will my order arrive?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="faq-answer px-5 pb-5 text-xs text-neutral-500 leading-relaxed hidden">
+            Orders placed before 2:00 PM IST dispatch the same business day from our local fulfillment hub. Domestic delivery takes 24 to 48 hours. International express delivery to 38 countries averages 3 to 5 business days with full DDP tracking.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item bg-white rounded-2xl border border-neutral-200/90 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-neutral-900 flex items-center justify-between hover:bg-neutral-50 transition-colors">
+            <span>What does our comprehensive hardware warranty cover?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="faq-answer px-5 pb-5 text-xs text-neutral-500 leading-relaxed hidden">
+            Our warranty covers cracked case shells from accidental drops, loose neodymium magnets, frayed braided cable jackets, and Qi2 inductive coil failures. We don't make you ship broken parts back for weeks of repair — we ship you a brand-new replacement immediately upon serial verification.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item bg-white rounded-2xl border border-neutral-200/90 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-neutral-900 flex items-center justify-between hover:bg-neutral-50 transition-colors">
+            <span>Are STACKLY cases compatible with third-party MagSafe gear?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="faq-answer px-5 pb-5 text-xs text-neutral-500 leading-relaxed hidden">
+            Yes, 100%. Every STACKLY case is built with an integrated 38-magnet Halbach array delivering 1,200 Gauss holding force. They work flawlessly with all official Apple MagSafe wallets, chargers, car mounts, and universal Qi2 charging pads.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item bg-white rounded-2xl border border-neutral-200/90 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-neutral-900 flex items-center justify-between hover:bg-neutral-50 transition-colors">
+            <span>What is the 30-Day Zero-Tolerance Fit Guarantee?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="faq-answer px-5 pb-5 text-xs text-neutral-500 leading-relaxed hidden">
+            If an accessory doesn't snap with absolute micron-level precision to your phone buttons, camera bump, or charging port, you have 30 days to return it for a full 100% refund with prepaid return shipping labels provided.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 9: SUPPORT TEAM RESPONSE BENCHMARKS              -->
+    <!-- ======================================================== -->
+    <section class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-16">
+      <div class="bg-neutral-900 text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <span class="text-xs font-mono font-bold text-teal-400 uppercase">Support Quality Metrics</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Real humans. Certified hardware engineers.
+            </h2>
+            <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+              When you send an inquiry, you aren't talking to an offshore bot. You speak directly with our design and testing team in Hyderabad.
+            </p>
+            <div class="grid grid-cols-3 gap-4 pt-2">
+              <div>
+                <div class="text-2xl font-black text-white">4 min</div>
+                <div class="text-[11px] text-neutral-400">Avg Chat Response</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-white">99.4%</div>
+                <div class="text-[11px] text-neutral-400">First-Contact Resolution</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-white">4.9 / 5</div>
+                <div class="text-[11px] text-neutral-400">Customer Rating</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 bg-neutral-800/90 rounded-2xl border border-neutral-700/80 space-y-2">
+              <div class="flex items-center gap-2.5">
+                <img src="assets/contact_reviewer_david.webp" alt="Reviewer" class="w-8 h-8 rounded-full object-cover">
+                <div>
+                  <div class="text-xs font-bold text-white">Vikram S.</div>
+                  <div class="text-[10px] text-amber-400">★★★★★ Verified Buyer</div>
+                </div>
+              </div>
+              <p class="text-xs text-neutral-300 leading-relaxed">
+                "Tom from support verified my S24 Ultra case fitment in 3 minutes over live chat. Best accessory service anywhere."
+              </p>
+            </div>
+
+            <div class="p-4 bg-neutral-800/90 rounded-2xl border border-neutral-700/80 space-y-2">
+              <div class="flex items-center gap-2.5">
+                <img src="assets/contact_reviewer_priya.webp" alt="Reviewer" class="w-8 h-8 rounded-full object-cover">
+                <div>
+                  <div class="text-xs font-bold text-white">Pooja M.</div>
+                  <div class="text-[10px] text-amber-400">★★★★★ Verified Buyer</div>
+                </div>
+              </div>
+              <p class="text-xs text-neutral-300 leading-relaxed">
+                "Needed a replacement USB-C cable for an urgent flight. They dispatched a new one within 2 hours. Unbelievable speed."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 9: EMERGENCY DIRECT DESK & WHATSAPP PRIORITY     -->
+    <!-- ======================================================== -->
+    <section class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-16">
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm bento-hover-lift">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200">
+            <img src="assets/contact_emerg_support.webp" alt="Emergency Hardware Support" class="w-full h-full object-cover">
+          </div>
+          <div class="lg:col-span-6 space-y-4">
+            <span class="text-xs font-mono font-bold text-teal-700 uppercase">Rapid Incident Dispatch</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+              Damaged in transit or urgent travel departure?
+            </h2>
+            <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+              If an accessory arrived damaged from courier handling or you need an expedited charger before an international flight, our Rapid Response dispatch desk will rush a replacement within 180 minutes in metro hubs.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-3">
+              <button onclick="showToast('Priority hotline connected: Calling +91 (040) 4920-8800...')" class="px-6 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm active:scale-95 inline-flex items-center gap-2">
+                <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+                <span>Direct Hotline: +91 (040) 4920-8800</span>
+              </button>
+              <button onclick="showToast('WhatsApp Business chat opened with Hardware Desk.')" class="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all shadow-sm active:scale-95 inline-flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                <span>WhatsApp Urgent Desk</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 10: AUTHORIZED RETAILERS & GLOBAL DISTRIBUTION   -->
+    <!-- ======================================================== -->
+    <section class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-16">
+      <div class="bg-neutral-50 rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <span class="text-xs font-mono font-bold text-indigo-700 uppercase">Retail & Wholesale Distribution</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+              Become a verified STACKLY stockist or reseller
+            </h2>
+            <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+              We partner with premium tech boutiques, airport electronics stores, and design showrooms across North America, Europe, the Middle East, and Asia.
+            </p>
+            <div class="grid grid-cols-2 gap-3 pt-2 text-xs">
+              <div class="p-3 bg-white rounded-xl border border-neutral-200">
+                <div class="font-bold text-neutral-900">Tier 1 Reseller Pricing</div>
+                <div class="text-neutral-500 text-[11px] mt-0.5">Competitive margin schedules</div>
+              </div>
+              <div class="p-3 bg-white rounded-xl border border-neutral-200">
+                <div class="font-bold text-neutral-900">Custom Acrylic Displays</div>
+                <div class="text-neutral-500 text-[11px] mt-0.5">Turnkey retail counter fixtures</div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-white border border-neutral-200">
+            <img src="assets/contact_retail_range.webp" alt="STACKLY Retail Range" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- EXACT FOOTER WITH 4-PILLAR TRUST BAR                     -->
+  <!-- ======================================================== -->
+  <footer class="bg-[#f5f5f7] border-t border-neutral-200/80 pt-16 pb-12 mt-20">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      
+      <!-- Main Navigation Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4 pb-2">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 sm:h-10 w-auto object-contain">
+          </a>
+          <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
+            Precision smartphone armor, magnetic Qi2 fast-charging ecosystems, and studio acoustic essentials built to outlast everyday chaos.
+          </p>
+          
+
+          <!-- Socials -->
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Products</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Tactix Armor Phone Cases</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Orbit Qi2 Wireless Docks</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Studio Hi-Fi Earbuds Pro</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Nomad 10K MagBattery</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">TitanFlex Braided Cables</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Cockpit Car Mounts</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Customer Care</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Warranty Claim Center</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Trade-In & Recycle Portal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors text-neutral-900 font-bold">Track Your Order</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Shipping & Delivery Rates</a></li>
+            <li><a href="#faq" class="hover:text-neutral-950 transition-colors">Help & FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">About Us</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Engineering Lab</a></li>
+            <li><a href="blog.html" class="hover:text-neutral-950 transition-colors">Tech Journal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors text-neutral-900 font-bold">Contact Us</a></li>
+          </ul>
+
+          
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div id="cart-drawer" class="hidden fixed inset-0 pointer-events-none transition-opacity duration-300 opacity-0 z-[200]">
+    <div id="cart-backdrop" class="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm pointer-events-none"></div>
+    <div id="cart-panel" class="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform duration-300 ease-out">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-100">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-base text-neutral-900">Your Bag</h3>
+            <span id="cart-drawer-count" class="text-xs bg-neutral-100 text-neutral-700 font-bold px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <button id="close-cart-btn" class="p-1 text-neutral-400 hover:text-neutral-900 rounded-full hover:bg-neutral-100">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="cart-items-container" class="space-y-3 mt-4 max-h-[60vh] overflow-y-auto">
+          <div id="empty-cart-msg" class="py-12 text-center text-neutral-400 space-y-1">
+            <p class="text-xs font-semibold text-neutral-700">Your bag is currently empty</p>
+            <p class="text-[11px]">Click "Add to Bag" on any accessory to start.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-neutral-100 pt-4 space-y-3">
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-neutral-500 font-medium">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-extrabold text-neutral-900">$0.00</span>
+        </div>
+        <button onclick="handleCheckout()" class="w-full bg-[#111827] hover:bg-neutral-800 text-white py-3 rounded-full font-bold text-xs transition-all shadow-sm">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#111827] text-white px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 text-xs font-medium transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check" class="w-3.5 h-3.5 text-teal-400"></i>
+    <span id="toast-message">Notification</span>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      showToast(`Thank you ${name}! Your hardware inquiry has been delivered to support.`);
+      e.target.reset();
+    }
+
+    function startLiveChatSim() {
+      showToast('Connecting to Hardware Concierge... Average wait: 4 min');
+      setTimeout(() => {
+        showToast('Specialist Ravi joined: "Hello! How can we assist with your setup today?"');
+      }, 1500);
+    }
+
+    function fillB2BSubject() {
+      document.getElementById('contact-topic').value = 'b2b';
+      document.getElementById('contact-msg').value = 'Interested in custom laser-engraved cases & bulk fleet Qi2 chargers for our engineering team (50+ units).';
+      document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });
+      showToast('Switched topic to Corporate Fleet Inquiry.');
+    }
+
+    function trackOrder() {
+      const id = document.getElementById('track-order-input').value.trim().toUpperCase();
+      if (!id) {
+        showToast('Please enter an Order ID');
+        return;
+      }
+      document.getElementById('track-id').textContent = id;
+      document.getElementById('track-status').textContent = 'In Express Transit (Courier Dispatch)';
+      document.getElementById('track-eta').textContent = 'Today by 5:00 PM IST';
+      const box = document.getElementById('tracking-result-box');
+      if (box && window.gsap) {
+        gsap.fromTo(box, { scale: 0.95, opacity: 0.8 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.5)' });
+      }
+      showToast(`Tracking located for ${id}: Air freight delivery on schedule.`);
+    }
+
+    function bookTour() {
+      const date = document.getElementById('tour-date').value;
+      const slot = document.getElementById('tour-slot').value;
+      showToast(`Appointment confirmed for ${date} (${slot}) at Hyderabad Lab!`);
+    }
+
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('[data-lucide="chevron-down"]');
+      const isHidden = answer.classList.contains('hidden');
+
+      // Close other FAQs
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-item [data-lucide="chevron-down"]').forEach(i => i.classList.remove('rotate-180'));
+
+      if (isHidden) {
+        answer.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+        gsap.from(answer, { opacity: 0, y: -8, duration: 0.25, ease: 'power2.out' });
+      }
+    }
+  </script>
+  <script src="preloader.js"></script>
+</body>
+</html>
+

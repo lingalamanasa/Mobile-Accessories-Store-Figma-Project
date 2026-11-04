@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Journal & Lab Guides — STACKLY</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          },
+          colors: {
+            exactBg: '#fbfbfb',
+            exactCard: '#ffffff',
+            exactDark: '#111827',
+            exactTeal: '#0d9488'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
+  <!-- ======================================================== -->
+  <!-- STACKLY PRELOADER ANIMATION                              -->
+  <!-- ======================================================== -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <!-- Glow & Logo -->
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain  relative z-10">
+      </div>
+      
+      <!-- Brand & Page Name -->
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY BLOG
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          Tech Journal & Teardowns
+        </p>
+      </div>
+
+      <!-- High-tech Progress Line -->
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+
+      <!-- Percentage Counter -->
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">
+        0%
+      </span>
+    </div>
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- EXACT NAVIGATION BAR (Matches Main Site Perfectly)       -->
+  <!-- ======================================================== -->
+  <header class="bg-[#f5f5f7] border-b border-neutral-200/80 sticky top-0 header-nav z-[100]">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+      
+      <!-- Logo: Exact STACKLY logo untouched -->
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
+        <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5">Home</a>
+        <a href="shop.html" class="hover:text-neutral-950 transition-colors py-1.5">Shop</a>
+        <a href="services.html" class="hover:text-neutral-950 transition-colors py-1.5">Services</a>
+        <a href="about.html" class="hover:text-neutral-950 transition-colors py-1.5">About</a>
+        <a href="blog.html" class="text-neutral-900 font-extrabold relative py-1.5">
+          Blog
+          <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-teal-600 rounded-full"></span>
+        </a>
+        <a href="contact.html" class="hover:text-neutral-950 transition-colors py-1.5">Contact</a>
+      </nav>
+
+      <!-- Right Actions: Increased letter height & width -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+
+        <a href="login.html" id="nav-login-btn" class="text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden sm:inline">
+          Login
+        </a>
+
+        <a href="signup.html" id="nav-signup-btn" class="bg-[#111827] text-white px-7 py-3 rounded-full text-sm sm:text-base font-bold tracking-wide hover:bg-neutral-800 transition-all shadow-md active:scale-95 magnetic-btn cursor-pointer">
+          Sign up
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-neutral-700 hover:text-neutral-950 hover:bg-neutral-200/60 transition-colors cursor-pointer" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-nav-menu" class="hidden md:hidden bg-[#f5f5f7] border-b border-neutral-200 px-6 py-4 space-y-3 font-bold text-neutral-700 text-base">
+      <a href="index.html" class="block py-1 hover:text-neutral-950">Home</a>
+      <a href="shop.html" class="block py-1 hover:text-neutral-950">Shop</a>
+      <a href="services.html" class="block py-1 hover:text-neutral-950">Services</a>
+      <a href="about.html" class="block py-1 hover:text-neutral-950">About</a>
+      <a href="blog.html" class="block py-1 text-neutral-950 font-black">Blog</a>
+      <a href="contact.html" class="block py-1 hover:text-neutral-950">Contact</a>
+      <div class="pt-3 border-t border-neutral-200 flex items-center gap-3">
+        <a href="login.html" class="flex-1 text-center py-2.5 rounded-full border border-neutral-300 text-neutral-800 text-xs font-bold">Login</a>
+        <a href="signup.html" class="flex-1 text-center py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- HERO BANNER                                              -->
+  <!-- ======================================================== -->
+  <main class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-12 sm:pt-16 pb-20">
+
+    <!-- SECTION 1: HERO HEADER (Flagship Figma UI/UX 12-Col Tech Journal) -->
+    <section id="hero" class="bg-[#e4e5e9] -mx-6 lg:-mx-12 -mt-12 sm:-mt-16 mb-16 pt-12 pb-14 border-b border-neutral-300/60 px-6 lg:px-12">
+      <div class="max-w-[1280px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left: Copy & Article Filters -->
+          <div class="lg:col-span-6 space-y-6 hero-text-col">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-neutral-300/80 text-neutral-800 text-xs font-bold uppercase tracking-wider backdrop-blur-sm shadow-sm">
+              <i data-lucide="book-open" class="w-3.5 h-3.5 text-teal-600"></i>
+              The STACKLY Journal • Lab Notes & Physics
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-[66px] font-bold tracking-tight leading-[1.04] text-[#111827] hero-heading">
+              Hardware physics.<br>
+              Lab teardowns.<br>
+              <span class="text-[#9ca3af] font-normal">Zero marketing fluff.</span>
+            </h1>
+
+            <p class="text-neutral-600 text-sm sm:text-base leading-relaxed max-w-lg hero-subtitle font-normal">
+              We test phone accessories until they melt, snap, or drop from 20ft so you never have to guess. Real FLIR thermal telemetry, oscilloscope wave measurements, and battery chemistry science.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a href="#featured-article" class="bg-[#111827] text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-neutral-800 transition-all shadow-md active:scale-95 magnetic-btn">
+                Read Featured Teardown
+              </a>
+              <button onclick="setBlogFilter('teardowns', document.querySelectorAll('.blog-filter-btn')[1])" class="bg-white text-[#111827] px-6 py-3 rounded-full text-xs font-semibold shadow-sm hover:shadow-md hover:bg-neutral-50 transition-all border border-neutral-300/80">
+                GaN III Teardowns
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Hardware Motherboard / Teardown Visual Card -->
+          <div class="lg:col-span-6 hero-image-col">
+            <div class="rounded-3xl overflow-hidden shadow-xl border border-neutral-300/70 bg-[#151c24] aspect-[16/10] relative group tilt-card hero-image-card flex items-center justify-center">
+              <img 
+                src="assets/blog_hero_bench.webp" 
+                alt="STACKLY Hardware Teardown Bench" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              >
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="px-2.5 py-1 rounded-full bg-teal-500 text-white text-[11px] font-black uppercase tracking-wider">Benchmark 2026</span>
+                  <span class="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[11px] font-semibold">FLIR Thermal Cameras</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Silicon vs GaN Thermal Dissection</h3>
+                <p class="text-neutral-300 text-xs mt-1">Why GaN III delivers 40% faster charging at 28°C lower internal temps.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4-Feature Metric Bar -->
+        <div class="mt-14 pt-8 border-t border-neutral-300/70 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-medium text-neutral-600 hero-stats-bar">
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">48+ Teardowns</div>
+              <div class="text-[11px] text-neutral-500">Peer-reviewed hardware guides</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="activity" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">FLIR Telemetry</div>
+              <div class="text-[11px] text-neutral-500">Calibrated thermal captures</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">100W PD Testing</div>
+              <div class="text-[11px] text-neutral-500">Oscilloscope ripple verified</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3.5 rounded-2xl border border-neutral-300/50">
+            <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
+              <i data-lucide="file-text" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="font-bold text-neutral-900 text-sm">Open Schematics</div>
+              <div class="text-[11px] text-neutral-500">Transparent teardown diagrams</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- FEATURED ARTICLE BENTO                                   -->
+    <!-- ======================================================== -->
+    <section class="bg-white rounded-3xl p-6 sm:p-10 border border-neutral-200/90 shadow-sm bento-hover-lift mb-16 hover:border-neutral-900 transition-all duration-300">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Article Image -->
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 relative group cursor-pointer" onclick="openArticleModal('Why GaN III is Replacing Silicon Bricks', 'assets/blog_feat_qi2.webp', 'Thermal Engineering', 'Gallium Nitride (GaN) has fundamentally changed power conversion. By operating at higher switching frequencies with lower internal resistance, GaN transistors lose 40% less energy to heat. In our thermal imaging benchmarks, a 65W GaN III charger stayed under 48°C under sustained 2-hour loads, while standard silicon bricks exceeded 76°C and triggered thermal throttling.')">
+          <img src="assets/blog_feat_qi2.webp" alt="GaN Charging Teardown" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-4 left-4 bg-teal-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+            Featured Lab Report
+          </span>
+        </div>
+
+        <!-- Article Summary -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-2 text-xs font-semibold text-neutral-400">
+            <span class="text-teal-700 font-bold uppercase">Thermal Engineering</span>
+            <span>•</span>
+            <span>7 min read</span>
+            <span>•</span>
+            <span>Nov 2026</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight leading-tight hover:text-teal-700 transition-colors cursor-pointer" onclick="openArticleModal('Why GaN III is Replacing Silicon Bricks', 'assets/blog_feat_qi2.webp', 'Thermal Engineering', 'Gallium Nitride (GaN) has fundamentally changed power conversion. By operating at higher switching frequencies with lower internal resistance, GaN transistors lose 40% less energy to heat. In our thermal imaging benchmarks, a 65W GaN III charger stayed under 48°C under sustained 2-hour loads, while standard silicon bricks exceeded 76°C and triggered thermal throttling.')">
+            Why GaN III is replacing silicon bricks: A 65W thermal dissipation breakdown.
+          </h2>
+
+          <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+            We hooked our FLIR thermal cameras to silicon vs GaN power semiconductors during sustained laptop and smartphone fast-charging. Here is the physical reason your phone charges 40% faster while running 28°C cooler.
+          </p>
+
+          <div class="pt-4 flex items-center justify-between border-t border-neutral-100">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-neutral-900 text-white font-bold text-xs flex items-center justify-center">RK</div>
+              <div>
+                <div class="text-xs font-bold text-neutral-900">Ravi Kumar</div>
+                <div class="text-[10px] text-neutral-400 font-medium">Founder & Hardware Lead</div>
+              </div>
+            </div>
+
+            <button onclick="openArticleModal('Why GaN III is Replacing Silicon Bricks', 'assets/blog_feat_qi2.webp', 'Thermal Engineering', 'Gallium Nitride (GaN) has fundamentally changed power conversion. By operating at higher switching frequencies with lower internal resistance, GaN transistors lose 40% less energy to heat. In our thermal imaging benchmarks, a 65W GaN III charger stayed under 48°C under sustained 2-hour loads, while standard silicon bricks exceeded 76°C and triggered thermal throttling.')" class="px-5 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm active:scale-95 flex items-center gap-1.5">
+              <span>Read Full Article</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: TOPIC FILTER & LATEST DISPATCHES BAR -->
+    <section class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-4 border-b border-neutral-200 gap-4">
+      <div>
+        <h3 class="text-xl font-bold text-neutral-900">Latest Engineering Dispatches</h3>
+        <div class="text-xs text-neutral-400 font-medium">All telemetry laboratory verified</div>
+      </div>
+      <div class="flex items-center gap-2 overflow-x-auto text-xs font-semibold">
+        <span class="px-3 py-1 rounded-full bg-neutral-900 text-white">All (6)</span>
+        <span class="px-3 py-1 rounded-full bg-neutral-100 text-neutral-600">Thermal</span>
+        <span class="px-3 py-1 rounded-full bg-neutral-100 text-neutral-600">Aramid</span>
+        <span class="px-3 py-1 rounded-full bg-neutral-100 text-neutral-600">Acoustics</span>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      
+      <!-- Article 1 -->
+      <article class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('Qi2 Magnetic Standard: Android and iPhone Parity', 'assets/blog_feat_cable.webp', 'Wireless Protocols', 'The Wireless Power Consortium (WPC) based the universal Qi2 standard directly on Apples MagSafe architecture. This means 15W magnetic peak charging is now completely cross-platform, allowing Android phones to snap with the exact same 1,200G hold force and rapid inductive efficiency.')">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4">
+            <img src="assets/blog_feat_cable.webp" alt="Qi2 standard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-semibold text-neutral-400 mb-2">
+            <span class="text-teal-700 font-bold uppercase">Wireless Standards</span>
+            <span>•</span>
+            <span>5 min read</span>
+          </div>
+          <h4 class="font-extrabold text-neutral-900 text-base leading-snug group-hover:text-teal-700 transition-colors">
+            Qi2 Magnetic Standard: What 15W wireless parity means for Android & iPhone.
+          </h4>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            How Apple's open donation of MagSafe specs created a universal magnetic ecosystem with zero proprietary lock-in.
+          </p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-teal-700 font-bold">
+          <span>Read Analysis</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('The Physics of 15ft Shock Absorption', 'assets/blog_art_titanium.webp', 'Materials Science', 'When a 220g smartphone drops from eye level, kinetic impact energy reaches 15.4 G-force in less than 2 milliseconds. Our aramid fiber matrix and air-cushion perimeter disperse 99.2% of rebound energy around the frame rather than transferring it through the fragile OLED substrate.')">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4">
+            <img src="assets/blog_art_titanium.webp" alt="Drop Testing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-semibold text-neutral-400 mb-2">
+            <span class="text-amber-700 font-bold uppercase">Impact Physics</span>
+            <span>•</span>
+            <span>6 min read</span>
+          </div>
+          <h4 class="font-extrabold text-neutral-900 text-base leading-snug group-hover:text-teal-700 transition-colors">
+            Inside our 15ft drop matrix: How aramid fibers disperse kinetic impact shock.
+          </h4>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            High-speed 10,000 FPS footage analyzing why corner air pockets prevent shattered screen corners.
+          </p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-amber-700 font-bold">
+          <span>Read Analysis</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('Why Cheap Amazon Cables Destroy Battery Health', 'assets/blog_art_battery.webp', 'Circuit Telemetry', 'Sub-standard cables frequently lack genuine E-Marker chips, causing voltage spikes up to 28V during USB-PD negotiation. Over 6 months, erratic ripple currents degrade phone battery anodes by up to 22% faster than certified 240W cables with pure electrolytic copper.')">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4">
+            <img src="assets/blog_art_battery.webp" alt="Oscilloscope Cable Test" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-semibold text-neutral-400 mb-2">
+            <span class="text-red-700 font-bold uppercase">Circuit Analysis</span>
+            <span>•</span>
+            <span>8 min read</span>
+          </div>
+          <h4 class="font-extrabold text-neutral-900 text-base leading-snug group-hover:text-teal-700 transition-colors">
+            Why cheap cables destroy battery health: An oscilloscope deep dive.
+          </h4>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Measuring voltage ripple and fake 100W E-marker controllers that degrade phone charging ICs over time.
+          </p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-red-700 font-bold">
+          <span>Read Analysis</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('Peltier Semiconductor Cooling in Car Mounts', 'assets/blog_art_carmount.webp', 'Automotive Hardware', 'A phone running Google Maps, 5G cellular, and wireless charging under direct windshield sun can reach 52°C in 15 minutes, prompting the CPU to drop brightness to 30% and throttle GPS refreshes. Semiconductor cryo cooling drops chassis surface temperatures by 18°C in under 90 seconds.')">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4">
+            <img src="assets/blog_art_carmount.webp" alt="Car Peltier Mount" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-semibold text-neutral-400 mb-2">
+            <span class="text-blue-700 font-bold uppercase">Automotive Tech</span>
+            <span>•</span>
+            <span>4 min read</span>
+          </div>
+          <h4 class="font-extrabold text-neutral-900 text-base leading-snug group-hover:text-teal-700 transition-colors">
+            Peltier semiconductor cooling: Defeating 40°C car cockpit navigation heat.
+          </h4>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Active thermoelectric refrigeration prevents smartphone screen dimming and GPS battery lockouts.
+          </p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-blue-700 font-bold">
+          <span>Read Analysis</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('Battery Longevity: The 80% Charge Limit Science', 'assets/blog_art_battery_chem.webp', 'Electrochemical Guide', 'Lithium-ion pouch batteries experience the greatest mechanical and crystalline stress above 4.15V per cell (approximately 82% state of charge). By capping charging at 80% during overnight cycles, you preserve cathode crystal integrity and double overall battery cycle life from 800 cycles to 1,600+.')">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4">
+            <img src="assets/blog_art_battery_chem.webp" alt="Battery Health Chemistry" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-semibold text-neutral-400 mb-2">
+            <span class="text-emerald-700 font-bold uppercase">Battery Health</span>
+            <span>•</span>
+            <span>6 min read</span>
+          </div>
+          <h4 class="font-extrabold text-neutral-900 text-base leading-snug group-hover:text-teal-700 transition-colors">
+            The 80% charge limit science: How to keep phone battery health above 90% in Year 3.
+          </h4>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            Electrochemical voltage saturation curve analysis showing how overnight trickle charge ruins phone cells.
+          </p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-emerald-700 font-bold">
+          <span>Read Analysis</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </div>
+      </article>
+
+      <!-- Article 6 -->
+      <article class="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-sm hover:border-neutral-900 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('Minimalist EDC: 3 Cables and 1 Nano Brick', 'assets/blog_art_edc_gear.webp', 'Everyday Carry', 'Carrying a rat nest of dongles and adapters is obsolete. By combining one high-wattage GaN III brick, two 240W braided Type-C cables, and one magnetic snap battery pack, you can power a laptop, phone, headphones, and smartwatch across 38 international countries seamlessly.')">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 mb-4">
+            <img src="assets/blog_art_edc_gear.webp" alt="Minimalist EDC Gear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-semibold text-neutral-400 mb-2">
+            <span class="text-purple-700 font-bold uppercase">EDC Setup</span>
+            <span>•</span>
+            <span>5 min read</span>
+          </div>
+          <h4 class="font-extrabold text-neutral-900 text-base leading-snug group-hover:text-teal-700 transition-colors">
+            The minimalist EDC blueprint: Powering laptop, phone & audio with under 250 grams.
+          </h4>
+          <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+            How to shed bulky laptop charging blocks without sacrificing wattage or safety on international travel.
+          </p>
+        </div>
+        <div class="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-purple-700 font-bold">
+          <span>Read Analysis</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 5: THERMAL & DROP TELEMETRY INFOGRAPHIC          -->
+    <!-- ======================================================== -->
+    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <span class="text-xs font-mono font-bold text-teal-700 uppercase">FLIR Telemetry & Lab Charts</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+            Thermal dissipation benchmarks: GaN III vs Standard Silicon
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+            During prolonged 65W power delivery tests, our temperature probes recorded an average operating temperature of 46.2°C for STACKLY GaN III semiconductor modules, compared to 78.4°C on standard legacy bricks.
+          </p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <div class="flex justify-between text-xs font-bold text-neutral-800 mb-1">
+                <span>STACKLY GaN III Nano (46.2°C)</span>
+                <span class="text-teal-700">Optimal Zone</span>
+              </div>
+              <div class="w-full h-3 bg-neutral-100 rounded-full overflow-hidden">
+                <div class="bg-teal-500 h-full rounded-full" style="width: 46%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-bold text-neutral-800 mb-1">
+                <span>Standard Silicon OEM Charger (78.4°C)</span>
+                <span class="text-red-500">Thermal Throttling</span>
+              </div>
+              <div class="w-full h-3 bg-neutral-100 rounded-full overflow-hidden">
+                <div class="bg-red-400 h-full rounded-full" style="width: 78%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200">
+          <img src="assets/blog_art_flir_telemetry.webp" alt="Thermal FLIR Telemetry" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 6: MACRO MATERIALS TEARDOWN GALLERY              -->
+    <!-- ======================================================== -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">Macro Component Gallery</h2>
+          <p class="text-xs text-neutral-500 mt-1">High-resolution microscopic captures from our Hyderabad disassembly bench</p>
+        </div>
+        <span class="text-xs font-bold text-neutral-400">0.01mm Macro Optical</span>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-3 rounded-2xl border border-neutral-200 group">
+          <div class="rounded-xl overflow-hidden aspect-square mb-2 bg-neutral-100">
+            <img src="assets/blog_art_aramid_fiber.webp" alt="Aramid fiber" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="text-xs font-bold text-neutral-900">1500D Aramid Weave</div>
+          <div class="text-[10px] text-neutral-400">Non-conductive antenna weave</div>
+        </div>
+
+        <div class="bg-white p-3 rounded-2xl border border-neutral-200 group">
+          <div class="rounded-xl overflow-hidden aspect-square mb-2 bg-neutral-100">
+            <img src="assets/blog_art_audio.webp" alt="GaN Coil" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="text-xs font-bold text-neutral-900">15W Qi2 Inductive Coil</div>
+          <div class="text-[10px] text-neutral-400">Heavy gauge pure copper windings</div>
+        </div>
+
+        <div class="bg-white p-3 rounded-2xl border border-neutral-200 group">
+          <div class="rounded-xl overflow-hidden aspect-square mb-2 bg-neutral-100">
+            <img src="assets/blog_art_acoustic_diaphragm.webp" alt="Acoustic diaphragm" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="text-xs font-bold text-neutral-900">Beryllium Diaphragm</div>
+          <div class="text-[10px] text-neutral-400">High-stiffness ultra-low distortion</div>
+        </div>
+
+        <div class="bg-white p-3 rounded-2xl border border-neutral-200 group">
+          <div class="rounded-xl overflow-hidden aspect-square mb-2 bg-neutral-100">
+            <img src="assets/blog_art_peltier_cryo.webp" alt="Peltier Cryo Mount" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="text-xs font-bold text-neutral-900">Peltier Cryo Cooler</div>
+          <div class="text-[10px] text-neutral-400">Solid-state semiconductor cooling</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 7: "ASK OUR ENGINEERS" Q&A SPOTLIGHT             -->
+    <!-- ======================================================== -->
+    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm mb-16">
+      <div class="max-w-2xl mb-8">
+        <span class="text-xs font-mono font-bold text-teal-700 uppercase">Direct From The Lab</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight mt-1">
+          Technical Q&A: Your Hardware Questions Answered
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-3">
+          <div class="flex items-center gap-3">
+            <img src="assets/blog_author_ravi.webp" alt="Ravi Kumar" class="w-10 h-10 rounded-full object-cover border border-neutral-200">
+            <div>
+              <div class="text-xs font-bold text-neutral-900">Ravi Kumar, Hardware Lead</div>
+              <div class="text-[10px] text-neutral-400">On Fast-Charging Longevity</div>
+            </div>
+          </div>
+          <h4 class="text-sm font-bold text-neutral-900">"Does charging at 65W or 100W harm smartphone batteries?"</h4>
+          <p class="text-xs text-neutral-500 leading-relaxed">
+            No, modern smartphones negotiate charging wattage via bidirectional USB-PD handshake protocols. The phone requests only what its internal battery controller can safely absorb. Wattage steps down automatically once the battery reaches 80% to avoid thermal stress.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-3">
+          <div class="flex items-center gap-3">
+            <img src="assets/blog_author_kiran.webp" alt="Ananya Rao" class="w-10 h-10 rounded-full object-cover border border-neutral-200">
+            <div>
+              <div class="text-xs font-bold text-neutral-900">Ananya Rao, Head of Design</div>
+              <div class="text-[10px] text-neutral-400">On MagSafe Alignment</div>
+            </div>
+          </div>
+          <h4 class="text-sm font-bold text-neutral-900">"Why do standard magnetic cases slip off car mounts?"</h4>
+          <p class="text-xs text-neutral-500 leading-relaxed">
+            Most generic cases use low-grade N35 magnets positioned flat. STACKLY uses 38 custom N52 neodymium magnets arrayed in a Halbach pattern. This focuses magnetic flux toward the mount rather than letting it bleed outward, delivering 2.4x greater shear resistance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 8: LAB-TESTED RECOMMENDED GEAR SHOWCASE          -->
+    <!-- ======================================================== -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">Hardware Tested in These Reports</h2>
+          <p class="text-xs text-neutral-500 mt-1">Directly engineered and verified in our published journal tear-downs</p>
+        </div>
+        <a href="shop.html" class="text-xs font-bold text-teal-700 hover:text-neutral-950 flex items-center gap-1">
+          <span>View All Gear</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-white p-4 rounded-3xl border border-neutral-200/90 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3">
+              <img src="assets/blog_prod_dock.webp" alt="Orbit Qi2 Dock" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[10px] font-bold text-teal-700 font-mono">15W Qi2 Standard</span>
+            <h4 class="font-extrabold text-sm text-neutral-900 mt-1">Orbit 3-in-1 Charging Hub</h4>
+          </div>
+          <div class="pt-3 mt-3 border-t border-neutral-100 flex items-center justify-between">
+            <span class="font-black text-sm text-neutral-900">$79.00</span>
+            <button onclick="quickAddToCart('Orbit 3-in-1 Charging Hub', 79, 'assets/blog_prod_dock.webp')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white text-xs font-bold hover:bg-neutral-800 transition-all">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-3xl border border-neutral-200/90 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3">
+              <img src="assets/blog_prod_case.webp" alt="Tactix Armor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[10px] font-bold text-teal-700 font-mono">15ft Drop Certified</span>
+            <h4 class="font-extrabold text-sm text-neutral-900 mt-1">Tactix Armor Case Pro</h4>
+          </div>
+          <div class="pt-3 mt-3 border-t border-neutral-100 flex items-center justify-between">
+            <span class="font-black text-sm text-neutral-900">$49.00</span>
+            <button onclick="quickAddToCart('Tactix Armor Case Pro', 49, 'assets/blog_prod_case.webp')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white text-xs font-bold hover:bg-neutral-800 transition-all">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-3xl border border-neutral-200/90 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="rounded-2xl overflow-hidden aspect-square bg-neutral-100 mb-3">
+              <img src="assets/blog_art_battery.webp" alt="TitanFlex Cable" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <span class="text-[10px] font-bold text-teal-700 font-mono">240W E-Marker Weave</span>
+            <h4 class="font-extrabold text-sm text-neutral-900 mt-1">TitanFlex Braided Cable</h4>
+          </div>
+          <div class="pt-3 mt-3 border-t border-neutral-100 flex items-center justify-between">
+            <span class="font-black text-sm text-neutral-900">$29.00</span>
+            <button onclick="quickAddToCart('TitanFlex Braided Cable', 29, 'assets/blog_art_battery.webp')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white text-xs font-bold hover:bg-neutral-800 transition-all">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 9: LAB WHITEPAPERS & SCHEMATIC DOWNLOADS         -->
+    <!-- ======================================================== -->
+    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200">
+          <img src="assets/blog_whitepaper_bench.webp" alt="Lab Whitepapers & Benchmarks" class="w-full h-full object-cover">
+        </div>
+
+        <div class="lg:col-span-6 space-y-4">
+          <span class="text-xs font-mono font-bold text-teal-700 uppercase">Open Research</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
+            Download our complete 2026 Hardware Telemetry Whitepaper
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
+            42 pages of unedited FLIR thermal traces, oscilloscope waveform captures, and G-force impact acceleration curves compiled by our Hyderabad research team.
+          </p>
+          <div class="pt-2">
+            <button onclick="showToast('Telemetry Whitepaper PDF downloaded! Check your downloads folder.')" class="px-6 py-3 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm active:scale-95 inline-flex items-center gap-2">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Download Full Lab Report (PDF 14MB)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 10: NEWSLETTER SUBSCRIPTION BENTO BOX            -->
+    <!-- ======================================================== -->
+    <section id="newsletter" class="bg-neutral-900 text-white rounded-3xl p-8 sm:p-14 relative overflow-hidden">
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-teal-500/10 blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-xl relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-[11px] font-bold uppercase tracking-wider border border-teal-500/30">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          Bi-Weekly Hardware Dispatch
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          Join 40,000+ hardware enthusiasts, engineers and designers.
+        </h3>
+        <p class="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+          Zero promotional spam. Only raw laboratory tear-downs, early access prototypes, and exclusive subscriber discount codes.
+        </p>
+
+        <form onsubmit="handleSubscribe(event)" class="pt-2 flex flex-col sm:flex-row gap-2 max-w-md">
+          <input 
+            type="email" 
+            id="sub-email" 
+            required 
+            placeholder="Enter your email address" 
+            class="flex-1 px-4 py-3 rounded-full bg-neutral-800 border border-neutral-700 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-teal-400"
+          >
+          <button type="submit" class="px-6 py-3 rounded-full bg-white hover:bg-neutral-200 text-neutral-900 font-bold text-xs transition-all shadow-md active:scale-95 whitespace-nowrap">
+            Subscribe Free
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- ARTICLE MODAL VIEWER                                     -->
+  <!-- ======================================================== -->
+  <div id="article-modal" class="hidden fixed inset-0 pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center p-4 z-[200]">
+    <div id="article-backdrop" class="absolute inset-0 bg-neutral-950/70 backdrop-blur-sm pointer-events-none" onclick="closeArticleModal()"></div>
+    <div class="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl z-10 pointer-events-auto transform scale-95 transition-transform duration-300 border border-neutral-200 max-h-[85vh] overflow-y-auto" id="article-modal-panel">
+      <button onclick="closeArticleModal()" class="absolute top-5 right-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-500 hover:text-neutral-900 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="rounded-2xl overflow-hidden aspect-[16/9] bg-neutral-100 mb-6">
+        <img id="art-img" src="" alt="Article Preview" class="w-full h-full object-cover">
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold uppercase mb-3">
+        <span id="art-tag">Tag</span>
+      </div>
+
+      <h2 id="art-title" class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight leading-tight mb-4"></h2>
+      
+      <div class="text-xs sm:text-sm text-neutral-600 leading-relaxed space-y-4" id="art-body"></div>
+
+      <div class="pt-6 mt-6 border-t border-neutral-100 flex items-center justify-between">
+        <a href="shop.html" class="px-6 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm">
+          Browse Related Lab Gear
+        </a>
+        <button onclick="closeArticleModal()" class="px-5 py-2.5 rounded-full border border-neutral-200 text-neutral-700 font-bold text-xs hover:bg-neutral-50">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXACT FOOTER WITH 4-PILLAR TRUST BAR                     -->
+  <!-- ======================================================== -->
+  <footer class="bg-[#f5f5f7] border-t border-neutral-200/80 pt-16 pb-12 mt-20">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      
+      <!-- Main Navigation Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4 pb-2">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 sm:h-10 w-auto object-contain">
+          </a>
+          <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
+            Precision smartphone armor, magnetic Qi2 fast-charging ecosystems, and studio acoustic essentials built to outlast everyday chaos.
+          </p>
+          
+
+          <!-- Socials -->
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Products</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Tactix Armor Phone Cases</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Orbit Qi2 Wireless Docks</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Studio Hi-Fi Earbuds Pro</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Nomad 10K MagBattery</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">TitanFlex Braided Cables</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Cockpit Car Mounts</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Customer Care</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Warranty Claim Center</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Trade-In & Recycle Portal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Track Your Order</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Shipping & Delivery Rates</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Help & FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2.5 text-neutral-500 text-xs">
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">About Us</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Engineering Lab</a></li>
+            <li><a href="blog.html" class="hover:text-neutral-950 transition-colors text-neutral-900 font-bold">Tech Journal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Contact Us</a></li>
+          </ul>
+
+          
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div id="cart-drawer" class="hidden fixed inset-0 pointer-events-none transition-opacity duration-300 opacity-0 z-[200]">
+    <div id="cart-backdrop" class="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm pointer-events-none"></div>
+    <div id="cart-panel" class="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform duration-300 ease-out">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-100">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-base text-neutral-900">Your Bag</h3>
+            <span id="cart-drawer-count" class="text-xs bg-neutral-100 text-neutral-700 font-bold px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <button id="close-cart-btn" class="p-1 text-neutral-400 hover:text-neutral-900 rounded-full hover:bg-neutral-100">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="cart-items-container" class="space-y-3 mt-4 max-h-[60vh] overflow-y-auto">
+          <div id="empty-cart-msg" class="py-12 text-center text-neutral-400 space-y-1">
+            <p class="text-xs font-semibold text-neutral-700">Your bag is currently empty</p>
+            <p class="text-[11px]">Click "Add to Bag" on any accessory to start.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-neutral-100 pt-4 space-y-3">
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-neutral-500 font-medium">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-extrabold text-neutral-900">$0.00</span>
+        </div>
+        <button onclick="handleCheckout()" class="w-full bg-[#111827] hover:bg-neutral-800 text-white py-3 rounded-full font-bold text-xs transition-all shadow-sm">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#111827] text-white px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 text-xs font-medium transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check" class="w-3.5 h-3.5 text-teal-400"></i>
+    <span id="toast-message">Notification</span>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const input = document.getElementById('sub-email');
+      showToast(`Welcome aboard! Confirmation sent to ${input.value}`);
+      input.value = '';
+    }
+
+    function openArticleModal(title, img, tag, body) {
+      document.getElementById('art-title').textContent = title;
+      document.getElementById('art-img').src = img;
+      document.getElementById('art-tag').textContent = tag;
+      document.getElementById('art-body').innerHTML = `
+        <p class="text-sm text-neutral-700 font-medium leading-relaxed">${body}</p>
+        <p class="text-xs text-neutral-500 leading-relaxed">
+          In real-world tests across our testing chassis, the engineering team recorded consistent 15W sustained power output with negligible thermal throttling. Our custom Halbach array design redirects stray magnetic flux lines back into the receiver coil, reducing peripheral eddy currents and heat buildup.
+        </p>
+        <div class="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs font-mono text-neutral-700">
+          <strong>Key Lab Takeaway:</strong> Always verify Qi2 certification credentials before purchasing magnetic stands to ensure full 15W high-speed charging without thermal throttling.
+        </div>
+      `;
+
+      const modal = document.getElementById('article-modal');
+      const panel = document.getElementById('article-modal-panel');
+      const backdrop = document.getElementById('article-backdrop');
+      modal.classList.remove('hidden');
+      void modal.offsetWidth;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      if (backdrop) {
+        backdrop.classList.remove('pointer-events-none');
+        backdrop.classList.add('pointer-events-auto');
+      }
+      panel.classList.remove('scale-95');
+      panel.classList.add('scale-100');
+    }
+
+    function closeArticleModal() {
+      const modal = document.getElementById('article-modal');
+      const panel = document.getElementById('article-modal-panel');
+      const backdrop = document.getElementById('article-backdrop');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      if (backdrop) {
+        backdrop.classList.add('pointer-events-none');
+        backdrop.classList.remove('pointer-events-auto');
+      }
+      panel.classList.add('scale-95');
+      panel.classList.remove('scale-100');
+      setTimeout(() => {
+        if (modal.classList.contains('opacity-0')) {
+          modal.classList.add('hidden');
+        }
+      }, 300);
+    }
+  </script>
+  <script src="preloader.js"></script>
+</body>
+</html>
+
