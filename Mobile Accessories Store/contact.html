@@ -523,49 +523,89 @@
       </div>
     </section>
 
+        <!-- ======================================================== -->
+    <!-- SECTION 7: GLOBAL MAP & REGIONAL COMMAND OFFICES         -->
     <!-- ======================================================== -->
-    <!-- SECTION 7: GLOBAL SHIPPING SPEEDS & TRANSIT MAP          -->
-    <!-- ======================================================== -->
-    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm bento-hover-lift mb-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 border border-neutral-200">
-          <img src="assets/contact_shipping_map.webp" alt="Global shipping map" class="w-full h-full object-cover">
+    <section id="global-map" class="mb-20">
+      <!-- Section Introductory Subtitle -->
+      <p class="text-center text-neutral-500 text-xs sm:text-sm font-medium mb-6 max-w-3xl mx-auto px-4">
+        Our Managing Partners travel globally across premier financial centers with primary regional command offices
+      </p>
+
+      <!-- Main Map & Offices Container Card -->
+      <div class="bg-white rounded-[28px] sm:rounded-[36px] p-4 sm:p-6 lg:p-8 border border-neutral-200/90 shadow-xl space-y-6 bento-hover-lift">
+        <!-- Interactive Google Map Frame -->
+        <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-neutral-200/80 shadow-inner w-full h-[360px] sm:h-[440px] lg:h-[500px] relative bg-neutral-100">
+          <iframe 
+            class="w-full h-full border-0" 
+            src="https://maps.google.com/maps?q=Salem,+Tamil+Nadu,+India&t=&z=12&ie=UTF8&iwloc=&output=embed" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="STACKLY Global Headquarters Location Map">
+          </iframe>
         </div>
 
-        <div class="lg:col-span-6 space-y-4">
-          <span class="text-xs font-mono font-bold text-teal-700 uppercase">Express Logistics</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
-            Worldwide Air Freight Dispatch
-          </h2>
-          <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
-            All orders are packed in biodegradable reinforced cardboard without plastic bubble wrap. Guaranteed duty-paid (DDP) transit with zero surprise customs fees.
-          </p>
-
-          <div class="grid grid-cols-2 gap-3 pt-2 text-xs">
-            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
-              <div class="font-bold text-neutral-900">India (Domestic)</div>
-              <div class="text-neutral-500 text-[11px] mt-0.5">24 - 48 Hours Express</div>
+        <!-- 4 Regional Office Location Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+          
+          <!-- Card 1: Global Headquarters -->
+          <div class="p-5 rounded-2xl bg-[#fafafa] border border-neutral-200/80 hover:border-neutral-900 transition-all hover:shadow-md group">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-base">📍</span>
+              <h4 class="font-bold text-neutral-900 text-sm tracking-tight group-hover:text-teal-700 transition-colors">
+                Global Headquarters
+              </h4>
             </div>
-            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
-              <div class="font-bold text-neutral-900">United States & Canada</div>
-              <div class="text-neutral-500 text-[11px] mt-0.5">3 - 4 Business Days Air</div>
-            </div>
-            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
-              <div class="font-bold text-neutral-900">UK & European Union</div>
-              <div class="text-neutral-500 text-[11px] mt-0.5">3 - 5 Business Days DDP</div>
-            </div>
-            <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-200">
-              <div class="font-bold text-neutral-900">Australia & East Asia</div>
-              <div class="text-neutral-500 text-[11px] mt-0.5">4 - 6 Business Days Air</div>
-            </div>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              MMR Complex, Executive Tower, 2nd Floor, Salem, Tamil Nadu 636008, India
+            </p>
           </div>
+
+          <!-- Card 2: New York Office -->
+          <div class="p-5 rounded-2xl bg-[#fafafa] border border-neutral-200/80 hover:border-neutral-900 transition-all hover:shadow-md group">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-base">🏢</span>
+              <h4 class="font-bold text-neutral-900 text-sm tracking-tight group-hover:text-teal-700 transition-colors">
+                New York Office
+              </h4>
+            </div>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              45 Rockefeller Plaza, Suite 2400, New York, NY 10111, United States
+            </p>
+          </div>
+
+          <!-- Card 3: London Desk -->
+          <div class="p-5 rounded-2xl bg-[#fafafa] border border-neutral-200/80 hover:border-neutral-900 transition-all hover:shadow-md group">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-base">🏛️</span>
+              <h4 class="font-bold text-neutral-900 text-sm tracking-tight group-hover:text-teal-700 transition-colors">
+                London Desk
+              </h4>
+            </div>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              30 St Mary Axe (The Gherkin), Level 28, London EC3A 8EP, United Kingdom
+            </p>
+          </div>
+
+          <!-- Card 4: Singapore APAC Hub -->
+          <div class="p-5 rounded-2xl bg-[#fafafa] border border-neutral-200/80 hover:border-neutral-900 transition-all hover:shadow-md group">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-base">🌏</span>
+              <h4 class="font-bold text-neutral-900 text-sm tracking-tight group-hover:text-teal-700 transition-colors">
+                Singapore APAC Hub
+              </h4>
+            </div>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              Marina Bay Financial Centre, Tower 2, Marina Boulevard, Singapore 018983
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- SECTION 8: INTERACTIVE FAQ ACCORDION                     -->
-    <!-- ======================================================== -->
+<!-- ======================================================== -->
     <section id="faq" class="max-w-3xl mx-auto">
       <div class="text-center mb-10">
         <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
