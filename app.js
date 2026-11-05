@@ -81,14 +81,14 @@ function initGSAPAnimations() {
       }
     )
     .fromTo('.hero-image-card',
-      { scale: 0.96, y: 20, opacity: 0.5 },
+      { scale: 0.96, y: 20 },
       {
         scale: 1,
         y: 0,
         opacity: 1,
         duration: 0.75,
         ease: 'power2.out',
-        clearProps: 'opacity'
+        clearProps: 'transform'
       },
       '-=0.45'
     )
@@ -280,7 +280,7 @@ function initGSAPAnimations() {
       opacity: 1,
       ease: 'power2.out',
       stagger: 0.1,
-      clearProps: 'opacity',
+      clearProps: 'transform',
       scrollTrigger: {
         trigger: '.bestsellers-section',
         start: 'top 90%',
@@ -297,7 +297,7 @@ function initGSAPAnimations() {
       opacity: 1,
       ease: 'power2.out',
       stagger: 0.1,
-      clearProps: 'opacity',
+      clearProps: 'transform',
       scrollTrigger: {
         trigger: '.bestsellers-section',
         start: 'top 90%',

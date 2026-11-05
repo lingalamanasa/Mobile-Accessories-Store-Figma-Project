@@ -315,3 +315,22 @@ a.btn:active,
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+/* Permanent Hero Image Card Visibility & Sizing */
+.hero-image-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  min-height: 380px;
+  position: relative;
+}
+
+.hero-image-card img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 380px;
+  object-fit: cover;
+}
