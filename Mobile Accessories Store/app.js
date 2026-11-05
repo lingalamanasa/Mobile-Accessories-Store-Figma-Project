@@ -297,6 +297,388 @@ function initGSAPAnimations() {
     }
   );
 
+  // ========================================================
+  // 5. INTERACTIVE ENGINEERING LAB ("Why people choose Stackly")
+  // Left stage scrolls from LEFT, Right telemetry console from RIGHT
+  // ========================================================
+  if (document.querySelector('.why-choose-section')) {
+    // Header & Status badge entrance
+    gsap.fromTo('.why-choose-section > div:first-child > *',
+      { y: 35, opacity: 0.5 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.1,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '.why-choose-section',
+          start: 'top 88%',
+          end: 'top 55%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    // Engineering Tab Controls glide horizontally from LEFT
+    gsap.fromTo('#engineering-tabs button',
+      { x: -50, opacity: 0.5 },
+      {
+        x: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.08,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '#engineering-tabs',
+          start: 'top 92%',
+          end: 'top 65%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    // Interactive Bento Studio: Left Stage from LEFT, Right Console from RIGHT
+    const dropStage = document.querySelector('.why-choose-section #tab-drop-lab .lg\\:col-span-7');
+    const dropConsole = document.querySelector('.why-choose-section #tab-drop-lab .lg\\:col-span-5');
+
+    if (dropStage && dropConsole) {
+      gsap.fromTo(dropStage,
+        { x: -90, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '#engineering-viewport',
+            start: 'top 90%',
+            end: 'top 35%',
+            scrub: 1.2
+          }
+        }
+      );
+
+      gsap.fromTo(dropConsole,
+        { x: 90, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '#engineering-viewport',
+            start: 'top 90%',
+            end: 'top 35%',
+            scrub: 1.2
+          }
+        }
+      );
+    }
+  }
+
+  // ========================================================
+  // 6. SMART DEVICE COMPATIBILITY MATRIX SECTION
+  // Chips glide from LEFT, Matched Gear cards glide from RIGHT
+  // ========================================================
+  if (document.querySelector('.compatibility-section')) {
+    // Header entrance
+    gsap.fromTo('.compatibility-section > div:first-child > *',
+      { y: 35, opacity: 0.5 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.1,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '.compatibility-section',
+          start: 'top 88%',
+          end: 'top 55%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    // Device Chips horizontal glide from LEFT
+    gsap.fromTo('#device-selector-chips .device-chip',
+      { x: -60, opacity: 0.6 },
+      {
+        x: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.06,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '#device-selector-chips',
+          start: 'top 90%',
+          end: 'top 60%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    // Container Header
+    const matchedHeaderLeft = document.querySelector('#compatible-gear-container .flex.items-center.gap-3');
+    const matchedHeaderRight = document.querySelector('#compatible-gear-container .text-teal-800.bg-teal-50');
+    if (matchedHeaderLeft) {
+      gsap.fromTo(matchedHeaderLeft,
+        { x: -50, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '#compatible-gear-container',
+            start: 'top 88%',
+            end: 'top 55%',
+            scrub: 1.2
+          }
+        }
+      );
+    }
+    if (matchedHeaderRight) {
+      gsap.fromTo(matchedHeaderRight,
+        { x: 50, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '#compatible-gear-container',
+            start: 'top 88%',
+            end: 'top 55%',
+            scrub: 1.2
+          }
+        }
+      );
+    }
+
+    // Matched Gear Cards glide smoothly horizontally from RIGHT
+    gsap.fromTo('#matched-products-grid > div',
+      { x: 70, opacity: 0.6 },
+      {
+        x: 0,
+        opacity: 1,
+        ease: 'power1.out',
+        stagger: 0.1,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '#matched-products-grid',
+          start: 'top 90%',
+          end: 'top 45%',
+          scrub: 1.2
+        }
+      }
+    );
+  }
+
+  // ========================================================
+  // 7. REAL FIELD REVIEWS (CUSTOMER TESTIMONIALS)
+  // Left quote from LEFT, Right verified gear card from RIGHT
+  // ========================================================
+  if (document.querySelector('.reviews-section')) {
+    // Header & ratings badge entrance
+    gsap.fromTo('.reviews-section > div:first-child > *',
+      { y: 35, opacity: 0.5 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.1,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '.reviews-section',
+          start: 'top 88%',
+          end: 'top 55%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    // Category filter pills glide from LEFT
+    gsap.fromTo('#review-category-filters button',
+      { x: -50, opacity: 0.6 },
+      {
+        x: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.08,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '#review-category-filters',
+          start: 'top 90%',
+          end: 'top 65%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    // Review Slide 0: Left quote from LEFT, Right verified gear card from RIGHT
+    const reviewQuoteCol = document.querySelector('#review-slide-0 .lg\\:col-span-7');
+    const reviewGearCol = document.querySelector('#review-slide-0 .lg\\:col-span-5');
+
+    if (reviewQuoteCol && reviewGearCol) {
+      gsap.fromTo(reviewQuoteCol,
+        { x: -90, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '#reviews-viewport',
+            start: 'top 90%',
+            end: 'top 35%',
+            scrub: 1.2
+          }
+        }
+      );
+
+      gsap.fromTo(reviewGearCol,
+        { x: 90, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: '#reviews-viewport',
+            start: 'top 90%',
+            end: 'top 35%',
+            scrub: 1.2
+          }
+        }
+      );
+    }
+  }
+
+  // ========================================================
+  // 8. COMMUNITY EDC PHOTO GALLERY (#STACKLYEveryday)
+  // Left 3 cards glide from LEFT, Right 3 cards glide from RIGHT
+  // ========================================================
+  const communitySec = document.querySelector('.community-feed-section') || document.querySelector('section:has(.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-6)');
+  if (communitySec) {
+    // Header
+    gsap.fromTo(communitySec.children[0],
+      { y: 35, opacity: 0.5 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: communitySec,
+          start: 'top 90%',
+          end: 'top 60%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    const commGrid = communitySec.querySelector('.grid');
+    if (commGrid) {
+      gsap.fromTo(commGrid.querySelectorAll(':scope > div:nth-child(-n+3)'),
+        { x: -70, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          stagger: 0.08,
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: commGrid,
+            start: 'top 90%',
+            end: 'top 45%',
+            scrub: 1.2
+          }
+        }
+      );
+
+      gsap.fromTo(commGrid.querySelectorAll(':scope > div:nth-child(n+4)'),
+        { x: 70, opacity: 0.6 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          stagger: 0.08,
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: commGrid,
+            start: 'top 90%',
+            end: 'top 45%',
+            scrub: 1.2
+          }
+        }
+      );
+    }
+  }
+
+  // ========================================================
+  // 9. NEWSLETTER / EARLY ACCESS SECTION
+  // Smooth scale up & glide up entrance
+  // ========================================================
+  if (document.querySelector('.newsletter-section')) {
+    gsap.fromTo('.newsletter-section > div',
+      { scale: 0.94, y: 50, opacity: 0.6 },
+      {
+        scale: 1,
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '.newsletter-section',
+          start: 'top 90%',
+          end: 'top 55%',
+          scrub: 1.2
+        }
+      }
+    );
+
+    gsap.fromTo('#newsletter-form > *',
+      { y: 20, opacity: 0.5 },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.1,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: '#newsletter-form',
+          start: 'top 92%',
+          end: 'top 65%',
+          scrub: 1.2
+        }
+      }
+    );
+  }
+
+  // ========================================================
+  // 10. MODERN FOOTER ENTRANCE
+  // Staggered column entrance
+  // ========================================================
+  if (document.querySelector('footer')) {
+    gsap.fromTo('footer .grid > div',
+      { y: 30, opacity: 0.5 },
+      {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        stagger: 0.08,
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: 'footer',
+          start: 'top 95%',
+          end: 'top 75%',
+          scrub: 1.2
+        }
+      }
+    );
+  }
+
   // Engineering Studio UI/UX Interactive Tabs
   initEngineeringStudio();
 
