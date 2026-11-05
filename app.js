@@ -1151,18 +1151,194 @@ function initRemainingPagesGSAP() {
   if (!isTargetPage) return;
 
   // ========================================================
-  // 1. UNIVERSAL IMAGE GSAP ANIMATION ENGINE
-  // Animates EVERY image across shop, about, services, blog, contact
+  // 1. EXACT HOME PAGE: HEADER SLIDE DOWN
+  // ========================================================
+  gsap.from('.header-nav', {
+    y: -25,
+    opacity: 0,
+    duration: 0.7,
+    ease: 'power3.out'
+  });
+
+  // ========================================================
+  // 2. EXACT HOME PAGE: HERO SECTION ENTRANCE TIMELINE
+  // ========================================================
+  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+  const heroTextElements = document.querySelectorAll('.hero-text-col > *');
+  if (heroTextElements.length > 0) {
+    heroTl.from(heroTextElements, {
+      y: 25,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.12,
+      delay: 0.1
+    });
+  }
+
+  const heroImageCard = document.querySelector('.hero-image-card');
+  if (heroImageCard) {
+    heroTl.from(heroImageCard, {
+      scale: 0.96,
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, '-=0.5');
+
+    // Continuous subtle floating animation (Exact match to Home Page)
+    gsap.to(heroImageCard, {
+      y: -8,
+      duration: 3.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+  }
+
+  const statItems = document.querySelectorAll('.stat-item');
+  if (statItems.length > 0) {
+    heroTl.from(statItems, {
+      y: 15,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.08
+    }, '-=0.3');
+  }
+
+  // ========================================================
+  // 3. EXACT HOME PAGE: HORIZONTAL LEFT & RIGHT SCROLL-SCRUB
+  // Alternating horizontal scrub animations on all feature/split rows
+  // ========================================================
+  if (hasST) {
+    const featureRows = document.querySelectorAll('.feature-row, section .grid-cols-1.lg\\:grid-cols-12');
+    featureRows.forEach((row, idx) => {
+      // Skip hero section itself
+      if (row.closest('#hero') || row.id === 'hero') return;
+
+      const children = Array.from(row.children).filter(el => el.classList.contains('lg:col-span-6') || el.classList.contains('lg:col-span-7') || el.classList.contains('lg:col-span-5'));
+      if (children.length >= 2) {
+        const leftCol = children[0];
+        const rightCol = children[1];
+
+        if (idx % 2 === 0) {
+          // Even row: Left scrubs in from LEFT, Right scrubs in from RIGHT
+          gsap.fromTo(leftCol,
+            { x: -90, opacity: 0.6 },
+            {
+              x: 0,
+              opacity: 1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 92%',
+                end: 'top 38%',
+                scrub: 1.2
+              }
+            }
+          );
+          gsap.fromTo(rightCol,
+            { x: 90, opacity: 0.6 },
+            {
+              x: 0,
+              opacity: 1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 92%',
+                end: 'top 38%',
+                scrub: 1.2
+              }
+            }
+          );
+        } else {
+          // Odd row: Left scrubs in from RIGHT, Right scrubs in from LEFT
+          gsap.fromTo(leftCol,
+            { x: 80, opacity: 0.6 },
+            {
+              x: 0,
+              opacity: 1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 92%',
+                end: 'top 38%',
+                scrub: 1.2
+              }
+            }
+          );
+          gsap.fromTo(rightCol,
+            { x: -80, opacity: 0.6 },
+            {
+              x: 0,
+              opacity: 1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: row,
+                start: 'top 92%',
+                end: 'top 38%',
+                scrub: 1.2
+              }
+            }
+          );
+        }
+      }
+    });
+
+    // ========================================================
+    // 4. EXACT HOME PAGE: HORIZONTAL CATEGORY & CARD SLIDING
+    // Cards on left half glide from LEFT, cards on right glide from RIGHT
+    // ========================================================
+    const cardGrids = document.querySelectorAll(
+      '#products-grid, .category-section .grid, section .grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4, section .grid-cols-1.md\\:grid-cols-3, #milestones .grid, #leadership .grid'
+    );
+
+    cardGrids.forEach(grid => {
+      const cards = Array.from(grid.children);
+      if (cards.length >= 2) {
+        const mid = Math.ceil(cards.length / 2);
+        const leftHalf = cards.slice(0, mid);
+        const rightHalf = cards.slice(mid);
+
+        gsap.from(leftHalf, {
+          x: -60,
+          opacity: 0.5,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power2.out',
+          clearProps: 'transform',
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 90%'
+          }
+        });
+
+        gsap.from(rightHalf, {
+          x: 60,
+          opacity: 0.5,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power2.out',
+          clearProps: 'transform',
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 90%'
+          }
+        });
+      }
+    });
+  }
+
+  // ========================================================
+  // 5. EXACT HOME PAGE: IMAGE ENTRANCE & HOVER ZOOM
   // ========================================================
   const allImages = document.querySelectorAll('section img, article img, main img, .bento-grid img');
-  allImages.forEach((img, idx) => {
-    // Skip tiny nav icons
+  allImages.forEach((img) => {
     if (img.classList.contains('h-11') || img.classList.contains('h-12') || img.classList.contains('h-14') || img.alt === 'STACKLY') return;
 
-    // Smooth Entrance Reveal for Every Image
     if (hasST) {
       gsap.fromTo(img, 
-        { scale: 0.94, y: 22, opacity: 0.35 },
+        { scale: 0.94, y: 20, opacity: 0.4 },
         {
           scale: 1,
           y: 0,
@@ -1179,7 +1355,6 @@ function initRemainingPagesGSAP() {
       );
     }
 
-    // Interactive Hover Zoom on Parent Container
     const cardParent = img.closest('.group, .product-card, .tilt-card, [class*="rounded-3xl"], [class*="rounded-2xl"]');
     if (cardParent) {
       cardParent.addEventListener('mouseenter', () => {
@@ -1191,90 +1366,8 @@ function initRemainingPagesGSAP() {
     }
   });
 
-  // Continuous subtle float on hero image
-  const heroImage = document.querySelector('#hero img, .hero-section img');
-  if (heroImage) {
-    gsap.to(heroImage, {
-      y: -8,
-      duration: 3.4,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut'
-    });
-  }
-
   // ========================================================
-  // 2. UNIVERSAL TEXT GSAP ANIMATION ENGINE
-  // Animates EVERY heading and paragraph across target pages
-  // ========================================================
-  const sections = document.querySelectorAll('section, article, main > div');
-  sections.forEach(sec => {
-    // Headings Animation (h1, h2, h3, h4)
-    const headings = sec.querySelectorAll('h1, h2, h3, h4');
-    if (headings.length > 0 && hasST) {
-      gsap.fromTo(headings,
-        { y: 20, opacity: 0.3 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.65,
-          stagger: 0.08,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: sec,
-            start: 'top 90%',
-            once: true
-          }
-        }
-      );
-    }
-
-    // Paragraphs Animation (p)
-    const paragraphs = sec.querySelectorAll('p');
-    if (paragraphs.length > 0 && hasST) {
-      gsap.fromTo(paragraphs,
-        { y: 15, opacity: 0.35 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.06,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: sec,
-            start: 'top 92%',
-            once: true
-          }
-        }
-      );
-    }
-
-    // Micro-Pills & Badges Pop-In Animation
-    const badges = sec.querySelectorAll('[class*="rounded-full"][class*="text-xs"], .figma-badge');
-    if (badges.length > 0 && hasST) {
-      gsap.fromTo(badges,
-        { scale: 0.9, opacity: 0.4 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.5,
-          stagger: 0.04,
-          ease: 'back.out(1.5)',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: sec,
-            start: 'top 92%',
-            once: true
-          }
-        }
-      );
-    }
-  });
-
-  // ========================================================
-  // 3. STAT COUNTER NUMBERS ANIMATION (All Pages)
+  // 6. EXACT HOME PAGE: STAT COUNTER NUMBERS ANIMATION
   // ========================================================
   const counters = document.querySelectorAll('.stat-counter');
   counters.forEach(counter => {
@@ -1304,159 +1397,6 @@ function initRemainingPagesGSAP() {
       }
     });
   });
-
-  // ========================================================
-  // 4. PAGE-SPECIFIC GSAP INTERACTION ENHANCEMENTS
-  // ========================================================
-
-  // A. SHOP PAGE
-  if (isShop) {
-    // Product Cards Grid Stagger
-    const cards = document.querySelectorAll('#products-grid .product-card');
-    if (cards.length > 0 && hasST) {
-      gsap.fromTo(cards,
-        { y: 25, opacity: 0.6, scale: 0.97 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.55,
-          stagger: 0.05,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: '#products-grid',
-            start: 'top 95%',
-            once: true
-          }
-        }
-      );
-    }
-
-    // Category Buttons Stagger
-    const catButtons = document.querySelectorAll('#catalog-category-tabs button, section:nth-of-type(2) button');
-    if (catButtons.length > 0) {
-      gsap.fromTo(catButtons,
-        { y: 12, opacity: 0.5 },
-        { y: 0, opacity: 1, duration: 0.45, stagger: 0.04, ease: 'power2.out', immediateRender: false }
-      );
-    }
-  }
-
-  // B. ABOUT PAGE
-  if (isAbout) {
-    // Milestones Bento Cards Stagger
-    const milestoneCards = document.querySelectorAll('#milestones .grid > div, section:nth-of-type(6) .grid > div');
-    if (milestoneCards.length > 0 && hasST) {
-      gsap.fromTo(milestoneCards,
-        { x: (i) => (i % 2 === 0 ? -25 : 25), opacity: 0.4 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.65,
-          stagger: 0.1,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: milestoneCards[0],
-            start: 'top 90%',
-            once: true
-          }
-        }
-      );
-    }
-
-    // Leadership Bios Stagger
-    const leaderCards = document.querySelectorAll('#leadership .grid > div, section:nth-of-type(7) .grid > div');
-    if (leaderCards.length > 0 && hasST) {
-      gsap.fromTo(leaderCards,
-        { y: 30, opacity: 0.4 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.65,
-          stagger: 0.12,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: leaderCards[0],
-            start: 'top 90%',
-            once: true
-          }
-        }
-      );
-    }
-  }
-
-  // C. SERVICES PAGE
-  if (isServices) {
-    const serviceCards = document.querySelectorAll('main > section:nth-of-type(2) > div, .service-card');
-    if (serviceCards.length > 0 && hasST) {
-      gsap.fromTo(serviceCards,
-        { y: 30, opacity: 0.5, scale: 0.96 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: serviceCards[0],
-            start: 'top 90%',
-            once: true
-          }
-        }
-      );
-    }
-  }
-
-  // D. BLOG PAGE
-  if (isBlog) {
-    const blogCards = document.querySelectorAll('#blog-grid > div, article');
-    if (blogCards.length > 0 && hasST) {
-      gsap.fromTo(blogCards,
-        { y: 25, opacity: 0.4 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: blogCards[0],
-            start: 'top 90%',
-            once: true
-          }
-        }
-      );
-    }
-  }
-
-  // E. CONTACT PAGE
-  if (isContact) {
-    const contactBoxes = document.querySelectorAll('#contact-cards > div, form, .contact-card');
-    if (contactBoxes.length > 0 && hasST) {
-      gsap.fromTo(contactBoxes,
-        { y: 20, opacity: 0.5 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: 'power2.out',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: contactBoxes[0],
-            start: 'top 90%',
-            once: true
-          }
-        }
-      );
-    }
-  }
 }
 
 
