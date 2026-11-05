@@ -45,8 +45,28 @@ function initGSAPAnimations() {
     ease: 'power3.out'
   });
 
-  // Hero Section Entrance (Robust fromTo with clearProps to eliminate visual stuck states)
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  // Hero Section Entrance (Safely sequenced so hero image card is never killed or stuck at opacity 0)
+  const heroCard = document.querySelector('.hero-image-card');
+  if (heroCard) {
+    heroCard.style.opacity = '1';
+    heroCard.style.visibility = 'visible';
+  }
+
+  const heroTl = gsap.timeline({
+    defaults: { ease: 'power3.out' },
+    onComplete: () => {
+      // Start floating loop ONLY after entrance timeline completes
+      if (document.querySelector('.hero-image-card')) {
+        gsap.to('.hero-image-card', {
+          y: -8,
+          duration: 3.5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+      }
+    }
+  });
 
   heroTl
     .fromTo('.hero-text-col > *',
@@ -61,7 +81,7 @@ function initGSAPAnimations() {
       }
     )
     .fromTo('.hero-image-card',
-      { scale: 0.96, y: 20, opacity: 0 },
+      { scale: 0.96, y: 20, opacity: 0.5 },
       {
         scale: 1,
         y: 0,
@@ -83,16 +103,6 @@ function initGSAPAnimations() {
       },
       '-=0.3'
     );
-
-  // Continuous subtle float on hero image card (kill any existing tweens first)
-  gsap.killTweensOf('.hero-image-card');
-  gsap.to('.hero-image-card', {
-    y: -8,
-    duration: 3.5,
-    repeat: -1,
-    yoyo: true,
-    ease: 'sine.inOut'
-  });
 
   // Category Cards Horizontal Left & Right Entrance
   gsap.from('.category-card:nth-child(-n+3)', {

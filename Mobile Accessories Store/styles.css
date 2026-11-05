@@ -308,3 +308,10 @@ a.btn:active,
 #products-grid {
   min-height: 400px;
 }
+
+
+/* Hero Image Card Safety Rule */
+.hero-image-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
