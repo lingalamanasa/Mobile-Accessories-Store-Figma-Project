@@ -641,6 +641,7 @@ function renderCart() {
   const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
   if (countBadge) countBadge.textContent = totalItems;
+  document.querySelectorAll('.cart-count-badge').forEach(b => b.textContent = totalItems);
   if (drawerCount) drawerCount.textContent = `${totalItems} items`;
   if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
 
