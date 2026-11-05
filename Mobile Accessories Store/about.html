@@ -92,13 +92,6 @@
       <div class="flex items-center space-x-4">
 
         <!-- Log In Link -->
-                <!-- Cart 0 Trigger (Figma Design Exact) -->
-        <button id="open-cart-btn" onclick="if(window.openCartDrawer){window.openCartDrawer();}else if(document.getElementById('cart-drawer')){document.getElementById('cart-drawer').classList.remove('hidden','opacity-0','pointer-events-none');document.getElementById('cart-drawer').classList.add('opacity-100','pointer-events-auto');document.getElementById('cart-panel').classList.remove('translate-x-full');}"
-          class="inline-flex items-center gap-1.5 text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer py-1.5 px-3 rounded-full hover:bg-neutral-200/60 group"
-          title="Shopping Cart" aria-label="Open Cart">
-          <span class="group-hover:text-neutral-950 transition-colors">Cart</span>
-          <span id="cart-count-badge" class="cart-count-badge inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold bg-neutral-900 text-white rounded-full group-hover:scale-105 transition-transform">0</span>
-        </button>
         <a href="login.html" class="hidden sm:inline-block text-[15px] font-bold text-neutral-700 hover:text-neutral-950 px-2 py-1 transition-colors">
           Login
         </a>
@@ -124,11 +117,6 @@
       <a href="about.html" class="block py-1 text-teal-700 font-bold">About</a>
       <a href="blog.html" class="block py-1 hover:text-black">Blog</a>
       <a href="contact.html" class="block py-1 hover:text-black">Contact</a>
-      <button onclick="if(window.openCartDrawer){window.openCartDrawer();}else if(document.getElementById('cart-drawer')){document.getElementById('cart-drawer').classList.remove('hidden','opacity-0','pointer-events-none');document.getElementById('cart-drawer').classList.add('opacity-100','pointer-events-auto');document.getElementById('cart-panel').classList.remove('translate-x-full');}"
-        class="flex items-center justify-between w-full py-2 font-bold text-neutral-700 hover:text-neutral-950 cursor-pointer">
-        <span>Cart</span>
-        <span class="cart-count-badge inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold bg-neutral-900 text-white rounded-full">0</span>
-      </button>
       <div class="pt-2 border-t border-neutral-200 flex gap-4">
         <a href="login.html" class="text-sm font-bold text-neutral-700">Login</a>
         <a href="signup.html" class="text-sm font-bold text-teal-700">Sign up</a>

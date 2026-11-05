@@ -106,14 +106,6 @@
       <!-- Right Actions: Increased letter height & width -->
       <div class="flex items-center space-x-4 sm:space-x-6">
 
-                <!-- Cart 0 Trigger (Figma Design Exact) -->
-        <button id="open-cart-btn" onclick="if(window.openCartDrawer){window.openCartDrawer();}else if(document.getElementById('cart-drawer')){document.getElementById('cart-drawer').classList.remove('hidden','opacity-0','pointer-events-none');document.getElementById('cart-drawer').classList.add('opacity-100','pointer-events-auto');document.getElementById('cart-panel').classList.remove('translate-x-full');}"
-          class="inline-flex items-center gap-1.5 text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer py-1.5 px-3 rounded-full hover:bg-neutral-200/60 group"
-          title="Shopping Cart" aria-label="Open Cart">
-          <span class="group-hover:text-neutral-950 transition-colors">Cart</span>
-          <span id="cart-count-badge" class="cart-count-badge inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold bg-neutral-900 text-white rounded-full group-hover:scale-105 transition-transform">0</span>
-        </button>
-
         <a href="login.html" id="nav-login-btn" class="text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden sm:inline">
           Login
         </a>
@@ -138,11 +130,6 @@
       <a href="about.html" class="block py-1 hover:text-neutral-950">About</a>
       <a href="blog.html" class="block py-1 text-neutral-950 font-black">Blog</a>
       <a href="contact.html" class="block py-1 hover:text-neutral-950">Contact</a>
-      <button onclick="if(window.openCartDrawer){window.openCartDrawer();}else if(document.getElementById('cart-drawer')){document.getElementById('cart-drawer').classList.remove('hidden','opacity-0','pointer-events-none');document.getElementById('cart-drawer').classList.add('opacity-100','pointer-events-auto');document.getElementById('cart-panel').classList.remove('translate-x-full');}"
-        class="flex items-center justify-between w-full py-2 font-bold text-neutral-700 hover:text-neutral-950 cursor-pointer">
-        <span>Cart</span>
-        <span class="cart-count-badge inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold bg-neutral-900 text-white rounded-full">0</span>
-      </button>
       <div class="pt-3 border-t border-neutral-200 flex items-center gap-3">
         <a href="login.html" class="flex-1 text-center py-2.5 rounded-full border border-neutral-300 text-neutral-800 text-xs font-bold">Login</a>
         <a href="signup.html" class="flex-1 text-center py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold">Sign up</a>
