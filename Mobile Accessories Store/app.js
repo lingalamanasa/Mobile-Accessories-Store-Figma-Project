@@ -9,11 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Register GSAP plugins
-  gsap.registerPlugin(ScrollTrigger);
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
 
-  // Initialize features
-  initGSAPAnimations();
-  initRemainingPagesGSAP();
+  // Strictly route animations based on active page to eliminate duplicate timeline conflicts
+  const path = window.location.pathname.toLowerCase();
+  const pageFile = path.split('/').pop() || 'index.html';
+  const isHome = pageFile === '' || pageFile === 'index.html' || path.endsWith('/') || path.endsWith('mobile-accessories-store-figma-project');
+
+  if (isHome) {
+    initGSAPAnimations();
+  } else {
+    initRemainingPagesGSAP();
+  }
+
   initCart();
   initDeviceCompatibility();
   initTiltEffect();
@@ -35,34 +45,49 @@ function initGSAPAnimations() {
     ease: 'power3.out'
   });
 
-  // Hero Section Entrance
+  // Hero Section Entrance (Robust fromTo with clearProps to eliminate visual stuck states)
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   heroTl
-    .from('.hero-text-col > *', {
-      y: 25,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.12,
-      delay: 0.1
-    })
-    .from('.hero-image-card', {
-      scale: 0.96,
-      y: 20,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    }, '-=0.5')
-    .from('.stat-item', {
-      y: 15,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.08
-    }, '-=0.3');
+    .fromTo('.hero-text-col > *',
+      { y: 25, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.65,
+        stagger: 0.09,
+        delay: 0.05,
+        clearProps: 'transform,opacity'
+      }
+    )
+    .fromTo('.hero-image-card',
+      { scale: 0.96, y: 20, opacity: 0 },
+      {
+        scale: 1,
+        y: 0,
+        opacity: 1,
+        duration: 0.75,
+        ease: 'power2.out',
+        clearProps: 'opacity'
+      },
+      '-=0.45'
+    )
+    .fromTo('.stat-item',
+      { y: 15, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.08,
+        clearProps: 'transform,opacity'
+      },
+      '-=0.3'
+    );
 
-  // Continuous subtle float on hero image card
+  // Continuous subtle float on hero image card (kill any existing tweens first)
+  gsap.killTweensOf('.hero-image-card');
   gsap.to('.hero-image-card', {
-    y: -6,
+    y: -8,
     duration: 3.5,
     repeat: -1,
     yoyo: true,
@@ -1137,8 +1162,12 @@ window.toggleMobileMenu = function () {
 // ==========================================
 function initRemainingPagesGSAP() {
   if (!window.gsap) return;
-  const hasST = typeof ScrollTrigger !== 'undefined';
   const path = window.location.pathname.toLowerCase();
+  const pageFile = path.split('/').pop() || 'index.html';
+  if (pageFile === '' || pageFile === 'index.html' || path.endsWith('/') || path.endsWith('mobile-accessories-store-figma-project')) {
+    return; // Strictly never run on Home Page!
+  }
+  const hasST = typeof ScrollTrigger !== 'undefined';
 
   // Determine active page
   const isShop = path.includes('shop') || !!document.getElementById('products-grid') || !!document.getElementById('catalog');
