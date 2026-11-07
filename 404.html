@@ -48,7 +48,8 @@
 </head>
 
 <body
-  class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden min-h-screen flex flex-col justify-between relative">
+  class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden min-h-screen flex flex-col items-center justify-center relative p-4 sm:p-8">
+  
   <!-- ======================================================== -->
   <!-- STACKLY PRELOADER ANIMATION                              -->
   <!-- ======================================================== -->
@@ -75,88 +76,34 @@
     </div>
   </div>
 
-  <!-- ======================================================== -->
-  <!-- EXACT NAVIGATION BAR (Unified STACKLY Header)            -->
-  <!-- ======================================================== -->
-  <header class="bg-[#f5f5f7] border-b border-neutral-200/80 sticky top-0 z-40 header-nav">
-    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+  <!-- Ambient Animated Gradient Meshes & Floating Particles -->
+  <div class="pointer-events-none fixed inset-0 overflow-hidden -z-10 select-none">
+    <!-- Gradient Blob 1 (Teal / Emerald) -->
+    <div class="bg-parallax-blob-1 absolute -top-24 -left-24 w-80 sm:w-96 md:w-[520px] h-80 sm:h-96 md:h-[520px] rounded-full bg-gradient-to-tr from-teal-500/15 via-emerald-400/10 to-transparent blur-3xl animate-float-slow"></div>
 
-      <a href="index.html" class="flex items-center gap-2 cursor-pointer" title="STACKLY Home">
-        <img src="assets/exact_logo.webp" alt="STACKLY"
-          class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
-      </a>
+    <!-- Gradient Blob 2 (Indigo / Purple) -->
+    <div class="bg-parallax-blob-2 absolute top-1/4 -right-28 w-80 sm:w-[520px] h-80 sm:h-[520px] rounded-full bg-gradient-to-bl from-indigo-500/15 via-purple-400/10 to-transparent blur-3xl animate-float-reverse"></div>
 
-      <nav
-        class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
-        <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Home</a>
-        <a href="shop.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Shop</a>
-        <a href="services.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Services</a>
-        <a href="about.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">About</a>
-        <a href="blog.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Blog</a>
-        <a href="contact.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Contact</a>
-      </nav>
+    <!-- Gradient Blob 3 (Amber / Warm) -->
+    <div class="absolute -bottom-24 left-1/3 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-gradient-to-r from-amber-400/10 via-rose-400/10 to-transparent blur-3xl animate-pulse-glow"></div>
 
-      <div class="flex items-center space-x-4 sm:space-x-6">
-        <a href="login.html" id="nav-login-btn"
-          class="text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden sm:inline">
-          Login
-        </a>
-
-        <a href="signup.html" id="nav-signup-btn"
-          class="bg-[#111827] text-white px-7 py-3 rounded-full text-sm sm:text-base font-bold tracking-wide hover:bg-neutral-800 transition-all shadow-md active:scale-95 magnetic-btn cursor-pointer">
-          Sign up
-        </a>
-
-        <button onclick="toggleMobileMenu()"
-          class="md:hidden p-2 rounded-xl text-neutral-700 hover:text-neutral-950 hover:bg-neutral-200/60 transition-colors cursor-pointer"
-          aria-label="Toggle menu">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu"
-      class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-neutral-200/80 px-6 py-6 space-y-4">
-      <nav class="flex flex-col space-y-3 font-semibold text-neutral-800 text-sm">
-        <a href="index.html" class="hover:text-teal-700 transition-colors py-1">Home</a>
-        <a href="shop.html" class="hover:text-teal-700 transition-colors py-1">Shop</a>
-        <a href="services.html" class="hover:text-teal-700 transition-colors py-1">Services</a>
-        <a href="about.html" class="hover:text-teal-700 transition-colors py-1">About</a>
-        <a href="blog.html" class="hover:text-teal-700 transition-colors py-1">Blog</a>
-        <a href="contact.html" class="hover:text-teal-700 transition-colors py-1">Contact</a>
-      </nav>
-      <div class="pt-4 border-t border-neutral-100 flex items-center justify-between gap-3">
-        <a href="login.html" class="text-sm font-bold text-neutral-700 hover:text-neutral-950">Login</a>
-        <a href="signup.html" class="px-5 py-2.5 rounded-full bg-[#111827] text-white text-xs font-bold">Sign up</a>
-      </div>
-    </div>
-  </header>
+    <!-- Floating Micro-Particles -->
+    <div class="anim-float-particle absolute top-16 left-[15%] text-teal-400/40 text-lg font-mono">+</div>
+    <div class="anim-float-particle absolute top-36 right-[18%] text-indigo-400/40 text-xl font-mono">+</div>
+    <div class="anim-float-particle absolute bottom-24 left-[20%] w-2.5 h-2.5 rounded-full bg-teal-400/30"></div>
+    <div class="anim-float-particle absolute bottom-32 right-[15%] w-2 h-2 rounded-full bg-indigo-400/30"></div>
+    <div class="anim-float-particle absolute top-1/2 left-[8%] w-1.5 h-1.5 rounded-full bg-amber-400/30"></div>
+  </div>
 
   <!-- ======================================================== -->
-  <!-- 404 HERO CONTENT WITH ENHANCED ANIMATIONS                -->
+  <!-- 404 MAIN CONTENT (Centered, Clean & Focused)             -->
   <!-- ======================================================== -->
-  <main id="error-main-container" class="relative flex-1 max-w-[1280px] w-full mx-auto px-6 lg:px-12 py-12 sm:py-20 flex flex-col items-center justify-center text-center overflow-hidden">
+  <main id="error-main-container" class="relative w-full max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
 
-    <!-- Ambient Animated Gradient Meshes & Floating Particles -->
-    <div class="pointer-events-none absolute inset-0 overflow-hidden -z-10 select-none">
-      <!-- Gradient Blob 1 (Teal / Emerald) -->
-      <div class="bg-parallax-blob-1 absolute -top-24 -left-24 w-80 sm:w-96 md:w-[480px] h-80 sm:h-96 md:h-[480px] rounded-full bg-gradient-to-tr from-teal-500/15 via-emerald-400/10 to-transparent blur-3xl animate-float-slow"></div>
-
-      <!-- Gradient Blob 2 (Indigo / Purple) -->
-      <div class="bg-parallax-blob-2 absolute top-1/4 -right-28 w-80 sm:w-[500px] h-80 sm:h-[500px] rounded-full bg-gradient-to-bl from-indigo-500/15 via-purple-400/10 to-transparent blur-3xl animate-float-reverse"></div>
-
-      <!-- Gradient Blob 3 (Amber / Warm) -->
-      <div class="absolute -bottom-24 left-1/3 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-gradient-to-r from-amber-400/10 via-rose-400/10 to-transparent blur-3xl animate-pulse-glow"></div>
-
-      <!-- Floating Micro-Particles -->
-      <div class="anim-float-particle absolute top-16 left-[15%] text-teal-400/40 text-lg font-mono">+</div>
-      <div class="anim-float-particle absolute top-36 right-[18%] text-indigo-400/40 text-xl font-mono">+</div>
-      <div class="anim-float-particle absolute bottom-24 left-[20%] w-2.5 h-2.5 rounded-full bg-teal-400/30"></div>
-      <div class="anim-float-particle absolute bottom-32 right-[15%] w-2 h-2 rounded-full bg-indigo-400/30"></div>
-      <div class="anim-float-particle absolute top-1/2 left-[8%] w-1.5 h-1.5 rounded-full bg-amber-400/30"></div>
-    </div>
+    <!-- Brand Logo -->
+    <a href="index.html" class="anim-logo mb-6 inline-flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer" title="STACKLY Home">
+      <img src="assets/exact_logo.webp" alt="STACKLY" class="h-10 sm:h-12 w-auto object-contain">
+    </a>
 
     <!-- Error Telemetry Badge -->
     <div class="anim-telemetry inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200/80 mb-6 shadow-sm">
@@ -199,150 +146,37 @@
     </div>
 
     <!-- Heading -->
-    <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight max-w-xl">
+    <h1 class="anim-title text-2xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight max-w-xl">
       Lost in the Hardware Matrix.
-    </h2>
+    </h1>
 
     <!-- Description -->
     <p class="anim-subtitle text-neutral-500 text-sm sm:text-base max-w-lg mt-3 leading-relaxed">
       The accessory, prototype, or route you requested could not be located on our telemetry server. It may have been updated, relocated, or decommissioned.
     </p>
 
-    <!-- Operational Action Buttons (Smooth scaling, hover transitions, press feedback) -->
-    <div class="flex flex-wrap items-center justify-center gap-3.5 mt-8 pt-2">
-      <!-- Return to Home -->
+    <!-- Exactly 2 Operational Action Buttons: "Back to home" and "Go back" -->
+    <div class="flex flex-wrap items-center justify-center gap-4 mt-8 pt-2">
+      <!-- Button 1: Back to home -->
       <a href="index.html"
-        class="anim-btn px-7 py-3.5 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer magnetic-btn">
+        class="anim-btn px-8 py-3.5 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer magnetic-btn">
         <i data-lucide="home" class="w-4 h-4"></i>
-        <span>Return to Home</span>
+        <span>Back to home</span>
       </a>
 
-      <!-- Browse Catalog -->
-      <a href="shop.html"
-        class="anim-btn px-7 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 border border-neutral-300 font-bold text-xs sm:text-sm shadow-sm hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer">
-        <i data-lucide="shopping-bag" class="w-4 h-4 text-teal-600"></i>
-        <span>Browse Catalog</span>
-      </a>
-
-      <!-- Hardware Support -->
-      <a href="contact.html"
-        class="anim-btn px-7 py-3.5 rounded-full bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200/90 font-bold text-xs sm:text-sm shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer">
-        <i data-lucide="life-buoy" class="w-4 h-4 text-teal-600"></i>
-        <span>Hardware Support</span>
-      </a>
-    </div>
-
-    <!-- Quick Navigation Shortcuts (Bento Entrance & Hover Effects) -->
-    <div class="mt-14 pt-10 border-t border-neutral-200/80 w-full max-w-3xl">
-      <p class="anim-card text-xs font-bold uppercase tracking-wider text-neutral-400 font-mono mb-4">
-        Quick Hardware Collections
-      </p>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <a href="shop.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
-          <i data-lucide="shield" class="w-4 h-4 text-teal-600 mb-2 group-hover:scale-115 transition-transform"></i>
-          <p class="text-xs font-bold text-neutral-900">Tactix Cases</p>
-          <span class="text-[10px] text-neutral-400">15ft drop armor</span>
-        </a>
-
-        <a href="shop.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
-          <i data-lucide="zap" class="w-4 h-4 text-amber-500 mb-2 group-hover:scale-115 transition-transform"></i>
-          <p class="text-xs font-bold text-neutral-900">Qi2 Fast Docks</p>
-          <span class="text-[10px] text-neutral-400">15W multi-coil</span>
-        </a>
-
-        <a href="shop.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
-          <i data-lucide="headphones" class="w-4 h-4 text-indigo-600 mb-2 group-hover:scale-115 transition-transform"></i>
-          <p class="text-xs font-bold text-neutral-900">Studio Acoustics</p>
-          <span class="text-[10px] text-neutral-400">Hi-Fi ANC audio</span>
-        </a>
-
-        <a href="services.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
-          <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-600 mb-2 group-hover:scale-115 transition-transform"></i>
-          <p class="text-xs font-bold text-neutral-900">Warranty Claim</p>
-          <span class="text-[10px] text-neutral-400">Instant validation</span>
-        </a>
-      </div>
+      <!-- Button 2: Go back -->
+      <button onclick="if(window.history.length > 1) { window.history.back(); } else { window.location.href='index.html'; }"
+        class="anim-btn px-8 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 border border-neutral-300 font-bold text-xs sm:text-sm shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer">
+        <i data-lucide="arrow-left" class="w-4 h-4 text-neutral-800"></i>
+        <span>Go back</span>
+      </button>
     </div>
 
   </main>
 
-  <!-- ======================================================== -->
-  <!-- FOOTER                                                   -->
-  <!-- ======================================================== -->
-  <footer class="pt-14 pb-12 border-t border-neutral-200/90 bg-[#f8f9fa] text-neutral-600 text-xs">
-    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-6">
-        <div class="md:col-span-4 space-y-4">
-          <a href="index.html" class="inline-block">
-            <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 sm:h-10 w-auto object-contain">
-          </a>
-          <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
-            Precision smartphone armor, magnetic Qi2 fast-charging ecosystems, and studio acoustic essentials built to
-            outlast everyday chaos.
-          </p>
-          <div class="flex items-center gap-2.5 pt-2">
-            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="X">
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-            </a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="Instagram">
-              <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
-            </a>
-            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="YouTube">
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="md:col-span-3 space-y-3">
-          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Products</h4>
-          <ul class="space-y-2 text-neutral-500 text-xs">
-            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Tactix Armor Phone Cases</a></li>
-            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Orbit Qi2 Wireless Docks</a></li>
-            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Studio Hi-Fi Earbuds Pro</a></li>
-            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Nomad 10K MagBattery</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-3 space-y-3">
-          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Customer Care</h4>
-          <ul class="space-y-2 text-neutral-500 text-xs">
-            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Warranty Claim Center</a></li>
-            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Trade-In & Recycle Portal</a></li>
-            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Track Your Order</a></li>
-            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Help & FAQ</a></li>
-          </ul>
-        </div>
-
-        <div class="md:col-span-2 space-y-3">
-          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Company</h4>
-          <ul class="space-y-2 text-neutral-500 text-xs">
-            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">About Us</a></li>
-            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">Engineering Lab</a></li>
-            <li><a href="blog.html" class="hover:text-neutral-950 transition-colors">Tech Journal</a></li>
-            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pt-8 mt-8 border-t border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between text-neutral-400 text-[11px] gap-4">
-        <p>&copy; 2026 STACKLY Technologies Inc. All rights reserved.</p>
-        <div class="flex items-center space-x-6">
-          <a href="#" class="hover:text-neutral-900 transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-neutral-900 transition-colors">Terms of Service</a>
-          <a href="#" class="hover:text-neutral-900 transition-colors">Security Disclosures</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script src="app.js"></script>
   <script src="preloader.js"></script>
   <script>
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      if (menu) menu.classList.toggle('hidden');
-    }
     if (window.lucide) lucide.createIcons();
 
     // ========================================================
@@ -355,7 +189,7 @@
         if (typeof gsap === 'undefined') return;
 
         if (prefersReducedMotion) {
-          gsap.set(['.anim-telemetry', '.anim-digit-1', '.anim-digit-0', '.anim-digit-2', '.anim-illustration', '.anim-title', '.anim-subtitle', '.anim-btn', '.anim-card', '.anim-float-particle'], {
+          gsap.set(['.anim-logo', '.anim-telemetry', '.anim-digit-1', '.anim-digit-0', '.anim-digit-2', '.anim-illustration', '.anim-title', '.anim-subtitle', '.anim-btn', '.anim-float-particle'], {
             opacity: 1,
             y: 0,
             scale: 1,
@@ -367,10 +201,10 @@
         // Master entrance timeline
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-        // 1. Overall Page Entrance & Telemetry Badge
-        tl.fromTo('.anim-telemetry', 
-          { opacity: 0, y: -25, scale: 0.9 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(1.7)' }
+        // 1. Logo & Telemetry Badge Entrance
+        tl.fromTo(['.anim-logo', '.anim-telemetry'], 
+          { opacity: 0, y: -22, scale: 0.94 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'back.out(1.7)' }
         );
 
         // 2. 404 Number Zoom-in & Bounce Entrance
@@ -404,21 +238,14 @@
           '-=0.35'
         );
 
-        // 5. Action Buttons Entrance with Spring
+        // 5. The 2 Action Buttons Entrance with Spring
         tl.fromTo('.anim-btn',
           { opacity: 0, y: 22, scale: 0.9 },
           { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.8)' },
           '-=0.3'
         );
 
-        // 6. Quick Collection Cards Entrance with Spring / Wobble
-        tl.fromTo('.anim-card',
-          { opacity: 0, y: 30, scale: 0.94 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'back.out(1.5)' },
-          '-=0.25'
-        );
-
-        // 7. Continuous Ambient Motion (Sine wave floating loops)
+        // 6. Continuous Ambient Motion (Sine wave floating loops)
         gsap.to('.anim-digit-1', {
           y: -10,
           duration: 3,
@@ -461,7 +288,7 @@
           stagger: 0.6
         });
 
-        // 8. Desktop Mouse Parallax (Interactive Subtle 3D movement)
+        // 7. Desktop Mouse Parallax (Interactive Subtle 3D movement)
         if (window.innerWidth > 768) {
           window.addEventListener('mousemove', (e) => {
             const centerX = window.innerWidth / 2;
