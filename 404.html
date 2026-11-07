@@ -48,7 +48,7 @@
 </head>
 
 <body
-  class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden min-h-screen flex flex-col justify-between">
+  class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden min-h-screen flex flex-col justify-between relative">
   <!-- ======================================================== -->
   <!-- STACKLY PRELOADER ANIMATION                              -->
   <!-- ======================================================== -->
@@ -135,85 +135,130 @@
   </header>
 
   <!-- ======================================================== -->
-  <!-- 404 HERO CONTENT                                         -->
+  <!-- 404 HERO CONTENT WITH ENHANCED ANIMATIONS                -->
   <!-- ======================================================== -->
-  <main class="flex-1 max-w-[1280px] mx-auto px-6 lg:px-12 py-16 sm:py-24 flex flex-col items-center justify-center text-center">
+  <main id="error-main-container" class="relative flex-1 max-w-[1280px] w-full mx-auto px-6 lg:px-12 py-12 sm:py-20 flex flex-col items-center justify-center text-center overflow-hidden">
+
+    <!-- Ambient Animated Gradient Meshes & Floating Particles -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden -z-10 select-none">
+      <!-- Gradient Blob 1 (Teal / Emerald) -->
+      <div class="bg-parallax-blob-1 absolute -top-24 -left-24 w-80 sm:w-96 md:w-[480px] h-80 sm:h-96 md:h-[480px] rounded-full bg-gradient-to-tr from-teal-500/15 via-emerald-400/10 to-transparent blur-3xl animate-float-slow"></div>
+
+      <!-- Gradient Blob 2 (Indigo / Purple) -->
+      <div class="bg-parallax-blob-2 absolute top-1/4 -right-28 w-80 sm:w-[500px] h-80 sm:h-[500px] rounded-full bg-gradient-to-bl from-indigo-500/15 via-purple-400/10 to-transparent blur-3xl animate-float-reverse"></div>
+
+      <!-- Gradient Blob 3 (Amber / Warm) -->
+      <div class="absolute -bottom-24 left-1/3 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-gradient-to-r from-amber-400/10 via-rose-400/10 to-transparent blur-3xl animate-pulse-glow"></div>
+
+      <!-- Floating Micro-Particles -->
+      <div class="anim-float-particle absolute top-16 left-[15%] text-teal-400/40 text-lg font-mono">+</div>
+      <div class="anim-float-particle absolute top-36 right-[18%] text-indigo-400/40 text-xl font-mono">+</div>
+      <div class="anim-float-particle absolute bottom-24 left-[20%] w-2.5 h-2.5 rounded-full bg-teal-400/30"></div>
+      <div class="anim-float-particle absolute bottom-32 right-[15%] w-2 h-2 rounded-full bg-indigo-400/30"></div>
+      <div class="anim-float-particle absolute top-1/2 left-[8%] w-1.5 h-1.5 rounded-full bg-amber-400/30"></div>
+    </div>
 
     <!-- Error Telemetry Badge -->
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200/80 mb-6 shadow-sm">
+    <div class="anim-telemetry inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200/80 mb-6 shadow-sm">
       <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
       <span>ERROR CODE: 404 • ROUTE NOT FOUND</span>
     </div>
 
-    <!-- Giant Visual 404 Typography -->
-    <div class="relative select-none mb-4">
-      <h1 class="text-7xl sm:text-9xl md:text-[160px] font-black tracking-tighter text-neutral-900 leading-none">
-        4<span class="text-teal-600">0</span>4
-      </h1>
-      <div class="absolute -top-3 -right-3 sm:-top-5 sm:-right-6 px-3 py-1 bg-neutral-900 text-white rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase rotate-12 shadow-lg">
-        Signal Lost
+    <!-- Giant Visual 404 Typography with 3D Parallax & Floating Core -->
+    <div class="anim-404-group relative select-none mb-6 flex items-center justify-center perspective-[1000px]">
+      
+      <!-- Concentric Radar / Telemetry Scanner Ring Behind 404 -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+        <div class="w-60 h-60 sm:w-72 sm:h-72 md:w-88 md:h-88 rounded-full border border-teal-500/20 animate-radar-spin"></div>
+        <div class="w-44 h-44 sm:w-56 sm:h-56 md:w-68 md:h-68 rounded-full border border-dashed border-indigo-500/20 animate-radar-spin" style="animation-direction: reverse; animation-duration: 28s;"></div>
+      </div>
+
+      <!-- Digit 4 Left -->
+      <span class="anim-digit-1 text-7xl sm:text-9xl md:text-[160px] font-black tracking-tighter text-neutral-900 leading-none inline-block">
+        4
+      </span>
+
+      <!-- Middle Digit 0 with Holographic Pulse -->
+      <div class="anim-digit-0 relative inline-flex items-center justify-center mx-1 sm:mx-3">
+        <span class="text-7xl sm:text-9xl md:text-[160px] font-black tracking-tighter text-teal-600 leading-none">
+          0
+        </span>
+        <span class="absolute inset-0 bg-teal-400/25 blur-2xl rounded-full -z-10 animate-pulse"></span>
+      </div>
+
+      <!-- Digit 4 Right -->
+      <span class="anim-digit-2 text-7xl sm:text-9xl md:text-[160px] font-black tracking-tighter text-neutral-900 leading-none inline-block">
+        4
+      </span>
+
+      <!-- Hardware Telemetry Signal Badge (Illustration Accent) -->
+      <div class="anim-illustration absolute -top-4 -right-4 sm:-top-6 sm:-right-8 px-3.5 py-1.5 bg-neutral-900 text-white rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase rotate-12 shadow-xl flex items-center gap-1.5 border border-white/20">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span>
+        <span>Signal Lost</span>
       </div>
     </div>
 
-    <h2 class="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight max-w-xl">
+    <!-- Heading -->
+    <h2 class="anim-title text-2xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight max-w-xl">
       Lost in the Hardware Matrix.
     </h2>
 
-    <p class="text-neutral-500 text-sm sm:text-base max-w-lg mt-3 leading-relaxed">
+    <!-- Description -->
+    <p class="anim-subtitle text-neutral-500 text-sm sm:text-base max-w-lg mt-3 leading-relaxed">
       The accessory, prototype, or route you requested could not be located on our telemetry server. It may have been updated, relocated, or decommissioned.
     </p>
 
-    <!-- Operational Action Buttons (Functional & Non-destructive) -->
+    <!-- Operational Action Buttons (Smooth scaling, hover transitions, press feedback) -->
     <div class="flex flex-wrap items-center justify-center gap-3.5 mt-8 pt-2">
       <!-- Return to Home -->
       <a href="index.html"
-        class="px-7 py-3.5 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 active:scale-95 magnetic-btn">
+        class="anim-btn px-7 py-3.5 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer magnetic-btn">
         <i data-lucide="home" class="w-4 h-4"></i>
         <span>Return to Home</span>
       </a>
 
-      <!-- Explore Catalog -->
+      <!-- Browse Catalog -->
       <a href="shop.html"
-        class="px-7 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 border border-neutral-300 font-bold text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center gap-2 active:scale-95">
+        class="anim-btn px-7 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 border border-neutral-300 font-bold text-xs sm:text-sm shadow-sm hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer">
         <i data-lucide="shopping-bag" class="w-4 h-4 text-teal-600"></i>
         <span>Browse Catalog</span>
       </a>
 
       <!-- Hardware Support -->
       <a href="contact.html"
-        class="px-7 py-3.5 rounded-full bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200/90 font-bold text-xs sm:text-sm transition-all flex items-center gap-2 active:scale-95">
+        class="anim-btn px-7 py-3.5 rounded-full bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200/90 font-bold text-xs sm:text-sm shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer">
         <i data-lucide="life-buoy" class="w-4 h-4 text-teal-600"></i>
         <span>Hardware Support</span>
       </a>
     </div>
 
-    <!-- Quick Navigation Shortcuts -->
+    <!-- Quick Navigation Shortcuts (Bento Entrance & Hover Effects) -->
     <div class="mt-14 pt-10 border-t border-neutral-200/80 w-full max-w-3xl">
-      <p class="text-xs font-bold uppercase tracking-wider text-neutral-400 font-mono mb-4">
+      <p class="anim-card text-xs font-bold uppercase tracking-wider text-neutral-400 font-mono mb-4">
         Quick Hardware Collections
       </p>
 
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <a href="shop.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
-          <i data-lucide="shield" class="w-4 h-4 text-teal-600 mb-2 group-hover:scale-110 transition-transform"></i>
+        <a href="shop.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
+          <i data-lucide="shield" class="w-4 h-4 text-teal-600 mb-2 group-hover:scale-115 transition-transform"></i>
           <p class="text-xs font-bold text-neutral-900">Tactix Cases</p>
           <span class="text-[10px] text-neutral-400">15ft drop armor</span>
         </a>
 
-        <a href="shop.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
-          <i data-lucide="zap" class="w-4 h-4 text-amber-500 mb-2 group-hover:scale-110 transition-transform"></i>
+        <a href="shop.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
+          <i data-lucide="zap" class="w-4 h-4 text-amber-500 mb-2 group-hover:scale-115 transition-transform"></i>
           <p class="text-xs font-bold text-neutral-900">Qi2 Fast Docks</p>
           <span class="text-[10px] text-neutral-400">15W multi-coil</span>
         </a>
 
-        <a href="shop.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
-          <i data-lucide="headphones" class="w-4 h-4 text-indigo-600 mb-2 group-hover:scale-110 transition-transform"></i>
+        <a href="shop.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
+          <i data-lucide="headphones" class="w-4 h-4 text-indigo-600 mb-2 group-hover:scale-115 transition-transform"></i>
           <p class="text-xs font-bold text-neutral-900">Studio Acoustics</p>
           <span class="text-[10px] text-neutral-400">Hi-Fi ANC audio</span>
         </a>
 
-        <a href="services.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
-          <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-600 mb-2 group-hover:scale-110 transition-transform"></i>
+        <a href="services.html" class="anim-card p-3.5 rounded-2xl bg-white/95 backdrop-blur-sm border border-neutral-200 hover:border-neutral-900 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-left group cursor-pointer">
+          <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-600 mb-2 group-hover:scale-115 transition-transform"></i>
           <p class="text-xs font-bold text-neutral-900">Warranty Claim</p>
           <span class="text-[10px] text-neutral-400">Instant validation</span>
         </a>
@@ -299,6 +344,166 @@
       if (menu) menu.classList.toggle('hidden');
     }
     if (window.lucide) lucide.createIcons();
+
+    // ========================================================
+    // 404 HIGH-TECH GSAP ANIMATION ENGINE
+    // ========================================================
+    (function init404Scene() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function startAnimations() {
+        if (typeof gsap === 'undefined') return;
+
+        if (prefersReducedMotion) {
+          gsap.set(['.anim-telemetry', '.anim-digit-1', '.anim-digit-0', '.anim-digit-2', '.anim-illustration', '.anim-title', '.anim-subtitle', '.anim-btn', '.anim-card', '.anim-float-particle'], {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotation: 0
+          });
+          return;
+        }
+
+        // Master entrance timeline
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        // 1. Overall Page Entrance & Telemetry Badge
+        tl.fromTo('.anim-telemetry', 
+          { opacity: 0, y: -25, scale: 0.9 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(1.7)' }
+        );
+
+        // 2. 404 Number Zoom-in & Bounce Entrance
+        tl.fromTo('.anim-digit-1',
+          { opacity: 0, scale: 0.25, y: 60, rotation: -12 },
+          { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.85, ease: 'back.out(2)' },
+          '-=0.45'
+        );
+        tl.fromTo('.anim-digit-0',
+          { opacity: 0, scale: 0.2, y: 70 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: 'back.out(2.2)' },
+          '-=0.7'
+        );
+        tl.fromTo('.anim-digit-2',
+          { opacity: 0, scale: 0.25, y: 60, rotation: 12 },
+          { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.85, ease: 'back.out(2)' },
+          '-=0.7'
+        );
+
+        // 3. Floating Status Tag / Illustration Accent Entrance
+        tl.fromTo('.anim-illustration',
+          { opacity: 0, scale: 0.4, rotation: -25 },
+          { opacity: 1, scale: 1, rotation: 12, duration: 0.7, ease: 'elastic.out(1, 0.6)' },
+          '-=0.4'
+        );
+
+        // 4. Staggered Text (Heading & Description)
+        tl.fromTo(['.anim-title', '.anim-subtitle'],
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out' },
+          '-=0.35'
+        );
+
+        // 5. Action Buttons Entrance with Spring
+        tl.fromTo('.anim-btn',
+          { opacity: 0, y: 22, scale: 0.9 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.8)' },
+          '-=0.3'
+        );
+
+        // 6. Quick Collection Cards Entrance with Spring / Wobble
+        tl.fromTo('.anim-card',
+          { opacity: 0, y: 30, scale: 0.94 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'back.out(1.5)' },
+          '-=0.25'
+        );
+
+        // 7. Continuous Ambient Motion (Sine wave floating loops)
+        gsap.to('.anim-digit-1', {
+          y: -10,
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+        gsap.to('.anim-digit-0', {
+          y: -15,
+          duration: 3.4,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: 0.3
+        });
+        gsap.to('.anim-digit-2', {
+          y: -11,
+          duration: 3.1,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: 0.5
+        });
+        gsap.to('.anim-illustration', {
+          y: -6,
+          rotation: 8,
+          duration: 2.6,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+        gsap.to('.anim-float-particle', {
+          y: -18,
+          x: 10,
+          rotation: 15,
+          duration: 4.5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          stagger: 0.6
+        });
+
+        // 8. Desktop Mouse Parallax (Interactive Subtle 3D movement)
+        if (window.innerWidth > 768) {
+          window.addEventListener('mousemove', (e) => {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const deltaX = (e.clientX - centerX) / centerX; // -1 to 1
+            const deltaY = (e.clientY - centerY) / centerY; // -1 to 1
+
+            // 404 group parallax tilt
+            gsap.to('.anim-404-group', {
+              x: deltaX * 16,
+              y: deltaY * 12,
+              duration: 0.8,
+              ease: 'power2.out'
+            });
+
+            // Parallax blobs
+            gsap.to('.bg-parallax-blob-1', {
+              x: -deltaX * 30,
+              y: -deltaY * 25,
+              duration: 1.2,
+              ease: 'power1.out'
+            });
+            gsap.to('.bg-parallax-blob-2', {
+              x: deltaX * 28,
+              y: deltaY * 22,
+              duration: 1.2,
+              ease: 'power1.out'
+            });
+          });
+        }
+      }
+
+      // Hook to universal preloader completion
+      window.addEventListener('stacklyPreloaderComplete', startAnimations);
+
+      // Safe fallback if preloader completes early or is not present
+      if (document.readyState === 'complete') {
+        setTimeout(startAnimations, 300);
+      } else {
+        window.addEventListener('load', () => setTimeout(startAnimations, 300));
+      }
+    })();
   </script>
 </body>
 </html>

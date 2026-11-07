@@ -334,3 +334,71 @@ a.btn:active,
   min-height: 380px;
   object-fit: cover;
 }
+
+/* ======================================================== */
+/* 404 ERROR PAGE ENHANCED ANIMATIONS                       */
+/* ======================================================== */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(25px, -30px) scale(1.08);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 20px) scale(0.95);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes radarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 14s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+.animate-radar-spin {
+  animation: radarSpin 22s linear infinite;
+}
+
+/* Prefers reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-reverse,
+  .animate-pulse-glow,
+  .animate-radar-spin {
+    animation: none !important;
+  }
+}
+
