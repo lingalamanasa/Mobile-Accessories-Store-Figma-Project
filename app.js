@@ -1231,7 +1231,7 @@ window.selectDevice = function (deviceKey, el) {
             <button onclick="openProductImageModal('${p.name}', '${p.img}', '${p.desc}', ${p.price})" class="p-1.5 rounded-lg border border-neutral-300 hover:bg-neutral-200 text-neutral-700 transition-colors" title="Open Image">
               <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="quickAddToCart('${p.name}', ${p.price}, '${p.img}')" class="px-3 py-1.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm active:scale-95">
+            <button onclick="window.location.href='404.html'" class="px-3 py-1.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm active:scale-95 cursor-pointer">
               Add to Cart
             </button>
           </div>

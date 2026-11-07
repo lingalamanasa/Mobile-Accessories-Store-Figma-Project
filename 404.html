@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Page Not Found — STACKLY</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          },
+          colors: {
+            exactBg: '#fbfbfb',
+            exactCard: '#ffffff',
+            exactDark: '#111827',
+            exactTeal: '#0d9488'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+  <!-- STACKLY Brand Favicons -->
+  <link rel="icon" type="image/webp" href="assets/exact_logo.webp">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+</head>
+
+<body
+  class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden min-h-screen flex flex-col justify-between">
+  <!-- ======================================================== -->
+  <!-- STACKLY PRELOADER ANIMATION                              -->
+  <!-- ======================================================== -->
+  <div id="stackly-preloader" class="fixed inset-0 z-[99999] bg-[#0b0f17] flex flex-col items-center justify-center transition-all select-none">
+    <div class="flex flex-col items-center text-center space-y-4 px-6 max-w-sm">
+      <div class="relative flex items-center justify-center mb-1">
+        <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain relative z-10">
+      </div>
+      <div class="space-y-1">
+        <div class="text-[13px] sm:text-[14px] font-mono tracking-[0.25em] uppercase text-indigo-400 font-extrabold preloader-title">
+          STACKLY 404
+        </div>
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wider uppercase font-mono">
+          Route Not Found
+        </p>
+      </div>
+      <div class="w-48 h-1 bg-neutral-800/90 rounded-full overflow-hidden relative mt-2">
+        <div id="preloader-progress" class="h-full bg-gradient-to-r from-indigo-500 via-purple-400 to-indigo-300 w-0 rounded-full"></div>
+      </div>
+      <span id="preloader-num" class="text-[11px] font-mono text-neutral-400 font-bold tracking-widest pt-0.5">
+        0%
+      </span>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- EXACT NAVIGATION BAR (Unified STACKLY Header)            -->
+  <!-- ======================================================== -->
+  <header class="bg-[#f5f5f7] border-b border-neutral-200/80 sticky top-0 z-40 header-nav">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+
+      <a href="index.html" class="flex items-center gap-2 cursor-pointer" title="STACKLY Home">
+        <img src="assets/exact_logo.webp" alt="STACKLY"
+          class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
+      </a>
+
+      <nav
+        class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
+        <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Home</a>
+        <a href="shop.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Shop</a>
+        <a href="services.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Services</a>
+        <a href="about.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">About</a>
+        <a href="blog.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Blog</a>
+        <a href="contact.html" class="hover:text-neutral-950 transition-colors py-1.5 cursor-pointer">Contact</a>
+      </nav>
+
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <a href="login.html" id="nav-login-btn"
+          class="text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden sm:inline">
+          Login
+        </a>
+
+        <a href="signup.html" id="nav-signup-btn"
+          class="bg-[#111827] text-white px-7 py-3 rounded-full text-sm sm:text-base font-bold tracking-wide hover:bg-neutral-800 transition-all shadow-md active:scale-95 magnetic-btn cursor-pointer">
+          Sign up
+        </a>
+
+        <button onclick="toggleMobileMenu()"
+          class="md:hidden p-2 rounded-xl text-neutral-700 hover:text-neutral-950 hover:bg-neutral-200/60 transition-colors cursor-pointer"
+          aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-neutral-200/80 px-6 py-6 space-y-4">
+      <nav class="flex flex-col space-y-3 font-semibold text-neutral-800 text-sm">
+        <a href="index.html" class="hover:text-teal-700 transition-colors py-1">Home</a>
+        <a href="shop.html" class="hover:text-teal-700 transition-colors py-1">Shop</a>
+        <a href="services.html" class="hover:text-teal-700 transition-colors py-1">Services</a>
+        <a href="about.html" class="hover:text-teal-700 transition-colors py-1">About</a>
+        <a href="blog.html" class="hover:text-teal-700 transition-colors py-1">Blog</a>
+        <a href="contact.html" class="hover:text-teal-700 transition-colors py-1">Contact</a>
+      </nav>
+      <div class="pt-4 border-t border-neutral-100 flex items-center justify-between gap-3">
+        <a href="login.html" class="text-sm font-bold text-neutral-700 hover:text-neutral-950">Login</a>
+        <a href="signup.html" class="px-5 py-2.5 rounded-full bg-[#111827] text-white text-xs font-bold">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- 404 HERO CONTENT                                         -->
+  <!-- ======================================================== -->
+  <main class="flex-1 max-w-[1280px] mx-auto px-6 lg:px-12 py-16 sm:py-24 flex flex-col items-center justify-center text-center">
+
+    <!-- Error Telemetry Badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200/80 mb-6 shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+      <span>ERROR CODE: 404 • ROUTE NOT FOUND</span>
+    </div>
+
+    <!-- Giant Visual 404 Typography -->
+    <div class="relative select-none mb-4">
+      <h1 class="text-7xl sm:text-9xl md:text-[160px] font-black tracking-tighter text-neutral-900 leading-none">
+        4<span class="text-teal-600">0</span>4
+      </h1>
+      <div class="absolute -top-3 -right-3 sm:-top-5 sm:-right-6 px-3 py-1 bg-neutral-900 text-white rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider uppercase rotate-12 shadow-lg">
+        Signal Lost
+      </div>
+    </div>
+
+    <h2 class="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight max-w-xl">
+      Lost in the Hardware Matrix.
+    </h2>
+
+    <p class="text-neutral-500 text-sm sm:text-base max-w-lg mt-3 leading-relaxed">
+      The accessory, prototype, or route you requested could not be located on our telemetry server. It may have been updated, relocated, or decommissioned.
+    </p>
+
+    <!-- Operational Action Buttons (Functional & Non-destructive) -->
+    <div class="flex flex-wrap items-center justify-center gap-3.5 mt-8 pt-2">
+      <!-- Return to Home -->
+      <a href="index.html"
+        class="px-7 py-3.5 rounded-full bg-[#111827] hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 active:scale-95 magnetic-btn">
+        <i data-lucide="home" class="w-4 h-4"></i>
+        <span>Return to Home</span>
+      </a>
+
+      <!-- Explore Catalog -->
+      <a href="shop.html"
+        class="px-7 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-900 border border-neutral-300 font-bold text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center gap-2 active:scale-95">
+        <i data-lucide="shopping-bag" class="w-4 h-4 text-teal-600"></i>
+        <span>Browse Catalog</span>
+      </a>
+
+      <!-- Hardware Support -->
+      <a href="contact.html"
+        class="px-7 py-3.5 rounded-full bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200/90 font-bold text-xs sm:text-sm transition-all flex items-center gap-2 active:scale-95">
+        <i data-lucide="life-buoy" class="w-4 h-4 text-teal-600"></i>
+        <span>Hardware Support</span>
+      </a>
+    </div>
+
+    <!-- Quick Navigation Shortcuts -->
+    <div class="mt-14 pt-10 border-t border-neutral-200/80 w-full max-w-3xl">
+      <p class="text-xs font-bold uppercase tracking-wider text-neutral-400 font-mono mb-4">
+        Quick Hardware Collections
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <a href="shop.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
+          <i data-lucide="shield" class="w-4 h-4 text-teal-600 mb-2 group-hover:scale-110 transition-transform"></i>
+          <p class="text-xs font-bold text-neutral-900">Tactix Cases</p>
+          <span class="text-[10px] text-neutral-400">15ft drop armor</span>
+        </a>
+
+        <a href="shop.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
+          <i data-lucide="zap" class="w-4 h-4 text-amber-500 mb-2 group-hover:scale-110 transition-transform"></i>
+          <p class="text-xs font-bold text-neutral-900">Qi2 Fast Docks</p>
+          <span class="text-[10px] text-neutral-400">15W multi-coil</span>
+        </a>
+
+        <a href="shop.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
+          <i data-lucide="headphones" class="w-4 h-4 text-indigo-600 mb-2 group-hover:scale-110 transition-transform"></i>
+          <p class="text-xs font-bold text-neutral-900">Studio Acoustics</p>
+          <span class="text-[10px] text-neutral-400">Hi-Fi ANC audio</span>
+        </a>
+
+        <a href="services.html" class="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-900 hover:shadow-md transition-all text-left group">
+          <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-600 mb-2 group-hover:scale-110 transition-transform"></i>
+          <p class="text-xs font-bold text-neutral-900">Warranty Claim</p>
+          <span class="text-[10px] text-neutral-400">Instant validation</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- FOOTER                                                   -->
+  <!-- ======================================================== -->
+  <footer class="pt-14 pb-12 border-t border-neutral-200/90 bg-[#f8f9fa] text-neutral-600 text-xs">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-6">
+        <div class="md:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="assets/exact_logo.webp" alt="STACKLY" class="h-9 sm:h-10 w-auto object-contain">
+          </a>
+          <p class="text-neutral-500 text-xs leading-relaxed max-w-sm">
+            Precision smartphone armor, magnetic Qi2 fast-charging ecosystems, and studio acoustic essentials built to
+            outlast everyday chaos.
+          </p>
+          <div class="flex items-center gap-2.5 pt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="X">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="Instagram">
+              <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white border border-neutral-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all flex items-center justify-center text-neutral-700 shadow-sm" aria-label="YouTube">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Products</h4>
+          <ul class="space-y-2 text-neutral-500 text-xs">
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Tactix Armor Phone Cases</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Orbit Qi2 Wireless Docks</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Studio Hi-Fi Earbuds Pro</a></li>
+            <li><a href="shop.html" class="hover:text-neutral-950 transition-colors">Nomad 10K MagBattery</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Customer Care</h4>
+          <ul class="space-y-2 text-neutral-500 text-xs">
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Warranty Claim Center</a></li>
+            <li><a href="services.html" class="hover:text-neutral-950 transition-colors">Trade-In & Recycle Portal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Track Your Order</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Help & FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2 space-y-3">
+          <h4 class="font-extrabold text-neutral-900 text-xs uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2 text-neutral-500 text-xs">
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">About Us</a></li>
+            <li><a href="about.html" class="hover:text-neutral-950 transition-colors">Engineering Lab</a></li>
+            <li><a href="blog.html" class="hover:text-neutral-950 transition-colors">Tech Journal</a></li>
+            <li><a href="contact.html" class="hover:text-neutral-950 transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 mt-8 border-t border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between text-neutral-400 text-[11px] gap-4">
+        <p>&copy; 2026 STACKLY Technologies Inc. All rights reserved.</p>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="hover:text-neutral-900 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-neutral-900 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-neutral-900 transition-colors">Security Disclosures</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="preloader.js"></script>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
+</html>
