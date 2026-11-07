@@ -1272,8 +1272,7 @@ window.openProductImageModal = function (title, imgSrc, price, desc) {
   if (priceEl) priceEl.textContent = `${price}`;
   if (addBtn) {
     addBtn.onclick = () => {
-      quickAddToCart(title, price, imgSrc);
-      closeProductImageModal();
+      window.location.href = '404.html';
     };
   }
 
