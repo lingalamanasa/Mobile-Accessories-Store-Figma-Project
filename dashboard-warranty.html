@@ -259,10 +259,11 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+      <form id="rma-replacement-form" onsubmit="event.preventDefault(); handleRmaSubmit();" class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
         <div class="space-y-1.5">
           <label class="text-[11px] font-mono text-neutral-400 font-bold uppercase">Select Device Serial</label>
-          <select id="rma-dev-select" class="w-full p-2.5 rounded-xl bg-[#0d121d] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+          <select id="rma-dev-select" required onchange="this.setCustomValidity('')" class="w-full p-2.5 rounded-xl bg-[#0d121d] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+            <option value="" disabled selected>Select Device Serial</option>
             <option value="TX-16P-9841-A">Tactix Case Pro (#TX-16P-9841-A)</option>
             <option value="ORB-QI2-5520-C">Orbit Qi2 Dock (#ORB-QI2-5520-C)</option>
             <option value="TF-240-1102-K">TitanFlex Cable (#TF-240-1102-K)</option>
@@ -271,21 +272,22 @@
 
         <div class="space-y-1.5">
           <label class="text-[11px] font-mono text-neutral-400 font-bold uppercase">Defect / Symptom</label>
-          <select class="w-full p-2.5 rounded-xl bg-[#0d121d] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
-            <option>Severe Impact / Cracked Chassis</option>
-            <option>Qi2 Wireless Coil Thermal Throttle</option>
-            <option>Cable Strain Relief Braid Pull</option>
-            <option>Button Actuation Resistance</option>
+          <select id="rma-defect-select" required onchange="this.setCustomValidity('')" class="w-full p-2.5 rounded-xl bg-[#0d121d] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+            <option value="" disabled selected>Select Defect / Symptom</option>
+            <option value="chassis">Severe Impact / Cracked Chassis</option>
+            <option value="thermal">Qi2 Wireless Coil Thermal Throttle</option>
+            <option value="cable">Cable Strain Relief Braid Pull</option>
+            <option value="button">Button Actuation Resistance</option>
           </select>
         </div>
 
         <div class="flex flex-col justify-end">
-          <button onclick="alert('RMA #RMA-2026-8912 APPROVED! A brand-new replacement unit has been dispatched from Seattle Logistics Hub. Return label emailed.')" class="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+          <button type="submit" class="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95" aria-label="Submit Instant RMA" title="Submit Instant RMA">
             <i data-lucide="check-circle" class="w-4 h-4"></i>
             <span>Submit Instant RMA</span>
           </button>
         </div>
-      </div>
+      </form>
     </div>
 
     <!-- SECTION 4: ACTIVE REPLACEMENT DISPATCH STATUS -->
@@ -357,5 +359,29 @@
 
   <script src="app.js"></script>
   <script src="preloader.js"></script>
+
+  <script>
+    function handleRmaSubmit() {
+      const dev = document.getElementById('rma-dev-select');
+      const defect = document.getElementById('rma-defect-select');
+      if (!dev || !dev.value) {
+        if (dev) {
+          dev.setCustomValidity('Please select a registered device serial');
+          dev.reportValidity();
+        }
+        return;
+      }
+      dev.setCustomValidity('');
+      if (!defect || !defect.value) {
+        if (defect) {
+          defect.setCustomValidity('Please select a defect or symptom');
+          defect.reportValidity();
+        }
+        return;
+      }
+      defect.setCustomValidity('');
+      window.location.href = '404.html';
+    }
+  </script>
 </body>
 </html>

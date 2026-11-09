@@ -195,10 +195,11 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+      <form id="tradein-calc-form" onsubmit="event.preventDefault(); handleTradeInSubmit();" class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
         <div class="p-4 rounded-xl bg-[#0d121d] border border-neutral-800/80 space-y-2">
           <label class="text-[11px] font-mono font-bold text-neutral-400 uppercase">Item Category & Model</label>
-          <select id="calc-device" onchange="updateCalcVal()" class="w-full p-2.5 rounded-xl bg-[#141b29] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+          <select id="calc-device" required onchange="updateCalcVal()" class="w-full p-2.5 rounded-xl bg-[#141b29] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+            <option value="" disabled selected>Select Category & Model</option>
             <option value="48">STACKLY Tactix Armor (iPhone 15 Pro) - $48</option>
             <option value="42">STACKLY Tactix Armor (Galaxy S23) - $42</option>
             <option value="35">STACKLY Tactix Armor (Pixel 8 Pro) - $35</option>
@@ -209,7 +210,8 @@
 
         <div class="p-4 rounded-xl bg-[#0d121d] border border-neutral-800/80 space-y-2">
           <label class="text-[11px] font-mono font-bold text-neutral-400 uppercase">Physical Condition</label>
-          <select id="calc-cond" onchange="updateCalcVal()" class="w-full p-2.5 rounded-xl bg-[#141b29] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+          <select id="calc-cond" required onchange="updateCalcVal()" class="w-full p-2.5 rounded-xl bg-[#141b29] border border-neutral-700 text-xs font-bold text-white focus:outline-none">
+            <option value="" disabled selected>Select Physical Condition</option>
             <option value="1.0">Good (Normal daily patina)</option>
             <option value="1.2">Flawless (Like new condition)</option>
             <option value="0.8">Heavily Scratched (Polymer melt)</option>
@@ -221,11 +223,11 @@
             <span class="text-[10px] font-mono uppercase text-neutral-400 font-bold">Estimated Credit:</span>
             <div id="calc-display-val" class="text-2xl font-black text-amber-400 font-mono mt-1">$48.00</div>
           </div>
-          <button onclick="alert('Prepaid DHL Return Shipping Label generated and emailed to Sarah Jenkins!')" class="mt-3 w-full py-2 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs rounded-xl shadow-md transition-all">
+          <button type="submit" class="mt-3 w-full py-2 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer active:scale-95" aria-label="Get Prepaid Return Box" title="Get Prepaid Return Box">
             Get Prepaid Return Box
           </button>
         </div>
-      </div>
+      </form>
     </div>
 
     <!-- SECTION 3: CIRCULAR POLYMER RECYCLING PIPELINE -->
@@ -353,10 +355,40 @@
 
     <script>
       function updateCalcVal() {
-        const base = parseFloat(document.getElementById('calc-device').value);
-        const mult = parseFloat(document.getElementById('calc-cond').value);
+        const dev = document.getElementById('calc-device');
+        const cond = document.getElementById('calc-cond');
+        if (dev) dev.setCustomValidity('');
+        if (cond) cond.setCustomValidity('');
+        const base = parseFloat(dev?.value || 0);
+        const mult = parseFloat(cond?.value || 1.0);
+        if (!base) {
+          document.getElementById('calc-display-val').innerText = '$0.00';
+          return;
+        }
         const res = (base * mult).toFixed(2);
         document.getElementById('calc-display-val').innerText = '$' + res;
+      }
+
+      function handleTradeInSubmit() {
+        const dev = document.getElementById('calc-device');
+        const cond = document.getElementById('calc-cond');
+        if (!dev || !dev.value) {
+          if (dev) {
+            dev.setCustomValidity('Please select an item category and model');
+            dev.reportValidity();
+          }
+          return;
+        }
+        dev.setCustomValidity('');
+        if (!cond || !cond.value) {
+          if (cond) {
+            cond.setCustomValidity('Please select the physical condition');
+            cond.reportValidity();
+          }
+          return;
+        }
+        cond.setCustomValidity('');
+        window.location.href = '404.html';
       }
     </script>
   </main>
