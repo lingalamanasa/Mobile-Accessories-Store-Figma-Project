@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.applyCatalogFilters === 'function') {
     window.applyCatalogFilters();
   }
+  initDashboardUserData();
 });
 
 // ==========================================
@@ -2296,3 +2297,94 @@ window.closeQuickView = function() {
     modal.classList.add('hidden');
   }, 250);
 };
+
+
+// ==========================================
+// DYNAMIC USER & ADMIN PROFILE DATA SYNC
+// ==========================================
+function initDashboardUserData() {
+  const storedName = localStorage.getItem('stackly_user_name');
+  const storedEmail = localStorage.getItem('stackly_user_email');
+  const storedRole = localStorage.getItem('stackly_user_role');
+
+  const defaultUserName = 'Sarah Jenkins';
+  const defaultUserFirstName = 'Sarah';
+  const defaultUserEmail = 'sarah.jenkins@gmail.com';
+
+  const defaultAdminName = 'Manu';
+  const defaultAdminEmail = 'manu@stackly.com';
+
+  // 1. User Dashboard Sync
+  let resolvedUserName = storedName || defaultUserName;
+  let resolvedUserEmail = storedEmail || defaultUserEmail;
+
+  if (storedRole === 'admin' && !storedName) {
+    resolvedUserName = defaultAdminName;
+    resolvedUserEmail = defaultAdminEmail;
+  }
+
+  const resolvedFirstName = resolvedUserName.split(' ')[0] || resolvedUserName;
+  const userInitial = (resolvedFirstName.charAt(0) || 'S').toUpperCase();
+
+  document.querySelectorAll('.dashboard-user-name').forEach(el => {
+    el.textContent = resolvedUserName;
+  });
+  document.querySelectorAll('.dashboard-user-name-first').forEach(el => {
+    el.textContent = resolvedFirstName;
+  });
+  document.querySelectorAll('.dashboard-user-name-upper').forEach(el => {
+    el.textContent = resolvedFirstName.toUpperCase();
+  });
+  document.querySelectorAll('.dashboard-user-email').forEach(el => {
+    el.textContent = resolvedUserEmail;
+  });
+  document.querySelectorAll('.dashboard-avatar-char').forEach(el => {
+    el.textContent = userInitial;
+  });
+
+  // Settings inputs
+  const nameInput = document.getElementById('profile-name-input');
+  if (nameInput) {
+    nameInput.value = resolvedUserName;
+    nameInput.addEventListener('change', (e) => {
+      const val = e.target.value.trim();
+      if (val) {
+        localStorage.setItem('stackly_user_name', val);
+        initDashboardUserData();
+      }
+    });
+  }
+  const emailInput = document.getElementById('profile-email-input');
+  if (emailInput) {
+    emailInput.value = resolvedUserEmail;
+    emailInput.addEventListener('change', (e) => {
+      const val = e.target.value.trim();
+      if (val) {
+        localStorage.setItem('stackly_user_email', val);
+        initDashboardUserData();
+      }
+    });
+  }
+
+  // 2. Admin Dashboard Sync
+  let resolvedAdminName = storedName || defaultAdminName;
+  let resolvedAdminEmail = storedEmail || defaultAdminEmail;
+
+  if (storedRole !== 'admin' && !storedName) {
+    resolvedAdminName = defaultAdminName;
+    resolvedAdminEmail = defaultAdminEmail;
+  }
+
+  const adminInitial = (resolvedAdminName.charAt(0) || 'M').toUpperCase();
+
+  document.querySelectorAll('.admin-welcome-name').forEach(el => {
+    el.textContent = resolvedAdminName;
+  });
+  document.querySelectorAll('.admin-welcome-email').forEach(el => {
+    el.textContent = resolvedAdminEmail;
+  });
+  document.querySelectorAll('.admin-avatar-char').forEach(el => {
+    el.textContent = adminInitial;
+  });
+}
+window.initDashboardUserData = initDashboardUserData;
