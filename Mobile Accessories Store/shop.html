@@ -189,16 +189,16 @@
           </div>
 
           <!-- Search & Action CTA Bar -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+          <form id="catalog-search-form" onsubmit="event.preventDefault(); handleCatalogSearchSubmit();" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
             <div class="relative flex-1">
               <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-              <input id="catalog-search-input" oninput="handleCatalogSearch(this.value)" type="text" placeholder="Search cases, cables, docks, earbuds..." class="w-full pl-10 pr-4 py-3 rounded-full bg-white text-xs font-medium text-neutral-900 border border-neutral-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent transition-all">
+              <input id="catalog-search-input" required oninput="handleCatalogSearch(this.value)" type="text" placeholder="Search cases, cables, docks, earbuds..." class="w-full pl-10 pr-4 py-3 rounded-full bg-white text-xs font-medium text-neutral-900 border border-neutral-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent transition-all">
             </div>
-            <a href="#catalog" class="px-6 py-3 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2 magnetic-btn">
+            <button type="submit" class="px-6 py-3 rounded-full bg-[#111827] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2 magnetic-btn cursor-pointer active:scale-95" aria-label="View Catalog" title="View Catalog">
               <span>View Catalog</span>
               <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
+            </button>
+          </form>
 
         </div>
 

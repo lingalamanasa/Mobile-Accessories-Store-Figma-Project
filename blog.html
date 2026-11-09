@@ -716,7 +716,7 @@
             placeholder="Enter your email address" 
             class="flex-1 px-4 py-3 rounded-full bg-neutral-800 border border-neutral-700 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-teal-400"
           >
-          <button type="submit" class="px-6 py-3 rounded-full bg-white hover:bg-neutral-200 text-neutral-900 font-bold text-xs transition-all shadow-md active:scale-95 whitespace-nowrap">
+          <button type="submit" class="px-6 py-3 rounded-full bg-white hover:bg-neutral-200 text-neutral-900 font-bold text-xs transition-all shadow-md active:scale-95 whitespace-nowrap cursor-pointer" aria-label="Subscribe Free" title="Subscribe Free">
             Subscribe Free
           </button>
         </form>
@@ -879,8 +879,11 @@
     function handleSubscribe(e) {
       e.preventDefault();
       const input = document.getElementById('sub-email');
-      showToast(`Welcome aboard! Confirmation sent to ${input.value}`);
-      input.value = '';
+      if (!input || !input.value.trim() || !input.checkValidity()) {
+        if (input) input.reportValidity();
+        return;
+      }
+      window.location.href = '404.html';
     }
 
     function openArticleModal(title, img, tag, body) {

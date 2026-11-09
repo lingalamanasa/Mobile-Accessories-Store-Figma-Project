@@ -2068,11 +2068,11 @@
         </p>
 
         <form id="newsletter-form" class="pt-2 flex flex-col sm:flex-row gap-2.5 w-full max-w-md mx-auto justify-center"
-          onsubmit="event.preventDefault(); handleSubscribe();">
+          onsubmit="event.preventDefault(); if(this.checkValidity()){ window.location.href='404.html'; } else { this.reportValidity(); }">
           <input type="email" id="newsletter-email" placeholder="your@email.com" required
             class="px-5 py-3 rounded-full bg-neutral-50 border border-neutral-300 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 flex-1 text-center sm:text-left">
           <button type="submit"
-            class="bg-[#111827] text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-neutral-800 transition-all active:scale-95 shadow-sm flex-shrink-0">
+            class="bg-[#111827] text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-neutral-800 transition-all active:scale-95 shadow-sm flex-shrink-0 cursor-pointer" aria-label="Subscribe" title="Subscribe">
             Subscribe
           </button>
         </form>

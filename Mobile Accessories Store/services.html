@@ -334,19 +334,22 @@
           <p class="text-xs sm:text-sm text-neutral-500 leading-relaxed">
             Locate the 10-digit serial printed inside your case or on the base of your Qi2 charger to check genuine manufacturing status and coverage period.
           </p>
-          <div class="pt-2">
+          <form id="warranty-verify-form" onsubmit="event.preventDefault(); verifySerial();" class="pt-2">
             <label class="block text-xs font-bold text-neutral-700 mb-1.5">STACKLY Device Serial Number</label>
             <div class="flex gap-2">
-              <input 
-                type="text" 
-                id="serial-input" 
-                placeholder="e.g. STK-9821-X16" 
+              <input
+                type="text"
+                id="serial-input"
+                required
+                placeholder="e.g. STK-9821-X16"
                 value="STK-9821-X16"
                 class="flex-1 px-4 py-3 rounded-2xl border border-neutral-200 bg-neutral-50 text-sm font-mono text-neutral-900 focus:outline-none focus:border-neutral-900 focus:bg-white"
               >
-              <button 
-                onclick="verifySerial()"
-                class="px-6 py-3 rounded-2xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm active:scale-95 flex items-center gap-2"
+              <button
+                type="submit"
+                class="px-6 py-3 rounded-2xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs transition-all shadow-sm active:scale-95 flex items-center gap-2 cursor-pointer"
+                aria-label="Verify"
+                title="Verify"
               >
                 <i data-lucide="search" class="w-4 h-4"></i>
                 <span>Verify</span>
@@ -354,11 +357,11 @@
             </div>
             <div class="flex items-center gap-2 mt-2 text-[11px] text-neutral-400">
               <span>Quick test:</span>
-              <button onclick="fillSampleSerial('STK-9821-X16')" class="underline hover:text-neutral-900 font-mono">STK-9821-X16</button>
+              <button type="button" onclick="fillSampleSerial('STK-9821-X16')" class="underline hover:text-neutral-900 font-mono cursor-pointer">STK-9821-X16</button>
               <span>•</span>
-              <button onclick="fillSampleSerial('STK-4412-Q15')" class="underline hover:text-neutral-900 font-mono">STK-4412-Q15</button>
+              <button type="button" onclick="fillSampleSerial('STK-4412-Q15')" class="underline hover:text-neutral-900 font-mono cursor-pointer">STK-4412-Q15</button>
             </div>
-          </div>
+          </form>
         </div>
 
         <div class="lg:col-span-6">
@@ -808,37 +811,24 @@
   <script>
     // Interactive Warranty Serial Verification
     function verifySerial() {
-      const input = document.getElementById('serial-input').value.trim().toUpperCase();
-      const card = document.getElementById('warranty-card');
-      const badge = document.getElementById('w-badge');
-      const serialSpan = document.getElementById('w-serial');
-      const modelSpan = document.getElementById('w-model');
-      const expirySpan = document.getElementById('w-expiry');
-
-      if (!input) {
-        showToast('Please enter a serial number');
+      const inputEl = document.getElementById('serial-input');
+      if (!inputEl || !inputEl.value.trim()) {
+        if (inputEl) {
+          inputEl.setCustomValidity('Please enter your STACKLY device serial number');
+          inputEl.reportValidity();
+        }
         return;
       }
-
-      serialSpan.textContent = input;
-
-      if (input.includes('Q15') || input.includes('DOCK')) {
-        modelSpan.textContent = 'STACKLY Orbit 3-in-1 Qi2 Charging Hub (15W)';
-        expirySpan.textContent = 'March 20, 2028 (Active Full Coverage)';
-        badge.textContent = 'Verified Qi2 Certified';
-      } else {
-        modelSpan.textContent = 'STACKLY Tactix Armor Case (iPhone 16 Pro Max)';
-        expirySpan.textContent = 'October 14, 2027 (Active Full Coverage)';
-        badge.textContent = 'Active & Certified';
-      }
-
-      gsap.fromTo(card, { scale: 0.96, opacity: 0.8 }, { scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(1.5)' });
-      showToast(`Serial ${input} successfully verified!`);
+      inputEl.setCustomValidity('');
+      window.location.href = '404.html';
     }
 
     function fillSampleSerial(val) {
-      document.getElementById('serial-input').value = val;
-      verifySerial();
+      const inputEl = document.getElementById('serial-input');
+      if (inputEl) {
+        inputEl.value = val;
+        inputEl.setCustomValidity('');
+      }
     }
 
     // Interactive Trade-in Calculator

@@ -1452,11 +1452,30 @@ function showToast(msg) {
 window.showToast = showToast;
 
 window.handleSubscribe = function () {
+  const form = document.getElementById('newsletter-form');
   const emailInput = document.getElementById('newsletter-email');
-  if (emailInput && emailInput.value) {
-    showToast(`Subscribed ${emailInput.value}!`);
-    emailInput.value = '';
+  if (form) {
+    if (form.checkValidity()) {
+      window.location.href = '404.html';
+    } else {
+      form.reportValidity();
+    }
+  } else if (emailInput && emailInput.value && emailInput.checkValidity()) {
+    window.location.href = '404.html';
   }
+};
+
+window.handleCatalogSearchSubmit = function () {
+  const input = document.getElementById('catalog-search-input');
+  if (!input || !input.value.trim()) {
+    if (input) {
+      input.setCustomValidity('Please enter a product or keyword to search');
+      input.reportValidity();
+    }
+    return;
+  }
+  input.setCustomValidity('');
+  window.location.href = '404.html';
 };
 
 window.scrollToSection = function (id) {
