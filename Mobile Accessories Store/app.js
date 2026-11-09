@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyCatalogFilters();
   }
   initDashboardUserData();
+  initMobileNav();
+  initTastefulWobble();
 });
 
 // ==========================================
@@ -1557,7 +1559,12 @@ window.handleAuthSubmit = function (e, type) {
 };
 
 window.toggleMobileMenu = function () {
-  const menu = document.getElementById('mobile-nav-menu');
+  const hamburger = document.getElementById('hamburger-btn');
+  if (hamburger) {
+    hamburger.click();
+    return;
+  }
+  const menu = document.getElementById('mobile-nav-menu') || document.getElementById('mobile-menu');
   if (!menu) return;
   menu.classList.toggle('hidden');
   if (!menu.classList.contains('hidden') && window.gsap) {
@@ -1565,6 +1572,124 @@ window.toggleMobileMenu = function () {
   }
   if (window.lucide) lucide.createIcons();
 };
+
+/* ══════════════════════════════════════════════════════
+   SPRING-BOARD MOBILE NAVIGATION (Matches Reference Site)
+   ══════════════════════════════════════════════════════ */
+function initMobileNav() {
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  const mobileClose = document.getElementById('mobile-close-btn');
+  const mobileLinks = document.querySelectorAll('.nav__mobile-link, .nav__mobile-actions a, .nav__mobile-links a');
+
+  if (!hamburger || !mobileMenu) return;
+
+  // Set staggered item indices if not already present
+  const items = mobileMenu.querySelectorAll('.nav__mobile-links > li, .nav__mobile-actions');
+  items.forEach((item, idx) => {
+    if (!item.style.getPropertyValue('--item-idx')) {
+      item.style.setProperty('--item-idx', idx);
+    }
+  });
+
+  const openMenu = () => {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.classList.add('open');
+    mobileMenu.removeAttribute('aria-hidden');
+    if (mobileOverlay) mobileOverlay.classList.add('active');
+    document.body.classList.add('menu-open');
+    document.documentElement.classList.add('menu-open');
+
+    setTimeout(() => {
+      const firstFocusable = mobileMenu.querySelector('a, button');
+      if (firstFocusable) firstFocusable.focus();
+    }, 150);
+  };
+
+  const closeMenu = () => {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    if (mobileOverlay) mobileOverlay.classList.remove('active');
+    document.body.classList.remove('menu-open');
+    document.documentElement.classList.remove('menu-open');
+  };
+
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isOpen = mobileMenu.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  if (mobileClose) {
+    mobileClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMenu();
+      hamburger.focus();
+    });
+  }
+
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMenu);
+  }
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!mobileMenu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      closeMenu();
+      hamburger.focus();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 912 && mobileMenu.classList.contains('open')) {
+      closeMenu();
+    }
+  }, { passive: true });
+}
+
+/* ══════════════════════════════════════════════════════
+   TASTEFUL WOBBLE CARDS ENTRANCE ON SCROLL
+   ══════════════════════════════════════════════════════ */
+function initTastefulWobble() {
+  const cards = document.querySelectorAll(
+    '.product-card, .category-card, .tilt-card, .bento-hover-lift, .figma-glass-card, [data-wobble]'
+  );
+  if (!cards.length) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('wobble-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.1
+    });
+
+    cards.forEach((card, idx) => {
+      card.classList.add('wobble-card');
+      card.style.setProperty('--wobble-delay', idx % 4);
+      observer.observe(card);
+    });
+  } else {
+    cards.forEach(c => c.classList.add('wobble-revealed'));
+  }
+}
+window.initMobileNav = initMobileNav;
+window.initTastefulWobble = initTastefulWobble;
 
 
 // ==========================================

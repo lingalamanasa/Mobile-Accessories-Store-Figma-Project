@@ -27,6 +27,7 @@
   <link rel="icon" type="image/webp" href="assets/exact_logo.webp">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body class="bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
@@ -101,25 +102,37 @@
           Sign up
         </a>
 
-        <!-- Mobile Menu Hamburger -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-800 hover:text-black focus:outline-none" aria-label="Toggle Navigation">
-          <i data-lucide="menu" class="w-6 h-6"></i>
+              <!-- Hamburger Button (Matches Reference Site) -->
+        <button class="nav__hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <i class="fa-solid fa-bars nav__hamburger-icon-bars" aria-hidden="true"></i>
+          <i class="fa-solid fa-xmark nav__hamburger-icon-close" aria-hidden="true"></i>
         </button>
       </div>
 
     </div>
 
-    <!-- Mobile Drawer Nav -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-neutral-200 bg-[#f5f5f7] px-6 py-4 space-y-3 font-semibold text-neutral-700">
-      <a href="index.html" class="block py-1 hover:text-black">Home</a>
-      <a href="shop.html" class="block py-1 hover:text-black">Shop</a>
-      <a href="services.html" class="block py-1 hover:text-black">Services</a>
-      <a href="about.html" class="block py-1 text-teal-700 font-bold">About</a>
-      <a href="blog.html" class="block py-1 hover:text-black">Blog</a>
-      <a href="contact.html" class="block py-1 hover:text-black">Contact</a>
-      <div class="pt-2 border-t border-neutral-200 flex gap-4">
-        <a href="login.html" class="text-sm font-bold text-neutral-700">Login</a>
-        <a href="signup.html" class="text-sm font-bold text-teal-700">Sign up</a>
+    <!-- Mobile Menu Overlay & Drawer (Spring-Board Navigation) -->
+    <div class="nav__mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <div class="nav__mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="nav__mobile-top">
+        <a href="index.html" class="nav__mobile-logo" aria-label="Stackly Home">
+          <img src="assets/exact_logo.webp" alt="STACKLY" style="height: 38px; width: auto; object-fit: contain;" />
+        </a>
+        <button class="nav__mobile-close" id="mobile-close-btn" aria-label="Close menu">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <ul class="nav__mobile-links" role="list">
+      <li class="nav__mobile-item" style="--item-idx: 0;"><a href="index.html" class="nav__mobile-link" id="mnav-home"><span>Home</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+      <li class="nav__mobile-item" style="--item-idx: 1;"><a href="shop.html" class="nav__mobile-link" id="mnav-shop"><span>Shop</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+      <li class="nav__mobile-item" style="--item-idx: 2;"><a href="services.html" class="nav__mobile-link" id="mnav-services"><span>Services</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+      <li class="nav__mobile-item" style="--item-idx: 3;"><a href="about.html" class="nav__mobile-link nav__mobile-link--active" id="mnav-about"><span>About</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+      <li class="nav__mobile-item" style="--item-idx: 4;"><a href="blog.html" class="nav__mobile-link" id="mnav-blog"><span>Blog</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+      <li class="nav__mobile-item" style="--item-idx: 5;"><a href="contact.html" class="nav__mobile-link" id="mnav-contact"><span>Contact</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li>
+      </ul>
+      <div class="nav__mobile-actions" style="--item-idx: 6;">
+        <a href="login.html" class="btn btn--outline nav__mobile-login" id="mnav-login">Login</a>
+        <a href="signup.html" class="btn btn--dark nav__mobile-cta" id="mnav-get-started">Sign up</a>
       </div>
     </div>
   </header>
