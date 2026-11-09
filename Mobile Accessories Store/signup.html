@@ -138,14 +138,14 @@
         </div>
 
         <!-- Form -->
-        <form id="signup-form" onsubmit="handleSignupSubmit(event)" class="space-y-3.5">
+        <form id="signup-form" autocomplete="off" onsubmit="handleSignupSubmit(event)" class="space-y-3.5">
           
           <!-- Full Name -->
           <div class="space-y-1">
             <label class="block text-xs font-bold text-neutral-700">Full Name</label>
             <div class="relative">
               <i data-lucide="user" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input id="signup-name" type="text" required placeholder="e.g. Sarah Jenkins" class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
+              <input id="signup-name" type="text" required autocomplete="off" value="" placeholder="Enter your full name" class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
             </div>
           </div>
 
@@ -154,7 +154,7 @@
             <label class="block text-xs font-bold text-neutral-700">Email Address</label>
             <div class="relative">
               <i data-lucide="mail" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input id="signup-email" type="email" required placeholder="you@example.com" class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
+              <input id="signup-email" type="email" required autocomplete="off" value="" placeholder="name@company.com" class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
             </div>
           </div>
 
@@ -163,7 +163,7 @@
             <label class="block text-xs font-bold text-neutral-700">Password</label>
             <div class="relative">
               <i data-lucide="lock" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input id="signup-password" type="password" required placeholder="Create password" class="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
+              <input id="signup-password" type="password" required autocomplete="new-password" value="" placeholder="Create password" class="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
               <button type="button" onclick="togglePasswordVisibility('signup-password', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700">
                 <i data-lucide="eye" class="w-4 h-4"></i>
               </button>
@@ -175,7 +175,7 @@
             <label class="block text-xs font-bold text-neutral-700">Confirm Password</label>
             <div class="relative">
               <i data-lucide="lock" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input id="signup-confirm" type="password" required placeholder="Confirm password" class="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
+              <input id="signup-confirm" type="password" required autocomplete="new-password" value="" placeholder="Confirm password" class="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
               <button type="button" onclick="togglePasswordVisibility('signup-confirm', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700">
                 <i data-lucide="eye" class="w-4 h-4"></i>
               </button>
@@ -245,10 +245,34 @@
       }
     }
 
-        function handleSignupSubmit(e) {
+    function handleSignupSubmit(e) {
       e.preventDefault();
-      const name = document.getElementById('signup-name').value.trim() || (selectedRole === 'admin' ? 'Manu' : 'Sarah Jenkins');
-      const email = document.getElementById('signup-email').value.trim() || (selectedRole === 'admin' ? 'manu@stackly.com' : 'sarah.jenkins@gmail.com');
+      const form = e.target;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const nameInput = document.getElementById('signup-name');
+      const emailInput = document.getElementById('signup-email');
+      const pwdInput = document.getElementById('signup-password');
+      const confirmInput = document.getElementById('signup-confirm');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const pwd = pwdInput ? pwdInput.value : '';
+      const confirm = confirmInput ? confirmInput.value : '';
+
+      if (!name || !email || !pwd) {
+        form.reportValidity();
+        return;
+      }
+
+      if (pwd !== confirm) {
+        confirmInput.setCustomValidity('Passwords do not match');
+        confirmInput.reportValidity();
+        return;
+      }
+      confirmInput.setCustomValidity('');
 
       localStorage.setItem('stackly_user_email', email);
       localStorage.setItem('stackly_user_name', name);
@@ -267,8 +291,26 @@
       }, 500);
     }
 
+    function resetSignupInputs() {
+      const name = document.getElementById('signup-name');
+      const email = document.getElementById('signup-email');
+      const pwd = document.getElementById('signup-password');
+      const confirm = document.getElementById('signup-confirm');
+      if (name) name.value = '';
+      if (email) email.value = '';
+      if (pwd) pwd.value = '';
+      if (confirm) confirm.value = '';
+      const form = document.getElementById('signup-form');
+      if (form) form.reset();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      resetSignupInputs();
       if (window.lucide) lucide.createIcons();
+    });
+
+    window.addEventListener('pageshow', () => {
+      resetSignupInputs();
     });
   </script>
 

@@ -140,14 +140,14 @@
         </div>
 
         <!-- Form -->
-        <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+        <form id="login-form" autocomplete="off" onsubmit="handleLoginSubmit(event)" class="space-y-4">
           
           <!-- Email Field -->
           <div class="space-y-1.5">
             <label class="block text-xs font-bold text-neutral-700">Email Address</label>
             <div class="relative">
               <i data-lucide="mail" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input id="login-email" type="email" required placeholder="you@example.com" class="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
+              <input id="login-email" type="email" required autocomplete="off" value="" placeholder="name@company.com" class="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
             </div>
           </div>
 
@@ -156,7 +156,7 @@
             <label class="block text-xs font-bold text-neutral-700">Password</label>
             <div class="relative">
               <i data-lucide="lock" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-              <input id="login-password" type="password" required placeholder="Enter your password" class="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
+              <input id="login-password" type="password" required autocomplete="new-password" value="" placeholder="Enter your password" class="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#f0f4fc] text-xs font-medium text-neutral-900 border border-transparent focus:border-neutral-300 focus:bg-white focus:outline-none transition-all">
               <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700">
                 <i data-lucide="eye" class="w-4 h-4"></i>
               </button>
@@ -230,14 +230,24 @@
       }
     }
 
-        function handleLoginSubmit(e) {
+    function handleLoginSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('login-email').value.trim() || (selectedRole === 'admin' ? 'manu@stackly.com' : 'sarah.jenkins@gmail.com');
+      const form = e.target;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const emailInput = document.getElementById('login-email');
+      const pwdInput = document.getElementById('login-password');
+      const email = emailInput ? emailInput.value.trim() : '';
+      if (!email || !pwdInput.value.trim()) {
+        form.reportValidity();
+        return;
+      }
+
       let name = email.split('@')[0];
       name = name.replace(/[._-]/g, ' ');
       name = name.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-      if (email.toLowerCase().includes('manu')) name = 'Manu';
-      if (email.toLowerCase().includes('sarah')) name = 'Sarah Jenkins';
 
       localStorage.setItem('stackly_user_email', email);
       localStorage.setItem('stackly_user_name', name);
@@ -256,8 +266,22 @@
       }, 500);
     }
 
+    function resetLoginInputs() {
+      const email = document.getElementById('login-email');
+      const pwd = document.getElementById('login-password');
+      if (email) email.value = '';
+      if (pwd) pwd.value = '';
+      const form = document.getElementById('login-form');
+      if (form) form.reset();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      resetLoginInputs();
       if (window.lucide) lucide.createIcons();
+    });
+
+    window.addEventListener('pageshow', () => {
+      resetLoginInputs();
     });
   </script>
 
