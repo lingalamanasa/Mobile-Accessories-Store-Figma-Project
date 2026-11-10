@@ -40,13 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // 1. GSAP ENTRANCE & SCROLL ANIMATIONS
 // ==========================================
 function initGSAPAnimations() {
-  // Header slide down
-  gsap.from('.header-nav', {
-    y: -25,
-    opacity: 0,
-    duration: 0.7,
-    ease: 'power3.out'
-  });
+  // Header entrance with clearProps: 'all' so no transforms linger or delay clicks
+  gsap.fromTo('.header-nav', 
+    { opacity: 0.8 }, 
+    { opacity: 1, duration: 0.2, ease: 'power1.out', clearProps: 'all' }
+  );
 
   // Hero Section Entrance (Safely sequenced so hero image card is never killed or stuck at opacity 0)
   const heroCard = document.querySelector('.hero-image-card');
@@ -1718,12 +1716,10 @@ function initRemainingPagesGSAP() {
   // ========================================================
   // 1. EXACT HOME PAGE: HEADER SLIDE DOWN
   // ========================================================
-  gsap.from('.header-nav', {
-    y: -25,
-    opacity: 0,
-    duration: 0.7,
-    ease: 'power3.out'
-  });
+  gsap.fromTo('.header-nav', 
+    { opacity: 0.8 }, 
+    { opacity: 1, duration: 0.2, ease: 'power1.out', clearProps: 'all' }
+  );
 
   // ========================================================
   // 2. EXACT HOME PAGE: HERO SECTION ENTRANCE TIMELINE

@@ -460,6 +460,23 @@ html, body {
   color: #cc0000;
 }
 
+/* ─── DESKTOP HEADER & NAVBAR ONE-CLICK INSTANT RESPONSIVENESS ─── */
+.header-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  pointer-events: auto !important;
+}
+
+.header-nav a,
+.header-nav button {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  touch-action: manipulation;
+}
+
 /* ─── SPRING-BOARD MOBILE NAVIGATION OVERLAY & DRAWER ─── */
 .nav__mobile-overlay {
   display: block;
@@ -496,12 +513,27 @@ html, body {
   padding: 1.5rem 1.75rem 2.5rem;
   box-shadow: none;
   transform: translateX(100%);
-  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.38s ease;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 .nav__mobile-menu.open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* On Desktop Screens (> 912px), completely remove mobile menu elements from hit-testing */
+@media (min-width: 913px) {
+  .nav__mobile-menu,
+  .nav__mobile-overlay,
+  .nav__hamburger {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 .nav__mobile-top {
