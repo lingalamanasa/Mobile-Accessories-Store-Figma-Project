@@ -2302,21 +2302,16 @@ window.applyCatalogFilters = function() {
     const matchDev = (window.currentCatalogDevice === 'all' || cardDev === 'all' || cardDev === window.currentCatalogDevice);
 
     if (matchCat && matchDev) {
+      card.classList.remove('is-hidden', 'hidden');
+      card.style.removeProperty('display');
       card.style.display = 'flex';
+      card.style.opacity = '1';
+      card.style.transform = 'none';
       visibleCount++;
-      if (window.gsap) {
-        gsap.to(card, { opacity: 1, scale: 1, duration: 0.25, overwrite: 'auto' });
-      } else {
-        card.style.opacity = '1';
-      }
     } else {
-      if (window.gsap) {
-        gsap.to(card, { opacity: 0, scale: 0.95, duration: 0.2, overwrite: 'auto', onComplete: () => {
-          card.style.display = 'none';
-        }});
-      } else {
-        card.style.display = 'none';
-      }
+      card.classList.add('is-hidden');
+      card.style.setProperty('display', 'none', 'important');
+      card.style.opacity = '0';
     }
   });
 
@@ -2370,11 +2365,15 @@ window.handleCatalogSearch = function(query) {
   cards.forEach(card => {
     const text = card.textContent.toLowerCase();
     if (!q || text.includes(q)) {
+      card.classList.remove('is-hidden', 'hidden');
+      card.style.removeProperty('display');
       card.style.display = 'flex';
       card.style.opacity = '1';
+      card.style.transform = 'none';
       visibleCount++;
     } else {
-      card.style.display = 'none';
+      card.classList.add('is-hidden');
+      card.style.setProperty('display', 'none', 'important');
       card.style.opacity = '0';
     }
   });

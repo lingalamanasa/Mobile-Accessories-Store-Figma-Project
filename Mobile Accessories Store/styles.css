@@ -298,11 +298,17 @@ a.btn:active,
   letter-spacing: -0.04em;
 }
 
-/* Ensure Product Cards & Bento Elements are Always 100% Visible */
+/* Ensure Product Cards & Bento Elements are Visible by Default */
 .product-card {
   opacity: 1;
   visibility: visible;
-  display: flex !important;
+  display: flex;
+}
+
+.product-card.is-hidden,
+.product-card.hidden,
+.product-card[style*="display: none"] {
+  display: none !important;
 }
 
 #products-grid {
