@@ -673,18 +673,18 @@ function initGSAPAnimations() {
   // ========================================================
   if (document.querySelector('footer')) {
     gsap.fromTo('footer .grid > div',
-      { y: 30, opacity: 0.5 },
+      { y: 15, opacity: 0.8 },
       {
         y: 0,
         opacity: 1,
+        duration: 0.35,
         ease: 'power2.out',
-        stagger: 0.08,
-        clearProps: 'transform,opacity',
+        stagger: 0.04,
+        clearProps: 'all',
         scrollTrigger: {
           trigger: 'footer',
           start: 'top 95%',
-          end: 'top 75%',
-          scrub: 1.2
+          once: true
         }
       }
     );

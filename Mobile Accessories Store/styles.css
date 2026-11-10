@@ -447,16 +447,16 @@ html, body {
 }
 
 .nav__hamburger-icon-bars {
-  display: block;
+  display: inline-block !important;
 }
 .nav__hamburger-icon-close {
-  display: none;
+  display: none !important;
 }
 .nav__hamburger.open .nav__hamburger-icon-bars {
-  display: none;
+  display: none !important;
 }
 .nav__hamburger.open .nav__hamburger-icon-close {
-  display: block;
+  display: inline-block !important;
   color: #cc0000;
 }
 
@@ -742,3 +742,18 @@ html.menu-open {
   }
 }
 
+
+/* Ensure Footer Links & Buttons Always Respond with 1-Click */
+footer {
+  position: relative;
+  z-index: 20;
+}
+footer a,
+footer button,
+footer input {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  user-select: auto !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+}

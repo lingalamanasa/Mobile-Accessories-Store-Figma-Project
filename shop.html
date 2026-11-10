@@ -1766,7 +1766,7 @@
   <!-- ======================================================== -->
   <!-- CLEAN FOOTER (Without marked elements)                   -->
   <!-- ======================================================== -->
-  <footer class="bg-[#0b0f17] text-neutral-400 border-t border-neutral-800/80 pt-16 pb-12 mt-auto select-none transition-colors">
+  <footer class="bg-[#0b0f17] text-neutral-400 border-t border-neutral-800/80 pt-16 pb-12 mt-auto transition-colors">
     <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
 
       <!-- Main Navigation Columns -->
@@ -1815,15 +1815,15 @@
         </div>
 
         <!-- Quick Links -->
-        <div class="lg:col-span-2 space-y-4">
+        <div class="lg:col-span-2 space-y-4 relative z-10">
           <h4 class="font-bold text-white text-sm sm:text-base tracking-wide">Quick Links</h4>
           <ul class="space-y-3 text-xs sm:text-sm">
-            <li><a href="index.html" class="text-neutral-400 hover:text-white transition-colors">Home</a></li>
-            <li><a href="shop.html" class="text-white font-semibold">Shop</a></li>
-            <li><a href="services.html" class="text-neutral-400 hover:text-white transition-colors">Services</a></li>
-            <li><a href="about.html" class="text-neutral-400 hover:text-white transition-colors">About</a></li>
-            <li><a href="blog.html" class="text-neutral-400 hover:text-white transition-colors">Blog</a></li>
-            <li><a href="contact.html" class="text-neutral-400 hover:text-white transition-colors">Contact</a></li>
+            <li><a href="index.html" onclick="if(window.location.pathname.endsWith('index.html')||window.location.pathname.endsWith('/')||window.location.pathname===''){window.scrollTo({top:0,behavior:'smooth'});event.preventDefault();}" class="text-neutral-400 hover:text-white transition-colors cursor-pointer inline-block py-0.5 pointer-events-auto">Home</a></li>
+            <li><a href="shop.html" onclick="if(window.location.pathname.endsWith('shop.html')){window.scrollTo({top:0,behavior:'smooth'});event.preventDefault();}" class="text-white font-semibold transition-colors cursor-pointer inline-block py-0.5 pointer-events-auto">Shop</a></li>
+            <li><a href="services.html" onclick="if(window.location.pathname.endsWith('services.html')){window.scrollTo({top:0,behavior:'smooth'});event.preventDefault();}" class="text-neutral-400 hover:text-white transition-colors cursor-pointer inline-block py-0.5 pointer-events-auto">Services</a></li>
+            <li><a href="about.html" onclick="if(window.location.pathname.endsWith('about.html')){window.scrollTo({top:0,behavior:'smooth'});event.preventDefault();}" class="text-neutral-400 hover:text-white transition-colors cursor-pointer inline-block py-0.5 pointer-events-auto">About</a></li>
+            <li><a href="blog.html" onclick="if(window.location.pathname.endsWith('blog.html')){window.scrollTo({top:0,behavior:'smooth'});event.preventDefault();}" class="text-neutral-400 hover:text-white transition-colors cursor-pointer inline-block py-0.5 pointer-events-auto">Blog</a></li>
+            <li><a href="contact.html" onclick="if(window.location.pathname.endsWith('contact.html')){window.scrollTo({top:0,behavior:'smooth'});event.preventDefault();}" class="text-neutral-400 hover:text-white transition-colors cursor-pointer inline-block py-0.5 pointer-events-auto">Contact</a></li>
           </ul>
         </div>
 
