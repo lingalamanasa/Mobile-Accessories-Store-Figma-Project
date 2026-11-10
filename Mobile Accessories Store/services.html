@@ -45,7 +45,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body class="has-fixed-nav pt-[88px] sm:pt-[96px] bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
+<body class="has-fixed-nav pt-16 sm:pt-[72px] bg-[#fbfbfb] text-[#111827] antialiased selection:bg-neutral-900 selection:text-white font-sans overflow-x-hidden">
   <!-- ======================================================== -->
   <!-- STACKLY PRELOADER ANIMATION                              -->
   <!-- ======================================================== -->
@@ -54,7 +54,7 @@
       <!-- Glow & Logo -->
       <div class="relative flex items-center justify-center mb-1">
         <div class="absolute -inset-4 bg-indigo-500/30 rounded-full blur-2xl animate-pulse"></div>
-        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 w-auto object-contain  relative z-10">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-200 hover:scale-105">
       </div>
       
       <!-- Brand & Page Name -->
@@ -84,15 +84,15 @@
   <!-- EXACT NAVIGATION BAR (Matches Main Site Perfectly)       -->
   <!-- ======================================================== -->
   <header class="bg-[#f5f5f7] border-b border-neutral-200/80 fixed top-0 left-0 right-0 w-full shadow-sm header-nav z-[100]">
-    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-22 sm:h-24 flex items-center justify-between">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-16 sm:h-18 flex items-center justify-between">
       
       <!-- Logo: Exact STACKLY logo untouched -->
       <a href="index.html" class="flex items-center gap-2">
-        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-11 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105">
+        <img src="assets/exact_logo.webp" alt="STACKLY" class="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-200 hover:scale-105">
       </a>
 
       <!-- Navigation Links -->
-      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[16px] sm:text-[17px] font-bold tracking-wide text-neutral-600">
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs sm:text-sm font-semibold tracking-normal text-neutral-600">
         <a href="index.html" class="hover:text-neutral-950 transition-colors py-1.5">Home</a>
         <a href="shop.html" class="hover:text-neutral-950 transition-colors py-1.5">Shop</a>
         <a href="services.html" class="text-neutral-900 font-extrabold relative py-1.5">
@@ -107,11 +107,11 @@
       <!-- Right Actions: Increased letter height & width -->
       <div class="flex items-center space-x-4 sm:space-x-6">
 
-        <a href="login.html" id="nav-login-btn" class="text-[15px] sm:text-[16px] font-bold tracking-wide text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden md:inline-block">
+        <a href="login.html" id="nav-login-btn" class="text-xs sm:text-sm font-semibold tracking-normal text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer hidden md:inline-block">
           Login
         </a>
 
-        <a href="signup.html" id="nav-signup-btn" class="hidden md:inline-flex bg-[#111827] text-white px-7 py-3 rounded-full text-sm sm:text-base font-bold tracking-wide hover:bg-neutral-800 transition-all shadow-md active:scale-95 cursor-pointer">
+        <a href="signup.html" id="nav-signup-btn" class="hidden md:inline-flex bg-[#111827] text-white px-5 py-2 sm:px-5.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-normal hover:bg-neutral-800 transition-all shadow-sm active:scale-95 cursor-pointer">
           Sign up
         </a>
 
