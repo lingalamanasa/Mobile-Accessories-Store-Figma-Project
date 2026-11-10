@@ -280,15 +280,11 @@
 
       const submitBtn = document.getElementById('submit-btn');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Creating account...</span>';
+      submitBtn.innerHTML = '<span>Account created! Opening login...</span>';
 
       setTimeout(() => {
-        if (selectedRole === 'admin') {
-          window.location.href = 'admin.html';
-        } else {
-          window.location.href = 'dashboard.html';
-        }
-      }, 500);
+        window.location.href = 'login.html?registered=true';
+      }, 400);
     }
 
     function resetSignupInputs() {

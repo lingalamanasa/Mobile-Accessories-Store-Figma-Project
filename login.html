@@ -276,7 +276,24 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      resetLoginInputs();
+      const urlParams = new URLSearchParams(window.location.search);
+      const registered = urlParams.get('registered');
+      const savedRole = localStorage.getItem('stackly_user_role');
+      const savedEmail = localStorage.getItem('stackly_user_email');
+
+      if (registered && savedRole) {
+        selectRole(savedRole);
+        const emailInput = document.getElementById('login-email');
+        if (emailInput && savedEmail) {
+          emailInput.value = savedEmail;
+        }
+        if (typeof showToast === 'function') {
+          showToast('Account created! Sign in to access your dashboard.');
+        }
+      } else {
+        resetLoginInputs();
+      }
+
       if (window.lucide) lucide.createIcons();
     });
 
