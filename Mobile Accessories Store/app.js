@@ -1465,6 +1465,32 @@ window.handleSubscribe = function () {
   }
 };
 
+window.handleFooterSubscribe = function (form, event) {
+  if (event) event.preventDefault();
+  const input = form ? form.querySelector('input[type="email"]') : document.querySelector('footer input[type="email"]');
+  if (!input) return;
+
+  const val = input.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!val) {
+    input.setCustomValidity('Please enter your email address.');
+    input.reportValidity();
+    input.focus();
+    return;
+  }
+
+  if (!emailRegex.test(val)) {
+    input.setCustomValidity('Please enter a valid email address.');
+    input.reportValidity();
+    input.focus();
+    return;
+  }
+
+  input.setCustomValidity('');
+  window.location.href = '404.html';
+};
+
 window.handleCatalogSearchSubmit = function () {
   const input = document.getElementById('catalog-search-input');
   if (!input || !input.value.trim()) {

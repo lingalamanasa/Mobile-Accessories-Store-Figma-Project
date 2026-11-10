@@ -1845,12 +1845,12 @@
           <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">
             Get weekly accessory drops, member discounts & new hardware release reports.
           </p>
-          <form onsubmit="event.preventDefault(); if(this.checkValidity()){ window.location.href='404.html'; } else { this.reportValidity(); }"
-            class="relative flex items-center w-full bg-[#151c28] border border-[#232d3f] rounded-full p-1 pl-4 focus-within:border-[#7e6eff] transition-all">
-            <input type="email" required placeholder="Enter your email"
+          <form onsubmit="event.preventDefault(); window.handleFooterSubscribe ? window.handleFooterSubscribe(this, event) : (this.checkValidity() ? window.location.href='404.html' : this.reportValidity());"
+            class="relative flex items-center w-full bg-[#151c28] border border-[#232d3f] rounded-full p-1 pl-4 focus-within:border-[#34d399] transition-all">
+            <input type="email" required placeholder="Enter your email" oninput="this.setCustomValidity('')"
               class="w-full bg-transparent text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none pr-2">
             <button type="submit"
-              class="shrink-0 bg-[#7e6eff] hover:bg-[#6c5ce7] text-white font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 rounded-full transition-all cursor-pointer active:scale-95 shadow-md shadow-[#7e6eff]/20">
+              class="shrink-0 bg-[#34d399] hover:bg-[#22c55e] text-[#06140d] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 rounded-full transition-all cursor-pointer active:scale-95 shadow-sm">
               Subscribe
             </button>
           </form>
