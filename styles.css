@@ -447,16 +447,16 @@ html, body {
 }
 
 .nav__hamburger-icon-bars {
-  display: block;
+  display: inline-block !important;
 }
 .nav__hamburger-icon-close {
-  display: none;
+  display: none !important;
 }
 .nav__hamburger.open .nav__hamburger-icon-bars {
-  display: none;
+  display: none !important;
 }
 .nav__hamburger.open .nav__hamburger-icon-close {
-  display: block;
+  display: inline-block !important;
   color: #cc0000;
 }
 
