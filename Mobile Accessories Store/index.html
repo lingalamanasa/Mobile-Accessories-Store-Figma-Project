@@ -1424,14 +1424,8 @@
           container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // 5. CRITICAL: Instantly open the particular product image in the lightbox modal!
-        if (data.products && data.products.length > 0) {
-          const flagship = data.products[0];
-          openProductImageModal(flagship.name, flagship.img, flagship.desc, flagship.price);
-        }
-
         if (window.lucide) lucide.createIcons();
-        if (typeof showToast === 'function') showToast(`Opened ${data.title.replace('Accessories for ', '')} image`);
+        if (typeof showToast === 'function') showToast(`Showing ${data.title.replace('Accessories for ', '')}`);
       };
 
       // Backward compatibility alias
@@ -1475,49 +1469,49 @@
 
       <!-- Clickable Device Button Pills with Real Device Images -->
       <div class="flex flex-wrap items-center gap-3 mb-6" id="device-selector-chips">
-        <button type="button" onclick="handleDeviceClick('iphone-16-pro', this, true)" data-device="iphone-16-pro"
+        <button type="button" onclick="handleDeviceClick('iphone-16-pro', this)" data-device="iphone-16-pro"
           class="device-chip active pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-neutral-900 text-white border border-neutral-900 shadow-md transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer ring-2 ring-neutral-900/20">
           <img src="assets/dev_iphone.jpg" alt="iPhone 16 Pro Max"
             class="w-6 h-6 rounded-full object-cover border border-white/20 flex-shrink-0 pointer-events-none">
           <span class="pointer-events-none">iPhone 16 Pro Max</span>
         </button>
 
-        <button type="button" onclick="handleDeviceClick('iphone-16', this, true)" data-device="iphone-16"
+        <button type="button" onclick="handleDeviceClick('iphone-16', this)" data-device="iphone-16"
           class="device-chip pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-300 hover:border-neutral-500 hover:bg-neutral-50 shadow-sm transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer">
           <img src="assets/dev_iphone15.jpg" alt="iPhone 16 / 15"
             class="w-6 h-6 rounded-full object-cover border border-neutral-200 flex-shrink-0 pointer-events-none">
           <span class="pointer-events-none">iPhone 16 / 15</span>
         </button>
 
-        <button type="button" onclick="handleDeviceClick('s24-ultra', this, true)" data-device="s24-ultra"
+        <button type="button" onclick="handleDeviceClick('s24-ultra', this)" data-device="s24-ultra"
           class="device-chip pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-300 hover:border-neutral-500 hover:bg-neutral-50 shadow-sm transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer">
           <img src="assets/dev_s24.jpg" alt="Galaxy S24 Ultra"
             class="w-6 h-6 rounded-full object-cover border border-neutral-200 flex-shrink-0 pointer-events-none">
           <span class="pointer-events-none">Galaxy S24 Ultra</span>
         </button>
 
-        <button type="button" onclick="handleDeviceClick('pixel-9', this, true)" data-device="pixel-9"
+        <button type="button" onclick="handleDeviceClick('pixel-9', this)" data-device="pixel-9"
           class="device-chip pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-300 hover:border-neutral-500 hover:bg-neutral-50 shadow-sm transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer">
           <img src="assets/dev_pixel.jpg" alt="Pixel 9 Pro"
             class="w-6 h-6 rounded-full object-cover border border-neutral-200 flex-shrink-0 pointer-events-none">
           <span class="pointer-events-none">Pixel 9 Pro</span>
         </button>
 
-        <button type="button" onclick="handleDeviceClick('oneplus-12', this, true)" data-device="oneplus-12"
+        <button type="button" onclick="handleDeviceClick('oneplus-12', this)" data-device="oneplus-12"
           class="device-chip pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-300 hover:border-neutral-500 hover:bg-neutral-50 shadow-sm transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer">
           <img src="assets/dev_oneplus.jpg" alt="OnePlus 12"
             class="w-6 h-6 rounded-full object-cover border border-neutral-200 flex-shrink-0 pointer-events-none">
           <span class="pointer-events-none">OnePlus 12</span>
         </button>
 
-        <button type="button" onclick="handleDeviceClick('ipad-pro', this, true)" data-device="ipad-pro"
+        <button type="button" onclick="handleDeviceClick('ipad-pro', this)" data-device="ipad-pro"
           class="device-chip pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-300 hover:border-neutral-500 hover:bg-neutral-50 shadow-sm transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer">
           <img src="assets/dev_ipad.jpg" alt="iPad Pro"
             class="w-6 h-6 rounded-full object-cover border border-neutral-200 flex-shrink-0 pointer-events-none">
           <span class="pointer-events-none">iPad Pro</span>
         </button>
 
-        <button type="button" onclick="handleDeviceClick('airpods', this, true)" data-device="airpods"
+        <button type="button" onclick="handleDeviceClick('airpods', this)" data-device="airpods"
           class="device-chip pl-2 pr-4 py-2.5 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-300 hover:border-neutral-500 hover:bg-neutral-50 shadow-sm transition-all flex items-center gap-2.5 active:scale-95 cursor-pointer">
           <img src="assets/dev_airpods.jpg" alt="AirPods Pro"
             class="w-6 h-6 rounded-full object-cover border border-neutral-200 flex-shrink-0 pointer-events-none">

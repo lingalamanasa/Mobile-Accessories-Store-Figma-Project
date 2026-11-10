@@ -1247,13 +1247,8 @@ window.selectDevice = function (deviceKey, el) {
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // Open product image modal
-  if (data.products && data.products.length > 0) {
-    openProductImageModal(data.products[0].name, data.products[0].img, data.products[0].desc, data.products[0].price);
-  }
-
   if (window.lucide) lucide.createIcons();
-  showToast(`Opened verified product images for ${data.title.replace('Accessories for ', '')}`);
+  showToast(`Showing verified accessories for ${data.title.replace('Accessories for ', '')}`);
 };
 
 // Lightbox Modal for viewing product images full size
