@@ -794,19 +794,84 @@ html {
 }
 
 /* ========================================================
-   DASHBOARD & ADMIN: FIXED SIDEBAR & FIXED TOPBAR HEADER
+   DASHBOARD & ADMIN: RESPONSIVE MOBILE SIDEBAR & FIXED TOPBAR
    ======================================================== */
-aside.dashboard-sidebar,
-aside {
-  position: sticky !important;
-  top: 0 !important;
-  left: 0 !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  flex-shrink: 0 !important;
-  overflow-y: auto !important;
-  overscroll-behavior: contain;
-  z-index: 40 !important;
+@media (min-width: 1025px) {
+  aside.dashboard-sidebar,
+  aside {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    flex-shrink: 0 !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    z-index: 40 !important;
+    transform: none !important;
+    display: flex !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  aside.dashboard-sidebar,
+  aside {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 280px !important;
+    max-width: 86vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 150 !important;
+    background-color: #0d121d !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.85) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    display: flex !important;
+  }
+
+  aside.dashboard-sidebar.sidebar-open {
+    transform: translateX(0) !important;
+  }
+
+  #dashboard-sidebar-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    background-color: rgba(11, 15, 23, 0.78) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    z-index: 140 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.28s ease !important;
+  }
+
+  #dashboard-sidebar-backdrop.backdrop-open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body:has(aside.dashboard-sidebar) {
+    overflow-x: hidden !important;
+  }
+
+  body:has(aside.dashboard-sidebar) main {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1rem !important;
+  }
+
+  body:has(aside.dashboard-sidebar) .dashboard-topbar {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+    margin-top: -1rem !important;
+  }
 }
 
 .dashboard-topbar {

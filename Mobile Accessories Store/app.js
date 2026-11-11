@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDashboardUserData();
   initMobileNav();
   initTastefulWobble();
+  initDashboardMobileNav();
 });
 
 // ==========================================
@@ -2532,3 +2533,69 @@ function initDashboardUserData() {
   });
 }
 window.initDashboardUserData = initDashboardUserData;
+
+// ==========================================
+// DASHBOARD & ADMIN MOBILE SIDEBAR NAVIGATION
+// ==========================================
+function initDashboardMobileNav() {
+  const sidebar = document.querySelector('aside.dashboard-sidebar');
+  if (!sidebar) return;
+
+  let backdrop = document.getElementById('dashboard-sidebar-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'dashboard-sidebar-backdrop';
+    backdrop.className = 'fixed inset-0 bg-neutral-950/75 backdrop-blur-sm z-[140] opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden';
+    document.body.appendChild(backdrop);
+  }
+
+  function openSidebar() {
+    sidebar.classList.add('sidebar-open');
+    backdrop.classList.add('backdrop-open');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('sidebar-open');
+    backdrop.classList.remove('backdrop-open');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  document.querySelectorAll('.dashboard-hamburger').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      sidebar.classList.contains('sidebar-open') ? closeSidebar() : openSidebar();
+    };
+  });
+
+  document.querySelectorAll('.dashboard-sidebar-close').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      closeSidebar();
+    };
+  });
+
+  backdrop.onclick = closeSidebar;
+
+  sidebar.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        closeSidebar();
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('sidebar-open')) {
+      closeSidebar();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024 && sidebar.classList.contains('sidebar-open')) {
+      closeSidebar();
+    }
+  }, { passive: true });
+}
+window.initDashboardMobileNav = initDashboardMobileNav;
