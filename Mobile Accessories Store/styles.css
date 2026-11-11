@@ -62,8 +62,8 @@ img {
 #products-grid > div,
 #featured-gear .product-card,
 section .group:has(img),
-.grid > div.rounded-2xl:not(button):not(input),
-.grid > div.rounded-3xl:not(button):not(input) {
+.grid > div.rounded-2xl:not(button):not(input):not(.admin-metric-card):not(.figma-dark-card):not(.dark-bento-card),
+.grid > div.rounded-3xl:not(button):not(input):not(.admin-metric-card):not(.figma-dark-card):not(.dark-bento-card) {
   position: relative;
   background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
   border: 1px solid rgba(229, 231, 235, 0.9);
@@ -87,8 +87,8 @@ section .group:has(img),
 .feature-card::before,
 .bento-card::before,
 #products-grid > div::before,
-.grid > div.rounded-2xl:not(button):not(input)::before,
-.grid > div.rounded-3xl:not(button):not(input)::before {
+.grid > div.rounded-2xl:not(button):not(input):not(.admin-metric-card):not(.figma-dark-card):not(.dark-bento-card)::before,
+.grid > div.rounded-3xl:not(button):not(input):not(.admin-metric-card):not(.figma-dark-card):not(.dark-bento-card)::before {
   content: '';
   position: absolute;
   top: 0;
@@ -112,8 +112,8 @@ section .group:has(img),
 .bento-card:hover,
 #products-grid > div:hover,
 #featured-gear .product-card:hover,
-.grid > div.rounded-2xl:not(button):not(input):hover,
-.grid > div.rounded-3xl:not(button):not(input):hover {
+.grid > div.rounded-2xl:not(button):not(input):not(.admin-metric-card):not(.figma-dark-card):not(.dark-bento-card):hover,
+.grid > div.rounded-3xl:not(button):not(input):not(.admin-metric-card):not(.figma-dark-card):not(.dark-bento-card):hover {
   transform: translateY(-6px) scale(1.015);
   border-color: rgba(13, 148, 136, 0.45);
   box-shadow: 0 24px 45px -12px rgba(0, 0, 0, 0.09), 
@@ -156,11 +156,16 @@ section .group:has(img),
    ======================================================== */
 .figma-dark-card,
 .admin-metric-card,
-.dark-bento-card {
+.dark-bento-card,
+.grid > div.admin-metric-card,
+body.bg-\[\#0b0f17\] .admin-metric-card,
+body[class*="0b0f17"] .admin-metric-card {
   position: relative;
-  background: linear-gradient(145deg, #111827 0%, #0d121d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: #121824 !important;
+  background: linear-gradient(145deg, #141b29 0%, #0d121d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f3f4f6 !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.3s ease;
