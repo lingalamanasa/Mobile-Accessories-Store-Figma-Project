@@ -1685,27 +1685,10 @@ function initTastefulWobble() {
   );
   if (!cards.length) return;
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('wobble-revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.1
-    });
-
-    cards.forEach((card, idx) => {
-      card.classList.add('wobble-card');
-      card.style.setProperty('--wobble-delay', idx % 4);
-      observer.observe(card);
-    });
-  } else {
-    cards.forEach(c => c.classList.add('wobble-revealed'));
-  }
+  cards.forEach(card => {
+    card.classList.remove('wobble-card');
+    card.classList.add('wobble-revealed');
+  });
 }
 window.initMobileNav = initMobileNav;
 window.initTastefulWobble = initTastefulWobble;
@@ -1782,9 +1765,10 @@ function initRemainingPagesGSAP() {
   if (statItems.length > 0) {
     heroTl.from(statItems, {
       y: 15,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.08
+      opacity: 0.6,
+      duration: 0.4,
+      stagger: 0.08,
+      clearProps: 'all'
     }, '-=0.3');
   }
 
