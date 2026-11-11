@@ -1888,7 +1888,7 @@ function initRemainingPagesGSAP() {
           duration: 0.8,
           stagger: 0.08,
           ease: 'power2.out',
-          clearProps: 'transform',
+          clearProps: 'transform,opacity',
           scrollTrigger: {
             trigger: grid,
             start: 'top 90%'
@@ -1901,7 +1901,7 @@ function initRemainingPagesGSAP() {
           duration: 0.8,
           stagger: 0.08,
           ease: 'power2.out',
-          clearProps: 'transform',
+          clearProps: 'transform,opacity',
           scrollTrigger: {
             trigger: grid,
             start: 'top 90%'

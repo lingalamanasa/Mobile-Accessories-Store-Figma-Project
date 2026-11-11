@@ -689,8 +689,8 @@ html.menu-open {
 /* ─── TASTEFUL WOBBLE CARD ENTER ANIMATION ───────────── */
 .wobble-card,
 [data-wobble] {
-  opacity: 0;
-  transform: translateY(28px) scale(0.96) rotate(-1.2deg);
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(0deg);
   transition: opacity 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
               transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition-delay: calc(var(--wobble-delay, 0) * 85ms);
@@ -699,7 +699,8 @@ html.menu-open {
 
 .wobble-card.wobble-revealed,
 [data-wobble].wobble-revealed {
-  opacity: 1;
+  opacity: 1 !important;
+  visibility: visible !important;
   transform: translateY(0) scale(1) rotate(0deg);
 }
 
