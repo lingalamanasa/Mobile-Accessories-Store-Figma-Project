@@ -406,7 +406,7 @@
                 Free one-time accidental drop replacement, zero shipping deduction, and priority concierge hardware diagnostics.
               </div>
             </div>
-            <button onclick="showToast('Support ticket initiated for STK-9821-X16. Check email shortly.')" class="w-full py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-900 hover:text-white transition-all text-xs font-bold text-neutral-700 flex items-center justify-center gap-1.5 mt-2">
+            <button onclick="window.location.href='404.html'" class="w-full py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-900 hover:text-white transition-all text-xs font-bold text-neutral-700 flex items-center justify-center gap-1.5 mt-2 cursor-pointer active:scale-95" aria-label="File Quick Replacement Claim" title="File Quick Replacement Claim">
               <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
               <span>File Quick Replacement Claim</span>
             </button>
@@ -456,7 +456,7 @@
             <div class="text-[11px] font-bold text-teal-300 uppercase">Estimated Store Credit</div>
             <div class="text-3xl font-black text-teal-400 mt-1" id="credit-amount">$15.00 USD</div>
           </div>
-          <button onclick="claimVoucher()" class="w-full py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-neutral-950 font-bold text-xs transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 mt-4">
+          <button onclick="window.location.href='404.html'" class="w-full py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-neutral-950 font-bold text-xs transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 mt-4 cursor-pointer" aria-label="Generate Voucher Code" title="Generate Voucher Code">
             <i data-lucide="tag" class="w-3.5 h-3.5"></i>
             <span>Generate Voucher Code</span>
           </button>
@@ -897,9 +897,7 @@
     }
 
     function claimVoucher() {
-      const code = 'RECYCLE-' + Math.floor(1000 + Math.random() * 9000);
-      navigator.clipboard?.writeText(code);
-      showToast(`Discount Voucher ${code} copied to clipboard! Use at checkout.`);
+      window.location.href = '404.html';
     }
   </script>
   <script src="preloader.js"></script>
