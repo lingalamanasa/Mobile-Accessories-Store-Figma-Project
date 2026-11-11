@@ -1076,7 +1076,7 @@ function renderCart() {
 
   container.innerHTML = cart.map(item => `
     <div class="flex items-center gap-3 p-2.5 bg-neutral-50 rounded-xl border border-neutral-200/80">
-      <img src="${item.img}" onerror="this.onerror=null;this.src='assets/product_case.jpg';" class="w-12 h-12 rounded-lg object-cover bg-neutral-200 flex-shrink-0" alt="${item.name}">
+      <img src="${item.img}" onerror="this.onerror=null;this.src='assets/product_case.webp';" class="w-12 h-12 rounded-lg object-cover bg-neutral-200 flex-shrink-0" alt="${item.name}">
       <div class="flex-1 min-w-0">
         <h5 class="text-xs font-bold text-neutral-900 truncate">${item.name}</h5>
         <p class="text-xs font-bold text-neutral-700">$${item.price}</p>
@@ -1215,7 +1215,7 @@ window.selectDevice = function (deviceKey, el) {
     grid.innerHTML = data.products.map(p => `
       <div class="bg-neutral-50 rounded-2xl p-4 border border-neutral-200/80 hover:border-neutral-400 hover:shadow-lg transition-all flex flex-col justify-between group">
         <div onclick="openProductImageModal('${p.name}', '${p.img}', '${p.desc}', ${p.price})" class="relative rounded-xl overflow-hidden aspect-square mb-3 bg-white cursor-pointer group/img">
-          <img src="${p.img}" onerror="this.onerror=null;this.src='assets/product_case.jpg';" alt="${p.name}" class="w-full h-full object-cover group-hover/img:scale-108 transition-transform duration-500">
+          <img src="${p.img}" onerror="this.onerror=null;this.src='assets/product_case.webp';" alt="${p.name}" class="w-full h-full object-cover group-hover/img:scale-108 transition-transform duration-500">
           <span class="absolute top-2 left-2 text-[10px] font-bold bg-neutral-900 text-white px-2 py-0.5 rounded-md shadow-sm z-10">${p.tag}</span>
           <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity text-white text-xs font-bold gap-1.5 backdrop-blur-[2px]">
             <i data-lucide="zoom-in" class="w-4 h-4 text-white"></i>
